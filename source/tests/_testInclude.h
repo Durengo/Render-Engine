@@ -1,0 +1,18 @@
+#pragma once
+
+#include "testClearColor.h"
+#include "testTriangle.h"
+#include "testRectangle.h"
+#include "testTriangleAbstraction.h"
+#include "testTriangleColor.h"
+#include "testTriangleColorAnimation.h"
+#include "testRectangleAbstraction.h"
+#include "testTexture.h"
+#include "testProjectionMetrices.h"
+#include "testMultipleObjects.h"
+#include "testMultipleRectangleTextures.h"
+#include "testCameraManipulation.h"
+#include "testTraingleTransformation.h"
+#include "testCube.h"
+#include "testCubeTexture.h"
+#include "testCamera.h"
