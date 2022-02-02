@@ -29,7 +29,7 @@ test::testTriangleColor::testTriangleColor()
 
 		m_IBO = std::make_unique<indexBuffer>(indices, 3);
 
-		m_Shader = std::make_unique<shader>("../source/res/shaders/triangle.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/triangle.shader");
 		m_Shader->Bind();
 		m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 }

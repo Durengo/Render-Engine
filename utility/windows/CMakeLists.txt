@@ -4,7 +4,6 @@ project(OpenGL)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(GLEW REQUIRED)
-find_package(glm CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 find_package(imguizmo CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
@@ -24,6 +23,8 @@ file(GLOB_RECURSE tests
 add_executable(${PROJECT_NAME}
         ${engine}
         ${tests}
+        #${imgui}
+        #${stb}
         )
 
 target_include_directories(OpenGL PRIVATE ${STB_INCLUDE_DIRS} ${SCOTTT_DEBUGBREAK_INCLUDE_DIRS})

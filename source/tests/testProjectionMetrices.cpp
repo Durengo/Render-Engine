@@ -1,7 +1,7 @@
 #include "testProjectionMetrices.h"
 
 #include <imgui.h>
-#include <gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 test::testProjectionMetrices::testProjectionMetrices()
 				: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
@@ -27,7 +27,7 @@ test::testProjectionMetrices::testProjectionMetrices()
 		m_IBO = std::make_unique<indexBuffer>(indices, 3);
 
 		//m_Shader = std::make_unique<shader>("../res/shaders/triangle.shader");
-		m_Shader = std::make_unique<shader>("../source/res/shaders/projectionMetrices.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/projectionMetrices.shader");
 
 		m_Shader->Bind();
 		m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);

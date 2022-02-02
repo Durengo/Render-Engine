@@ -1,7 +1,7 @@
 #include "testCamera.h"
 
 #include <imgui.h>
-#include <gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 test::testCamera::testCamera()
 				: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
@@ -48,10 +48,10 @@ test::testCamera::testCamera()
 
 		m_IBO = std::make_unique<indexBuffer>(indices, 36);
 
-		m_Shader = std::make_unique<shader>("../source/res/shaders/cubeTexture.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/cubeTexture.shader");
 		m_Shader->Bind();
 		//m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-		m_Texture = std::make_unique<texture>("../source/res/textures/jim.jpg");
+		m_Texture = std::make_unique<texture>("res/textures/jim.jpg");
 		m_Texture->Bind(0);
 		m_Shader->setUniform1i("u_Texture", 0);
 }
