@@ -28,6 +28,11 @@
           "type": "PATH"
         },
         {
+          "name": "glm_INCLUDE_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/glm_x64-windows/include",
+          "type": "PATH"
+        },
+        {
           "name": "SCOTTT_DEBUGBREAK_INCLUDE_DIRS",
           "value": "${projectDir}/vendor/vcpkg/packages/scottt-debugbreak_x64-windows/include",
           "type": "PATH"
