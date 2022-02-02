@@ -1,7 +1,8 @@
 #include "testClearColor.h"
 
-#include "../Engine/Core/GLErrorHandler.h"
 #include <imgui.h>
+
+#include "../Engine/Core/GLErrorHandler.h"
 
 namespace test {
 

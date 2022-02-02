@@ -4,11 +4,10 @@
 #include <GLFW/glfw3.h>
 
 #include "../../Core/GLErrorHandler.h"
+#include "../../Core/timestep.h"
 #include "vertexArray.h"
 #include "indexBuffer.h"
 #include "shader.h"
-
-#include "../../Core/timestep.h"
 
 class renderer {
 public:

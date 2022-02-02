@@ -1,8 +1,8 @@
 #include "testTextureNoAbstraction.h"
 
-#include "../Engine/Core/GLErrorHandler.h"
-
 #include <imgui.h>
+
+#include "../Engine/Core/GLErrorHandler.h"
 
 test::testTextureNoAbstraction::testTextureNoAbstraction(int width, int height) {
 }

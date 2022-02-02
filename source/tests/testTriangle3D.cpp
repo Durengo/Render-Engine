@@ -1,8 +1,8 @@
 #include "testTriangle3D.h"
 
-#include "../Engine/Core/GLErrorHandler.h"
-
 #include <imgui.h>
+
+#include "../Engine/Core/GLErrorHandler.h"
 
 test::testTriangle3D::testTriangle3D(int width, int height) {
 }

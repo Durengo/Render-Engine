@@ -2,12 +2,12 @@
 
 #include "test.h"
 
+#include <memory>
+
 #include "../Engine/Platform/OpenGL/vertexBufferLayout.h"
 #include "../Engine/Platform/OpenGL/vertexBuffer.h"
 #include "../Engine/Platform/OpenGL/indexBuffer.h"
 #include "../Engine/Platform/OpenGL/shader.h"
-
-#include <memory>
 
 namespace test {
 

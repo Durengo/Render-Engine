@@ -1,8 +1,8 @@
 #include "testRectangle.h"
 
-#include "../Engine/Core/GLErrorHandler.h"
-
 #include <imgui.h>
+
+#include "../Engine/Core/GLErrorHandler.h"
 
 test::testRectangle::testRectangle(int width, int height) {
 }

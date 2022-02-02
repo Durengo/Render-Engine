@@ -2,14 +2,16 @@
 
 #include "test.h"
 
+#include <memory>
+
+#include <GLFW/glfw3.h>
+
 #include "../Engine/Platform/OpenGL/vertexBufferLayout.h"
 #include "../Engine/Platform/OpenGL/vertexBuffer.h"
 #include "../Engine/Platform/OpenGL/indexBuffer.h"
 #include "../Engine/Platform/OpenGL/shader.h"
-#include "../Engine/Platform/OpenGL/texture.h"
 
-#include <memory>
-#include <GLFW/glfw3.h>
+#include "../Engine/Platform/OpenGL/texture.h"
 
 namespace test {
 
