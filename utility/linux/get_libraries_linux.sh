@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Everything this script does is clone all git repositories."
 
-cd ../vendor
+mkdir ../../vendor
+cd ../../vendor
 #Get glew
 #git clone https://github.com/nigels-com/glew.git
 #Get debugbreak
