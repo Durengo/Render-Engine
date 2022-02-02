@@ -1,20 +1,20 @@
 #include <iostream>
 
 #include <GL/glew.h>
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include "../Platform/OpenGL/renderer.h"
-#include "../../tests/_testInclude.h"
+#include "Platform/OpenGL/renderer.h"
+#include "../tests/_testInclude.h"
 
 //LEAVE FOR LATTER:
 //#include "tests/testInclusiveBasics.h"
 //#include "tests/testTriangle3D.h"
 
-#include "timestep.h"
+#include "Core/timestep.h"
 
 void ImGuiDemo(bool &show_demo_window, bool &show_another_window, ImVec4 &clear_color);
 
