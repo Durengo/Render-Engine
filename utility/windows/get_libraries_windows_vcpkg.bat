@@ -9,7 +9,7 @@ git clone https://github.com/microsoft/vcpkg.git
 cd vcpkg
 .\bootstrap-vcpkg.bat -disableMetrics
 .\vcpkg install scottt-debugbreak:x64-windows
-.\vcpkg install glfw:x64-windows
+.\vcpkg install glfw3:x64-windows
 .\vcpkg install glew:x64-windows
 .\vcpkg install glm:x64-windows
 .\vcpkg install stb:x64-windows

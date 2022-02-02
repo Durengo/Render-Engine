@@ -21,7 +21,7 @@ test::testRectangleAbstraction::testRectangleAbstraction()
 		layout.PushFloat(2);
 		m_VAO->addBuffer(*m_VBO, layout);
 		m_IBO = std::make_unique<indexBuffer>(indices, 6);
-		m_Shader = std::make_unique<shader>("../source/res/shaders/triangle.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/triangle.shader");
 		m_Shader->Bind();
 		m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 }

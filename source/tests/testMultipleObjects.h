@@ -7,7 +7,7 @@
 #include "../Engine/Platform/OpenGL/indexBuffer.h"
 #include "../Engine/Platform/OpenGL/shader.h"
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include <memory>
 

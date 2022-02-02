@@ -1,7 +1,7 @@
 #include "testInclusiveBasics.h"
 
 #include <imgui.h>
-#include <gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 test::testInclusiveBasics::testInclusiveBasics()
 				: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
@@ -28,9 +28,9 @@ test::testInclusiveBasics::testInclusiveBasics()
 		layout.PushFloat(2);
 		m_VAO->addBuffer(*m_VBO, layout);
 		m_IBO = std::make_unique<indexBuffer>(indices, 6);
-		m_Shader = std::make_unique<shader>("../source/res/shaders/multipleProjectionMetricesWithTextures.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/multipleProjectionMetricesWithTextures.shader");
 		m_Shader->Bind();
-		m_Texture = std::make_unique<texture>("../source/res/textures/jim.jpg");
+		m_Texture = std::make_unique<texture>("res/textures/jim.jpg");
 		m_Texture->Bind(0);
 		m_Shader->setUniform1i("u_Texture", 0);
 		//Triangle (BUFFER 1):

@@ -23,10 +23,10 @@ test::testTexture::testTexture()
 		layout.PushFloat(2);
 		m_VAO->addBuffer(*m_VBO, layout);
 		m_IBO = std::make_unique<indexBuffer>(indices, 6);
-		m_Shader = std::make_unique<shader>("../source/res/shaders/rectangleTexture.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/rectangleTexture.shader");
 		m_Shader->Bind();
 		//m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-		m_Texture = std::make_unique<texture>("../source/res/textures/jim.jpg");
+		m_Texture = std::make_unique<texture>("res/textures/jim.jpg");
 		m_Texture->Bind(0);
 		m_Shader->setUniform1i("u_Texture", 0);
 }

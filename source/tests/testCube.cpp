@@ -1,7 +1,7 @@
 #include "testCube.h"
 
 #include <imgui.h>
-#include <gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 test::testCube::testCube()
 				: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
@@ -44,7 +44,7 @@ test::testCube::testCube()
 
 		m_IBO = std::make_unique<indexBuffer>(indices, 36);
 
-		m_Shader = std::make_unique<shader>("../source/res/shaders/cube.shader");
+		m_Shader = std::make_unique<shader>("res/shaders/cube.shader");
 		m_Shader->Bind();
 		m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 }

@@ -8,7 +8,7 @@
 #include "../Engine/Platform/OpenGL/shader.h"
 #include "../Engine/Platform/OpenGL/texture.h"
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include <memory>
 

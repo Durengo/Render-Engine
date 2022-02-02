@@ -1,0 +1,68 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "${projectDir}\\vendor\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+      "variables": [
+        {
+          "name": "glfw3_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/glfw3_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "glew_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/glew_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "glew_INCLUDE_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/glew_x64-windows/include",
+          "type": "PATH"
+        },
+        {
+          "name": "SCOTTT_DEBUGBREAK_INCLUDE_DIRS",
+          "value": "${projectDir}/vendor/vcpkg/packages/scottt-debugbreak_x64-windows/include",
+          "type": "PATH"
+        },
+        {
+          "name": "STB_INCLUDE_DIRS",
+          "value": "${projectDir}/vendor/vcpkg/packages/stb_x64-windows/include",
+          "type": "PATH"
+        },
+        {
+          "name": "imgui_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/imgui_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "imguizmo_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/imguizmo_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "spdlog_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/spdlog_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "fmt_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/fmt_x64-windows",
+          "type": "PATH"
+        },
+        {
+          "name": "yaml-cpp_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/yaml-cpp_x64-windows",
+          "type": "PATH"
+        }
+      ]
+    }
+  ]
+}
