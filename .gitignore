@@ -1,4 +1,4 @@
 /vendor/
 /cmake-build-debug/
-/utility/spt/
-/source/Application/
+/utility/windows/
+/deprecated/

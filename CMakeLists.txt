@@ -40,6 +40,17 @@ file(GLOB_RECURSE stb
         "${PROJECT_SOURCE_DIR}/vendor/std_image/*.h"
         )
 
+file(GLOB_RECURSE app
+        "${PROJECT_SOURCE_DIR}/source/Application/*.h"
+        "${PROJECT_SOURCE_DIR}/source/Application/*.cpp"
+        )
+
+add_executable(App
+        ${app}
+        ${imgui}
+        ${stb}
+        )
+
 add_executable(OpenGL
         ${main}
         ${engine}
@@ -49,3 +60,4 @@ add_executable(OpenGL
         )
 
 target_link_libraries(OpenGL PRIVATE OpenGL::GL glfw GLEW::GLEW)
+target_link_libraries(App PRIVATE OpenGL::GL glfw GLEW::GLEW)
