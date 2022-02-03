@@ -6,3 +6,5 @@
 #include "orGate.h"
 
 #include "../signalNode.h"
+
+namespace ladderLogic {}

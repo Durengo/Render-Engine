@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utils/LocalHeaderPreLoader.h"
+#include "../wrapper/scriptline.h"
 
 class testUnit {
 private:
@@ -13,5 +14,7 @@ public:
 				void setGlobalTick(int T);
 
 				void testBasicAppLogic();
+
+				void testWrapper();
 
 };
