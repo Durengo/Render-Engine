@@ -41,8 +41,8 @@ file(GLOB_RECURSE stb
         )
 
 file(GLOB_RECURSE app
-        "${PROJECT_SOURCE_DIR}/source/Application/*.h"
-        "${PROJECT_SOURCE_DIR}/source/Application/*.cpp"
+        "${PROJECT_SOURCE_DIR}/source/Application/LadderLogic/*.h"
+        "${PROJECT_SOURCE_DIR}/source/Application/LadderLogic/*.cpp"
         )
 
 add_executable(App
