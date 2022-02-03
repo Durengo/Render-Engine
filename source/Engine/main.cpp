@@ -8,7 +8,7 @@
 #include <imgui_impl_opengl3.h>
 
 #include "Platform/OpenGL/renderer.h"
-#include "../tests/_testInclude.h"
+#include "tests/_testInclude.h"
 
 //LEAVE FOR LATTER:
 //#include "tests/testInclusiveBasics.h"

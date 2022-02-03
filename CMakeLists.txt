@@ -27,8 +27,8 @@ file(GLOB_RECURSE engine
         )
 
 file(GLOB_RECURSE tests
-        "${PROJECT_SOURCE_DIR}/source/tests/*.h"
-        "${PROJECT_SOURCE_DIR}/source/tests/*.cpp"
+        "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.h"
+        "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.cpp"
         )
 
 file(GLOB_RECURSE imgui

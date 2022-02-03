@@ -8,7 +8,7 @@ find_package(GLEW REQUIRED)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/debugbreak)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glfw)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/glm)
-include_directories(${PROJECT_SOURCE_DIR}/vendor/glm/glm)
+include_directories(${PROJECT_SOURCE_DIR}/vendor/glm)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/stb)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/imgui)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/ImGuizmo)
@@ -17,14 +17,18 @@ include_directories(${PROJECT_SOURCE_DIR}/vendor/spdlog/include)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/yaml-cpp)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/yaml-cpp/include)
 
+file(GLOB_RECURSE main
+        "${PROJECT_SOURCE_DIR}/source/Engine/main.cpp"
+        )
+
 file(GLOB_RECURSE engine
         "${PROJECT_SOURCE_DIR}/source/Engine/*.h"
         "${PROJECT_SOURCE_DIR}/source/Engine/*.cpp"
         )
 
 file(GLOB_RECURSE tests
-        "${PROJECT_SOURCE_DIR}/source/tests/*.h"
-        "${PROJECT_SOURCE_DIR}/source/tests/*.cpp"
+        "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.h"
+        "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.cpp"
         )
 
 file(GLOB_RECURSE imgui
@@ -37,6 +41,7 @@ file(GLOB_RECURSE stb
         )
 
 add_executable(OpenGL
+        ${main}
         ${engine}
         ${imgui}
         ${tests}
