@@ -4,7 +4,19 @@ namespace ladderLogic {
 
 				normallyOpenGate::normallyOpenGate()
 								: type(ladderLogic::gateType::NO), logicGate(type), output(true), firstPin(false), firstPinTaken(false),
-										secondPin(false), secondPinTaken(false)	{}
+										secondPin(false), secondPinTaken(false) {}
+
+				normallyOpenGate::normallyOpenGate(int firstpin)
+								: type(ladderLogic::gateType::NO), logicGate(type), output(true), firstPin(firstpin), firstPinTaken(false),
+										secondPin(false), secondPinTaken(false) {}
+
+				bool normallyOpenGate::executeGateLogic() {
+						if (firstPin == 0) {
+								return true;
+						} else if (firstPin == 1) {
+								return false;
+						}
+				}
 
 				bool normallyOpenGate::getfirstPin() {
 						if (!firstPinTaken) {
@@ -17,10 +29,10 @@ namespace ladderLogic {
 
 				bool normallyOpenGate::executeNormallyOpenGateLogic() {
 						bool a = getfirstPin();
-						if (a == 0)	{
+						if (a == 0) {
 								output = true;
 								return output;
-						}	else if (a == 1)	{
+						} else if (a == 1) {
 								output = false;
 								return output;
 						}

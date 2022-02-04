@@ -5,6 +5,7 @@
 #include "../utils/DataManager.h"
 #include "logicGate.h"
 #include "node.h"
+#include "../wrapper/IOBuffer.h"
 
 namespace ladderLogic {
 
@@ -15,13 +16,34 @@ namespace ladderLogic {
 
 								DataManager *Manager;
 
+								IOBuffer* ioBuffer;
+
+								bool m_InitialInput, m_InitialOutput;
+
+								void switchm_InitialInput();
+
+								void switchm_InitialOutput();
+
 								int m_UniqueGateListID;
 
-								explicit gateList(DataManager *ManagerInstance);
+								gateList();
+
+								explicit gateList(DataManager *ManagerInstance, ladderLogic::IOBuffer *buffer);
 
 								~gateList();
 
-								void executeGateLogic(int nodeselect);
+								bool isModified;
+
+								std::pair<std::string, bool> *inputBufferPTR;
+								std::pair<std::string, bool> *outputBufferPTR;
+
+								std::vector<int> instructionSet;
+
+								void constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]);
+
+								void executeAllGates();
+
+								void executeSpecificGateLogic(int nodeselect);
 
 								int checkGateType(node *current);
 
@@ -39,7 +61,9 @@ namespace ladderLogic {
 
 								void setm_GatesInList(int m_GatesInList);
 
-								void createGate(ladderLogic::gateType);
+								void createGate(ladderLogic::gateType, int firstPin); //for one input gates
+
+								void createGate(ladderLogic::gateType, int firstPin, int secondPin); //for two input gates
 
 								void displayList() const; //Function for displaying all elements in a linked list.
 								int length() const; //Function to count the length of the linked list.
@@ -54,7 +78,7 @@ namespace ladderLogic {
 												int position); //Function to delete an element from a linked list by a given position. Runs through multiple cases to either run the deleteHead() function or the deleteTail() function; else call the deletePos() function.
 
 								void deletePos(
-												int position) const; //Function to delete any element from a linked list, but not the initial or terminal element.
+												int position); //Function to delete any element from a linked list, but not the initial or terminal element.
 				};
 
 }

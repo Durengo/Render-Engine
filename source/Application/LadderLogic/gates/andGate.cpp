@@ -6,6 +6,9 @@ namespace ladderLogic {
 								: type(ladderLogic::gateType::AND), logicGate(type), output(false), firstPin(false), firstPinTaken(false),
 										secondPin(false), secondPinTaken(false)	{}
 
+				andGate::andGate(bool firstPin, bool secondPin)
+								: type(ladderLogic::gateType::AND), logicGate(type), output(false), firstPin(firstPin), firstPinTaken(false),
+										secondPin(secondPin), secondPinTaken(false)	{}
 
 				bool andGate::getfirstPin() {
 						if (!firstPinTaken) {
@@ -23,6 +26,14 @@ namespace ladderLogic {
 								secondPinTaken = true;
 						}
 						return secondPin;
+				}
+
+				bool andGate::executeGateLogic(){
+						if (firstPin == 1 && secondPin == 1)	{
+								return true;
+						}	else {
+								return false;
+						}
 				}
 
 				bool andGate::executeAndGateLogic() {

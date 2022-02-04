@@ -6,6 +6,20 @@ namespace ladderLogic {
 								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(false), firstPinTaken(false),
 										secondPin(false), secondPinTaken(false)	{}
 
+				orGate::orGate(bool firstPin, bool secondPin)
+								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(firstPin), firstPinTaken(false),
+										secondPin(secondPin), secondPinTaken(false)	{
+
+				}
+
+				bool orGate::executeGateLogic() {
+						if (firstPin == 1 || secondPin == 1)	{
+								return true;
+						}	else {
+								return false;
+						}
+				}
+
 				bool orGate::getfirstPin() {
 						if (!firstPinTaken) {
 								std::cout << "Enter first input pin for " << getgateType() << " : ";
@@ -35,4 +49,5 @@ namespace ladderLogic {
 								return output;
 						}
 				}
+
 }

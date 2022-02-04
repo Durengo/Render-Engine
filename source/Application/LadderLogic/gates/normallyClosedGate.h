@@ -7,7 +7,11 @@ namespace ladderLogic {
 				public:
 								normallyClosedGate();
 
+								normallyClosedGate(int firstpin);
+
 								bool getfirstPin();
+
+								bool executeGateLogic();
 
 								bool executeNormallyCloseGateLogic();
 

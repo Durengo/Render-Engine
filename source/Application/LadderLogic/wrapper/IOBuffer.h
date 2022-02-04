@@ -6,29 +6,60 @@
 
 namespace ladderLogic {
 
+				struct inputPair{
+								std::pair<std::string, bool> boundInputBuffer[10];
+				};
+
+				struct outputPair{
+								std::pair<std::string, bool> boundOutputBuffer[10];
+				};
+
 				class IOBuffer {
 				public:
 								IOBuffer();
+
+								void newIOBuffer();
 
 								void initInputBuffer();
 
 								void initOutputBuffer();
 
-								std::string* getInputLabel();
+								void initInputBools();
 
-								std::string* getOutputLabel();
+								void initOutputBools();
 
-								void displayInputLabel();
+								void bindBuffers();
 
-								void displayOutputLabel();
+								void changeSingleBufferElement(int position, bool buffertype, std::string newbuffername, bool newbufferstate);
+
+								void changeInput(int position);
+
+								void changeOutput(int position);
+
+								void displayBuffers();
+
+								void displayInputBuffers();
+
+								void displayOutputBuffers();
+
+								std::pair<std::string, bool>* getInputBufferPointer();
+
+								std::pair<std::string, bool>* getOutputBufferPointer();
 
 				private:
 
-								//std::unique_ptr<std::string> inputLable;
+								inputPair boundInputPair;
 
-								std::string inputLabel[10][2];
+								outputPair boundOutputPair;
 
-								std::string outputLabel[10][2];
+								bool inputBools[10];
+
+								bool outputBools[10];
+
+								std::string inputLabel[10];
+
+								std::string outputLabel[10];
+
 				};
 
 }

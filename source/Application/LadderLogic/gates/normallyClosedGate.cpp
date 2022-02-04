@@ -4,7 +4,21 @@ namespace ladderLogic {
 
 				normallyClosedGate::normallyClosedGate()
 								: type(ladderLogic::gateType::NC), logicGate(type), output(false), firstPin(false), firstPinTaken(false),
-										secondPin(false), secondPinTaken(false)	{}
+										secondPin(false), secondPinTaken(false) {}
+
+				normallyClosedGate::normallyClosedGate(int firstpin)
+								: type(ladderLogic::gateType::NC), logicGate(type), output(false), firstPin(firstpin), firstPinTaken(false),
+										secondPin(false), secondPinTaken(false) {
+
+				}
+
+				bool normallyClosedGate::executeGateLogic() {
+						if (firstPin == 0) {
+								return false;
+						} else if (firstPin == 1) {
+								return true;
+						}
+				}
 
 				bool normallyClosedGate::getfirstPin() {
 						if (!firstPinTaken) {
@@ -25,4 +39,5 @@ namespace ladderLogic {
 								return output;
 						}
 				}
+
 }

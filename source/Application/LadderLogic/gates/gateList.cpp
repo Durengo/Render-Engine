@@ -4,24 +4,89 @@
 
 namespace ladderLogic {
 
-				gateList::gateList(DataManager *ManagerInstance)
-								: head(nullptr), tail(nullptr), Manager(nullptr), m_UniqueGateListID(0), m_GatesInList(0) {
-						Manager = ManagerInstance;
-						setm_GateListSpecificID();
+				gateList::gateList() {}
 
+				gateList::gateList(DataManager *ManagerInstance, ladderLogic::IOBuffer *buffer)
+								: head(nullptr), tail(nullptr), Manager(ManagerInstance), ioBuffer(buffer), m_UniqueGateListID(0),
+										m_GatesInList(0), m_InitialInput(false), m_InitialOutput(false), isModified(true) {
+						setm_GateListSpecificID();
+						inputBufferPTR = buffer->getInputBufferPointer();
+						outputBufferPTR = buffer->getOutputBufferPointer();
 						C->PTC("\nData manger hooked!");
-						C->PTC("\nUser List constructed!");
+						C->PTC("\nGate List constructed!");
 						LOG->PTF("\nGATE LIST ID: ", m_GateListSpecificID, "\n");
 						LOG->PTF("\nData manger hooked!\n");
 //		LOG->PTF("\nUser List constructed! Type: ", UserFlag, "\n");
 				}
 
 				gateList::~gateList() {
-						for(int i = 1; i <= m_GatesInList; i++){
-								deleteByPos(i);
+						int gatesinlist = m_GatesInList;
+						if(gatesinlist != 0){
+								for (int i = 0; i < gatesinlist; i++) {
+										//std::cout << m_GatesInList << ", ";
+										deleteByPos(1);
+								}
 						}
-						C->PTC("\nUser list destructed!\n");
-						LOG->PTF("\nUser list destructed!\n");
+						C->PTC("\nGate list destructed!\n");
+						LOG->PTF("\nGate list destructed!\n");
+				}
+
+				void gateList::constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]) {
+						//MIGHT CAUSE POTENTIAL MEMORY CRASHES//
+						instructionSet = INSTRUCTIONSET;
+						node *current = nullptr;
+						node *previous = nullptr;
+						current = this->head;
+						for (int i = 0; i < m_GatesInList; i++) {
+								if (current->next == nullptr) {
+										std::cout << "\nOUT OF BOUNDS NODE\n";
+										return;
+								}
+								previous = current;
+								current = current->next;
+						}
+						int returnOperation = checkGateType(current);
+//		std::cout << "\n" << current->getm_GateTypeByString() << " selected!\n";
+//		std::cout << current->getOutput();
+
+						isModified = true;
+				}
+
+
+				void gateList::executeAllGates() {
+						node *current = nullptr;
+						node *previous = nullptr;
+						current = this->head;
+						bool unsginedGate = false;
+						for (int i = 0; i < m_GatesInList; i++) {
+								if (!current->isAssigned) {
+										std::cout << "\nCANNOT EXECUTE WHILE ALL GATES HAVE NOT BEEN ASSIGNED";
+										std::cout << "\nUnsigned gate: " << current->getm_GateTypeByString() << " at script line position: " << i
+																				<< "; node ID: " << current->getUniqueId() << std::endl;
+								}
+								previous = current;
+								current = current->next;
+						}
+						if (unsginedGate) {
+								return;
+						}
+						//this->head;
+				}
+
+				void gateList::switchm_InitialInput() {
+						if (m_InitialInput) {
+								m_InitialInput = false;
+						} else if (!m_InitialInput) {
+								m_InitialInput = true;
+						}
+				}
+
+				void gateList::switchm_InitialOutput() {
+						if (m_InitialOutput) {
+								m_InitialOutput = false;
+						} else if (!m_InitialOutput) {
+								m_InitialOutput = true;
+						}
 				}
 
 				int gateList::getm_GatesInList() const {
@@ -40,19 +105,33 @@ namespace ladderLogic {
 				void gateList::setm_GateListSpecificID() {
 						std::random_device rd;
 						std::mt19937 mt(rd());
-						std::mt19937 kekovichka(rd());
 						std::uniform_real_distribution<double> dist(1.0, 10000.0);
 						int temp = 0;
-						for(int i = 0; i < 30; i++)
-						{
+						for (int i = 0; i < 30; i++) {
 								temp = dist(mt);
 						}
 						m_GateListSpecificID = Manager->getm_TotalLogicGates() + Manager->getm_TotalScriptLines() + (42 * temp);
 				}
 
 				void gateList::createGate(
-								ladderLogic::gateType type) { //Function for creating a new User class object and inserting it into a linked list. Pass by an instantiated list, along with username and password.
-						auto *newGate = new node(type); // Create a new user object and allocate it to heap.
+								ladderLogic::gateType type,
+								int firstPin) { //Function for creating a new User class object and inserting it into a linked list. Pass by an instantiated list, along with username and password.
+						switch (type) {
+								case ladderLogic::gateType::NO:
+										break;
+								case ladderLogic::gateType::NC:
+										break;
+								case ladderLogic::gateType::AND:
+										std::cout << "\nEXCEPTION: CANNOT ASSIGN ONE INPUT TO AND GATE\n";
+										return;
+								case ladderLogic::gateType::OR:
+										std::cout << "\nEXCEPTION: CANNOT ASSIGN ONE INPUT TO OR GATE\n";
+										return;
+								default:
+										std::cout << "\nEXCEPTION IN GATE CREATOR!\n";
+										return;
+						}
+						auto *newGate = new node(type, firstPin); // Create a new user object and allocate it to heap.
 						m_GatesInList = m_GatesInList + 1;
 						newGate->setUniqueId(getm_GatesInList());
 						int i = 1;
@@ -74,6 +153,54 @@ namespace ladderLogic {
 								this->tail = newGate; //Set terminal (tail) pointer to point to newly created User class object.
 						}
 						Manager->addTom_TotalLogicGates();
+						isModified = true;
+
+						C->PTC("\n!New gate! Total gates in current script line: ", getm_GatesInList(), "; Total unique gates: ",
+													Manager->getm_TotalLogicGates(), "\n");
+						std::cout << "Gate Type: " << newGate->getm_GateType() << "\n";
+				}
+
+				void gateList::createGate(
+								ladderLogic::gateType type, int firstPin,
+								int secondPin) { //Function for creating a new User class object and inserting it into a linked list. Pass by an instantiated list, along with username and password.
+						switch (type) {
+								case ladderLogic::gateType::NO:
+										std::cout << "\nEXCEPTION: CANNOT ASSIGN TWO INPUTS TO NORMALLY OPEN GATE\n";
+										return;
+								case ladderLogic::gateType::NC:
+										std::cout << "\nEXCEPTION: CANNOT ASSIGN TWO INPUTS TO NORMALLY CLOSED GATE\n";
+										return;
+								case ladderLogic::gateType::AND:
+										break;
+								case ladderLogic::gateType::OR:
+										break;
+								default:
+										std::cout << "\nEXCEPTION IN GATE CREATOR!\n";
+										return;
+						}
+						auto *newGate = new node(type, firstPin, secondPin); // Create a new user object and allocate it to heap.
+						m_GatesInList = m_GatesInList + 1;
+						newGate->setUniqueId(getm_GatesInList());
+						int i = 1;
+						while (!SearchForGateDuplicates(
+										newGate)) {//Call function Search_ForUsername_Duplicate; This function checks for duplicate usernames; if false is returned we stop creating a new user.
+								newGate->setUniqueId(newGate->getUniqueId() + i);
+								i++;
+								//C->PTC("\nCannot create a new user with an already used username!\n"); //Prompt user.
+						}
+						newGate->setm_GateType(type);
+						newGate->next = nullptr; //We always insert a new element into the terminal (tail) point of our list, so we set the new element to be the new terminal (tail) point by assigning the pointer to nullptr.
+						LOG->PTF("\nNew gate created: ", type, " unique ID: ", newGate->getUniqueId(), " \n");
+
+						if (this->head != nullptr) { //This code runs after the very first element in a linked list has been created.
+								this->tail->next = newGate; //Set the next pointer of terminal (tail) pointer to point to nullptr (0).
+								this->tail = newGate; //Set the terminal (tail) pointer to point to the newly created object.
+						} else { //This if runs only once for any newly created linked list.
+								this->head = newGate; //Set initial (head) pointer to point to newly created User class object.
+								this->tail = newGate; //Set terminal (tail) pointer to point to newly created User class object.
+						}
+						Manager->addTom_TotalLogicGates();
+						isModified = true;
 
 						C->PTC("\n!New gate! Total gates in current script line: ", getm_GatesInList(), "; Total unique gates: ",
 													Manager->getm_TotalLogicGates(), "\n");
@@ -149,8 +276,8 @@ namespace ladderLogic {
 				gateList::deleteByPos(int position) { //Function for deleting an element in a linked listed by a given position.
 						if (position > this->length() || position <=
 																																							0) { //First we must check if the entered position exceeds the total amount of elements in a linked list; if true we throw an exception and return to the function call.
-								C->PTC("\n\n!EXCEPTION! TRYING TO DELETE AN OUT OF BOUNDS VALUE\n\n");
-								LOG->PTF("\n!EXCEPTION! Trying to delete admin list out of bounds.\n");
+								C->PTC("\n\n!EXCEPTION! TRYING TO DELETE AN OUT OF BOUNDS GATE\n\n");
+								LOG->PTF("\n!EXCEPTION! TRYING TO DELETE AN OUT OF BOUNDS GATE\n");
 								return;
 						} else if (position ==
 																	1) { //If the entered position is 1, that means we want to delete the initial (head) element of the linked list.
@@ -167,7 +294,7 @@ namespace ladderLogic {
 				}
 
 				void gateList::deletePos(
-								int position) const { //This function only runs if it is called by deleteByPos function. This function only runs if the specified position is not the first or the last element in a given linked list.
+								int position) { //This function only runs if it is called by deleteByPos function. This function only runs if the specified position is not the first or the last element in a given linked list.
 						node *current; //Declare a current pointer.
 						node *previous; //Declare a previous pointer.
 						current = this->head; //Set current pointer to point to the initial (head) element.
@@ -181,7 +308,7 @@ namespace ladderLogic {
 						delete current; //Delete current element.
 				}
 
-				void gateList::executeGateLogic(int nodeselect) {
+/*				void gateList::executeSpecificGateLogic(int nodeselect) {
 						node *current;
 						node *previous;
 						current = this->head;
@@ -200,24 +327,24 @@ namespace ladderLogic {
 
 								case 0:
 										std::cout << "\n" << current->getm_GateTypeByString() << " selected!\n";
-										std::cout << current->executeAndGateLogic();
+										//std::cout << current->executeAndGateLogic();
 										break;
 								case 1:
 										std::cout << "\n" << current->getm_GateTypeByString() << " selected!\n";
-										std::cout << current->executeOrGateLogic();
+										//std::cout << current->executeOrGateLogic();
 										break;
 								case 2:
 										std::cout << "\n" << current->getm_GateTypeByString() << " selected!\n";
-										std::cout << current->executeNormallyOpenGateLogic();
+										//std::cout << current->executeNormallyOpenGateLogic();
 										break;
 								case 3:
 										std::cout << "\n" << current->getm_GateTypeByString() << " selected!\n";
-										std::cout << current->executeNormallyCloseGateLogic();
+										//std::cout << current->executeNormallyCloseGateLogic();
 										break;
 								default:
 										std::cout << "\n EXCEPTION IN EXECUTING GATE LOGIC \n";
 						}
-				}
+				}*/
 
 				int gateList::checkGateType(node *current) {
 						switch (current->getm_GateType()) {

@@ -7,9 +7,13 @@ namespace ladderLogic {
 				public:
 								andGate();
 
+								andGate(bool firstPin, bool secondPin);
+
 								bool getfirstPin();
 
 								bool getsecondPin();
+
+								bool executeGateLogic();
 
 								bool executeAndGateLogic();
 
