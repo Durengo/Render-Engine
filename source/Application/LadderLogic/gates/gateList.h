@@ -16,7 +16,7 @@ namespace ladderLogic {
 
 								DataManager *Manager;
 
-								IOBuffer* ioBuffer;
+								IOBuffer *ioBuffer;
 
 								bool m_InitialInput, m_InitialOutput;
 
@@ -35,6 +35,7 @@ namespace ladderLogic {
 								bool isModified;
 
 								std::pair<std::string, bool> *inputBufferPTR;
+
 								std::pair<std::string, bool> *outputBufferPTR;
 
 								std::vector<int> instructionSet;

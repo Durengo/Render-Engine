@@ -9,47 +9,47 @@ DataManager::DataManager()
 		ConsoleHook->PTC("Data Manager instantiated!\n");
 }
 
-DataManager::~DataManager()	{
+DataManager::~DataManager() {
 		delete ConsoleHook;
 		std::cout << "Data manager completed execution.\n";
 }
 
-int DataManager::getm_TotalScriptLines() const	{
+int DataManager::getm_TotalScriptLines() const {
 		return m_TotalScriptLines;
 }
 
-void DataManager::addTom_TotalScriptLines()	{
+void DataManager::addTom_TotalScriptLines() {
 		m_TotalScriptLines = m_TotalScriptLines + 1;
 }
 
-void DataManager::subtractFromm_TotalScriptLines()	{
+void DataManager::subtractFromm_TotalScriptLines() {
 		m_TotalScriptLines = m_TotalScriptLines - 1;
 }
 
-int DataManager::getm_TotalLogicGates() const	{
+int DataManager::getm_TotalLogicGates() const {
 		return m_TotalLogicGates;
 }
 
-void DataManager::addTom_TotalLogicGates()	{
+void DataManager::addTom_TotalLogicGates() {
 		m_TotalLogicGates = m_TotalLogicGates + 1;
 }
 
-void DataManager::subtractFromm_TotalLogicGates()	{
+void DataManager::subtractFromm_TotalLogicGates() {
 		m_TotalLogicGates = m_TotalLogicGates - 1;
 }
 
-int DataManager::getCurrentUserID() const	{
+int DataManager::getCurrentUserID() const {
 		return CurrentUserID;
 }
 
-void DataManager::setCurrentUserID(int NewID)	{
+void DataManager::setCurrentUserID(int NewID) {
 		CurrentUserID = NewID;
 }
 
-std::string DataManager::getCurrentUserUsername()	{
+std::string DataManager::getCurrentUserUsername() {
 		return CurrentUserUsername;
 }
 
-void DataManager::setCurrentUserUsername(const std::string &NewUsername)	{
+void DataManager::setCurrentUserUsername(const std::string &NewUsername) {
 		CurrentUserUsername = NewUsername;
 }

@@ -5,7 +5,7 @@
 
 namespace ladderLogic {
 
-				class scriptline : public ladderLogic::gateList{
+				class scriptline : public ladderLogic::gateList {
 				public:
 								scriptline(DataManager &managerInstance, ladderLogic::IOBuffer *buffer);
 
@@ -19,7 +19,8 @@ namespace ladderLogic {
 
 								void onImGuiRender();
 
-								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>> createInstructionSet();
+								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>>
+								createInstructionSet();
 
 //								const std::unique_ptr<ladderLogic::gateList> &getLineInstance() const;
 //
@@ -33,13 +34,17 @@ namespace ladderLogic {
 
 				protected:
 								//ladderLogic::gateList glist;
-								DataManager* managerInstance;
-								IOBuffer* ioBuffer;
+								DataManager *managerInstance;
+
+								IOBuffer *ioBuffer;
+
 								std::string inputLabel, outputLabel;
+
 								bool input, output;
 
 								//bool isActive, isComplete;
 								bool isComplete;
+
 								int uniqueID;
 				};
 

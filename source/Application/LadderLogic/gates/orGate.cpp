@@ -4,18 +4,18 @@ namespace ladderLogic {
 
 				orGate::orGate()
 								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(false), firstPinTaken(false),
-										secondPin(false), secondPinTaken(false)	{}
+										secondPin(false), secondPinTaken(false) {}
 
 				orGate::orGate(bool firstPin, bool secondPin)
 								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(firstPin), firstPinTaken(false),
-										secondPin(secondPin), secondPinTaken(false)	{
+										secondPin(secondPin), secondPinTaken(false) {
 
 				}
 
 				bool orGate::executeGateLogic() {
-						if (firstPin == 1 || secondPin == 1)	{
+						if (firstPin == 1 || secondPin == 1) {
 								return true;
-						}	else {
+						} else {
 								return false;
 						}
 				}
@@ -41,10 +41,10 @@ namespace ladderLogic {
 				bool orGate::executeOrGateLogic() {
 						bool a = getfirstPin();
 						bool b = getsecondPin();
-						if (a == 1 || b == 1)	{
+						if (a == 1 || b == 1) {
 								output = true;
 								return output;
-						}	else {
+						} else {
 								output = false;
 								return output;
 						}

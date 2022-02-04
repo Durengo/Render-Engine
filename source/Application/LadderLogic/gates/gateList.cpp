@@ -21,7 +21,7 @@ namespace ladderLogic {
 
 				gateList::~gateList() {
 						int gatesinlist = m_GatesInList;
-						if(gatesinlist != 0){
+						if (gatesinlist != 0) {
 								for (int i = 0; i < gatesinlist; i++) {
 										//std::cout << m_GatesInList << ", ";
 										deleteByPos(1);
@@ -31,7 +31,8 @@ namespace ladderLogic {
 						LOG->PTF("\nGate list destructed!\n");
 				}
 
-				void gateList::constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]) {
+				void
+				gateList::constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]) {
 						//MIGHT CAUSE POTENTIAL MEMORY CRASHES//
 						instructionSet = INSTRUCTIONSET;
 						node *current = nullptr;

@@ -8,7 +8,7 @@ namespace ladderLogic {
 //
 //				}
 
-				node::node(ladderLogic::gateType type, int& firstpin, int& secondpin) {
+				node::node(ladderLogic::gateType type, int &firstpin, int &secondpin) {
 						switch (type) {
 								case ladderLogic::gateType::NO:
 										std::cout << "\nEXCEPTION: CANNOT ASSIGN TWO INPUTS TO NORMALLY OPEN GATE\n";
@@ -30,7 +30,7 @@ namespace ladderLogic {
 						}
 				}
 
-				node::node(ladderLogic::gateType type, int& firstpin) {
+				node::node(ladderLogic::gateType type, int &firstpin) {
 						switch (type) {
 								case ladderLogic::gateType::NO:
 										NOgate = new normallyOpenGate(firstpin);
@@ -71,11 +71,11 @@ namespace ladderLogic {
 						}
 				}
 
-				bool node::executeANDlogic() const{
+				bool node::executeANDlogic() const {
 						return ANDgate->executeGateLogic();
 				}
 
-				bool node::executeORlogic() const{
+				bool node::executeORlogic() const {
 						return ORgate->executeGateLogic();
 				}
 

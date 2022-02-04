@@ -73,7 +73,7 @@ namespace ladderLogic {
 
 				void
 				IOBuffer::changeSingleBufferElement(int position, bool buffertype, std::string newbuffername, bool newbufferstate) {
-						if(position <= 0 || position > 10){
+						if (position <= 0 || position > 10) {
 								std::cout << "\nEXCEPTION: OUT OF BOUNDS\n";
 						}
 						position = position - 1;
@@ -95,28 +95,28 @@ namespace ladderLogic {
 				}
 
 				void IOBuffer::changeInput(int position) {
-						if(position <= 0 || position > 10){
+						if (position <= 0 || position > 10) {
 								std::cout << "\nEXCEPTION: OUT OF BOUNDS\n";
 						}
 						position = position - 1;
 						if (!boundInputPair.boundInputBuffer[position].second) {
 								inputBools[position] = true;
 								boundInputPair.boundInputBuffer[position].second = true;
-						}	else if (boundInputPair.boundInputBuffer[position].second) {
+						} else if (boundInputPair.boundInputBuffer[position].second) {
 								inputBools[position] = false;
 								boundInputPair.boundInputBuffer[position].second = false;
 						}
 				}
 
 				void IOBuffer::changeOutput(int position) {
-						if(position <= 0 || position > 10){
+						if (position <= 0 || position > 10) {
 								std::cout << "\nEXCEPTION: OUT OF BOUNDS\n";
 						}
 						position = position - 1;
 						if (!boundOutputPair.boundOutputBuffer[position].second) {
 								outputBools[position] = true;
 								boundOutputPair.boundOutputBuffer[position].second = true;
-						}	else if (boundOutputPair.boundOutputBuffer[position].second) {
+						} else if (boundOutputPair.boundOutputBuffer[position].second) {
 								outputBools[position] = false;
 								boundOutputPair.boundOutputBuffer[position].second = false;
 						}

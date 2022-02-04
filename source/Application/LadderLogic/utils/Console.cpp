@@ -1,50 +1,50 @@
 #include "Console.h"
 
 Console::Console()
-				: LogHook(nullptr)	{
+				: LogHook(nullptr) {
 		std::cout << "\nConsole instantiated.\n";
 		LogHook = new Logging();
 }
 
-Console::~Console()	{
+Console::~Console() {
 		delete LogHook;
 }
 
 //Printing to console functions:
-void Console::PTC(const std::string &Print)	{
+void Console::PTC(const std::string &Print) {
 		std::cout << Print;
 }
 
-void Console::PTC(const std::string &Print1, const std::string &Print2)	{
+void Console::PTC(const std::string &Print1, const std::string &Print2) {
 		std::cout << Print1 << Print2;
 }
 
-void Console::PTC(const std::string &Print1, int count, const std::string &Print2)	{
+void Console::PTC(const std::string &Print1, int count, const std::string &Print2) {
 		std::cout << Print1 << count << Print2;
 }
 
 void Console::PTC(const std::string &Print1, int count,
-																		const std::string &Print2, const std::string &Print3, const std::string &Print4)	{
+																		const std::string &Print2, const std::string &Print3, const std::string &Print4) {
 		std::cout << Print1 << count << Print2 << Print3 << Print4;
 }
 
-void Console::PTC(const std::string &Print1, const std::string &Print2, const std::string &Print3)	{
+void Console::PTC(const std::string &Print1, const std::string &Print2, const std::string &Print3) {
 		std::cout << Print1 << Print2 << Print3;
 }
 
 void Console::PTC(const std::string &Print1, const std::string &Print2,
 																		const std::string &Print3, const std::string &Print4,
-																		const std::string &Print5)	{
+																		const std::string &Print5) {
 		std::cout << Print1 << Print2 << Print3 << Print4 << Print5;
 }
 
 void
-Console::PTC(const std::string &Print1, int count1, const std::string &Print2, int count2, const std::string &Print3)	{
+Console::PTC(const std::string &Print1, int count1, const std::string &Print2, int count2, const std::string &Print3) {
 		std::cout << Print1 << count1 << Print2 << count2 << Print3;
 }
 
 void Console::PTC(const std::string &Print1, const std::string &Print2, const std::string &Print3, int count,
-																		const std::string &Print4)	{
+																		const std::string &Print4) {
 		std::cout << Print1 << Print2 << Print3 << count << Print4;
 }
 
@@ -53,33 +53,33 @@ Console::PTC(int &count1, const std::string &Print1, const std::string &Print2, 
 		std::cout << count1 << Print1 << Print2 << Print3 << count2;
 }
 
-void Console::PTC(int n)	{
+void Console::PTC(int n) {
 		std::cout << n;
 }
 
-void Console::PTC(const std::string &Print1, int Print2)	{
+void Console::PTC(const std::string &Print1, int Print2) {
 		std::cout << Print1 << Print2;
 }
 
-void Console::PTC(float float1)	{
+void Console::PTC(float float1) {
 		std::cout << float1;
 }
 
-void Console::PTC(float float1, int setPrecision)	{
+void Console::PTC(float float1, int setPrecision) {
 		std::cout << std::setprecision(setPrecision) << float1;
 }
 
-void Console::PTC(float float1, int setPrecision, const std::string &Print1)	{
+void Console::PTC(float float1, int setPrecision, const std::string &Print1) {
 		std::cout << std::setprecision(setPrecision) << float1 << Print1;
 }
 
-void Console::PrintUserWithCount(int Count, const std::string &Print)	{
+void Console::PrintUserWithCount(int Count, const std::string &Print) {
 		std::cout << "\n(" << Count << ") User: " << Print << "\n";
 }
 
 //Getting Input from User functions:
 
-void Console::GIBS(std::string &string)	{
+void Console::GIBS(std::string &string) {
 		std::cin >> string;
 }
 

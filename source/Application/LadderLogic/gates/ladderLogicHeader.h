@@ -5,6 +5,4 @@
 #include "andGate.h"
 #include "orGate.h"
 
-#include "../signalNode.h"
-
 namespace ladderLogic {}

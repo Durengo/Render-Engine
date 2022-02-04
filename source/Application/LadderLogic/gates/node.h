@@ -13,7 +13,7 @@ namespace ladderLogic {
 //										public ladderLogic::orGate,
 //										public ladderLogic::normallyOpenGate,
 //										public ladderLogic::normallyClosedGate
-										{
+				{
 				public:
 								node *next = nullptr;
 
@@ -22,17 +22,20 @@ namespace ladderLogic {
 //								[[maybe_unused]] std::unique_ptr<normallyOpenGate> NOgate;
 //								[[maybe_unused]] std::unique_ptr<normallyClosedGate> NCgate;
 
-								[[maybe_unused]] andGate* ANDgate;
-								[[maybe_unused]] orGate* ORgate;
-								[[maybe_unused]] normallyOpenGate* NOgate;
-								[[maybe_unused]] normallyClosedGate* NCgate;
+								[[maybe_unused]] andGate *ANDgate;
+
+								[[maybe_unused]] orGate *ORgate;
+
+								[[maybe_unused]] normallyOpenGate *NOgate;
+
+								[[maybe_unused]] normallyClosedGate *NCgate;
 
 								std::string UserFlag;
 
 								//node(ladderLogic::gateType type);
-								node(ladderLogic::gateType type, int& firstpin, int& secondpin);
+								node(ladderLogic::gateType type, int &firstpin, int &secondpin);
 
-								node(ladderLogic::gateType type, int& firstpin);
+								node(ladderLogic::gateType type, int &firstpin);
 								//node(ladderLogic::gateType type);
 								//node(ladderLogic::gateType type);
 								//node(ladderLogic::gateType type);
@@ -44,8 +47,11 @@ namespace ladderLogic {
 								void setUniqueId(int uniqueId);
 
 								bool executeANDlogic() const;
+
 								bool executeORlogic() const;
+
 								bool executeNOlogic() const;
+
 								bool executeNClogic() const;
 
 								ladderLogic::gateType getm_GateType() const;

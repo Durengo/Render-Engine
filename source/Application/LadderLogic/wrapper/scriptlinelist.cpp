@@ -6,20 +6,21 @@ namespace ladderLogic {
 
 				scriptlinelist::scriptlinelist(DataManager &managerInstance, ladderLogic::IOBuffer *buffer)
 								: //scriptline(managerInstance, buffer),
-								head(nullptr), tail(nullptr), Manager(&managerInstance), m_IOBuffer(*buffer), m_ScriptLinesInList(0)	{
+								head(nullptr), tail(nullptr), Manager(&managerInstance), m_IOBuffer(*buffer), m_ScriptLinesInList(0) {
 						setm_ScriptLineListSpecificID();
 				}
 
 				scriptlinelist::~scriptlinelist() {
 						int gatesinlist = m_ScriptLinesInList;
-						if(gatesinlist != 0) {
+						if (gatesinlist != 0) {
 								for (int i = 0; i < gatesinlist; i++) {
 										//std::cout << gatesinlist << ", ";
 										deleteByPos(1);
 								}
 						}
 						C->PTC("\nScript line list destructed!\n");
-						LOG->PTF("\nScript line list destructed!\n");}
+						LOG->PTF("\nScript line list destructed!\n");
+				}
 
 				void
 				scriptlinelist::createLine() { //Function for creating a new User class object and inserting it into a linked list. Pass by an instantiated list, along with username and password.
@@ -72,7 +73,8 @@ namespace ladderLogic {
 				}
 
 				void
-				scriptlinelist::deleteByPos(int position) { //Function for deleting an element in a linked listed by a given position.
+				scriptlinelist::deleteByPos(
+								int position) { //Function for deleting an element in a linked listed by a given position.
 						if (position > this->length() || position <=
 																																							0) { //First we must check if the entered position exceeds the total amount of elements in a linked list; if true we throw an exception and return to the function call.
 								C->PTC("\n\n!EXCEPTION! TRYING TO DELETE AN OUT OF BOUNDS SCRIPT LINE\n\n");
@@ -89,7 +91,8 @@ namespace ladderLogic {
 						}
 						Manager->subtractFromm_TotalLogicGates();
 						m_ScriptLinesInList = m_ScriptLinesInList - 1;
-						C->PTC("\n!SCRIPT LINE DELETED! Total gates in current script line: ", m_ScriptLinesInList, "\n"); //For debugging.
+						C->PTC("\n!SCRIPT LINE DELETED! Total gates in current script line: ", m_ScriptLinesInList,
+													"\n"); //For debugging.
 				}
 
 				void scriptlinelist::deleteHead() { //Function to delete the initial (head) pointer.

@@ -6,11 +6,11 @@
 
 namespace ladderLogic {
 
-				struct inputPair{
+				struct inputPair {
 								std::pair<std::string, bool> boundInputBuffer[10];
 				};
 
-				struct outputPair{
+				struct outputPair {
 								std::pair<std::string, bool> boundOutputBuffer[10];
 				};
 
@@ -42,9 +42,9 @@ namespace ladderLogic {
 
 								void displayOutputBuffers();
 
-								std::pair<std::string, bool>* getInputBufferPointer();
+								std::pair<std::string, bool> *getInputBufferPointer();
 
-								std::pair<std::string, bool>* getOutputBufferPointer();
+								std::pair<std::string, bool> *getOutputBufferPointer();
 
 				private:
 

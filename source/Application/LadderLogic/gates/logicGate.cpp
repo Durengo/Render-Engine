@@ -3,7 +3,7 @@
 namespace ladderLogic {
 
 				logicGate::logicGate(gateType type)
-								: type(type)	{
+								: type(type) {
 						type = type;
 				}
 

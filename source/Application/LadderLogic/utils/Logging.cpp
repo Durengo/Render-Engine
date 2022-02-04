@@ -2,7 +2,7 @@
 
 Logging::Logging()
 				: logFileName("Log.txt"), counter(0), loglifetimestart(std::chrono::steady_clock::now()),
-						loglifetimeend(std::chrono::steady_clock::now()), lifespanoflog(0)	{
+						loglifetimeend(std::chrono::steady_clock::now()), lifespanoflog(0) {
 		std::cout << "Logging hooked.\n";
 		loglifetimestart = std::chrono::steady_clock::now(); //Store the runtime at which the log file has been created.
 		logFile.open(logFileName, std::ios::out | std::ios::trunc); //Create a new log file for storing logs.
@@ -15,7 +15,7 @@ Logging::Logging()
 Logging::Logging(std::string filename)
 				: logFileName(std::move(filename.append(".txt"))), counter(0), //add .txt to filename.
 						loglifetimestart(std::chrono::steady_clock::now()), loglifetimeend(std::chrono::steady_clock::now()),
-						lifespanoflog(0)	{
+						lifespanoflog(0) {
 		loglifetimestart = std::chrono::steady_clock::now();
 		logFile.open(logFileName, std::ios::out | std::ios::trunc);
 		PTF(logFileName, " Has been created!");
@@ -46,7 +46,7 @@ Logging::Get_Now_Timer() //A function which gets the current runtime when it is 
 		return std::ctime(&end_time);
 }
 
-void Logging::Log_Action()	{
+void Logging::Log_Action() {
 		logFile.open(logFileName, std::ios::app);
 		logFile << "NULL" << "\n------------------------------------------------\n" << "" << Get_Now_Timer();
 		logFile.close();
@@ -56,7 +56,7 @@ void Logging::Log_Action()	{
 //  counter++;
 }
 
-void Logging::Read_Log()	{
+void Logging::Read_Log() {
 		logFile.open(logFileName, std::ios::in);
 		std::string Whole_Log;
 		int i = 0;
@@ -78,7 +78,7 @@ void Logging::PTF(const std::string &Print1) //Print to file function template f
 		counter++;
 }
 
-void Logging::PTF(const std::string &Print1, const std::string &Print2)	{
+void Logging::PTF(const std::string &Print1, const std::string &Print2) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -86,7 +86,7 @@ void Logging::PTF(const std::string &Print1, const std::string &Print2)	{
 		counter++;
 }
 
-void Logging::PTF(const std::string &Print1, const std::string &Print2, const std::string &Print3)	{
+void Logging::PTF(const std::string &Print1, const std::string &Print2, const std::string &Print3) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -96,7 +96,7 @@ void Logging::PTF(const std::string &Print1, const std::string &Print2, const st
 
 void
 Logging::PTF(const std::string &Print1, const std::string &Print2, const std::string &Print3,
-													const std::string &Print4)	{
+													const std::string &Print4) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << Print4 << "\n--------------------------\n" << ""
 										<< Get_Now_Timer() << "--------------------------\n";
@@ -106,7 +106,7 @@ Logging::PTF(const std::string &Print1, const std::string &Print2, const std::st
 
 void
 Logging::PTF(const std::string &Print1, const std::string &Print2, const std::string &Print3, const std::string &Print4,
-													const std::string &Print5)	{
+													const std::string &Print5) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << Print4 << Print5 << "\n--------------------------\n"
 										<< "" << Get_Now_Timer() << "--------------------------\n";
@@ -116,7 +116,7 @@ Logging::PTF(const std::string &Print1, const std::string &Print2, const std::st
 
 //PTF int prints:
 
-void Logging::PTF(int Print1)	{
+void Logging::PTF(int Print1) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -124,7 +124,7 @@ void Logging::PTF(int Print1)	{
 		counter++;
 }
 
-void Logging::PTF(int Print1, int Print2)	{
+void Logging::PTF(int Print1, int Print2) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -132,7 +132,7 @@ void Logging::PTF(int Print1, int Print2)	{
 		counter++;
 }
 
-void Logging::PTF(int Print1, int Print2, int Print3)	{
+void Logging::PTF(int Print1, int Print2, int Print3) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -140,7 +140,7 @@ void Logging::PTF(int Print1, int Print2, int Print3)	{
 		counter++;
 }
 
-void Logging::PTF(int Print1, int Print2, int Print3, int Print4)	{
+void Logging::PTF(int Print1, int Print2, int Print3, int Print4) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << Print4 << "\n--------------------------\n" << ""
 										<< Get_Now_Timer() << "--------------------------\n";
@@ -148,7 +148,7 @@ void Logging::PTF(int Print1, int Print2, int Print3, int Print4)	{
 		counter++;
 }
 
-void Logging::PTF(int Print1, int Print2, int Print3, int Print4, int Print5)	{
+void Logging::PTF(int Print1, int Print2, int Print3, int Print4, int Print5) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << Print2 << Print3 << Print4 << Print5 << "\n--------------------------\n"
 										<< "" << Get_Now_Timer() << "--------------------------\n";
@@ -158,7 +158,7 @@ void Logging::PTF(int Print1, int Print2, int Print3, int Print4, int Print5)	{
 
 //PTF float prints:
 
-void Logging::PTF(float Print1)	{
+void Logging::PTF(float Print1) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -168,7 +168,7 @@ void Logging::PTF(float Print1)	{
 
 //PTF float and string prints:
 
-void Logging::PTF(float Print1, const std::string &Print2)	{
+void Logging::PTF(float Print1, const std::string &Print2) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -176,7 +176,7 @@ void Logging::PTF(float Print1, const std::string &Print2)	{
 		counter++;
 }
 
-void Logging::PTF(float Print1, const std::string &Print2, int setprecs)	{
+void Logging::PTF(float Print1, const std::string &Print2, int setprecs) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << std::setprecision(setprecs) << Print1 << " " << Print2
 										<< "\n--------------------------\n" << "" << Get_Now_Timer()
@@ -185,7 +185,7 @@ void Logging::PTF(float Print1, const std::string &Print2, int setprecs)	{
 		counter++;
 }
 
-void Logging::PTF(float Print1, const std::string &Print2, const std::string &Print3, int setprecs)	{
+void Logging::PTF(float Print1, const std::string &Print2, const std::string &Print3, int setprecs) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << std::setprecision(setprecs) << Print1 << " " << Print2 << " " << Print3
 										<< "\n--------------------------\n" << "" << Get_Now_Timer()
@@ -194,7 +194,7 @@ void Logging::PTF(float Print1, const std::string &Print2, const std::string &Pr
 		counter++;
 }
 
-void Logging::PTF(const std::string &Print1, float Print2, const std::string &Print3, int setprecs)	{
+void Logging::PTF(const std::string &Print1, float Print2, const std::string &Print3, int setprecs) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << std::setprecision(setprecs) << Print1 << Print2 << "\n--------------------------\n"
 										<< "" << Get_Now_Timer()
@@ -205,7 +205,7 @@ void Logging::PTF(const std::string &Print1, float Print2, const std::string &Pr
 
 //PTF int and string prints:
 
-void Logging::PTF(const std::string &Print1, int Print2)	{
+void Logging::PTF(const std::string &Print1, int Print2) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -213,7 +213,7 @@ void Logging::PTF(const std::string &Print1, int Print2)	{
 		counter++;
 }
 
-void Logging::PTF(int Print1, const std::string &Print2)	{
+void Logging::PTF(int Print1, const std::string &Print2) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << "\n--------------------------\n" << "" << Get_Now_Timer()
 										<< "--------------------------\n";
@@ -221,7 +221,7 @@ void Logging::PTF(int Print1, const std::string &Print2)	{
 		counter++;
 }
 
-void Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3)	{
+void Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << Print3 << "\n--------------------------\n" << ""
 										<< Get_Now_Timer() << "--------------------------\n";
@@ -229,7 +229,7 @@ void Logging::PTF(const std::string &Print1, int Print2, const std::string &Prin
 		counter++;
 }
 
-void Logging::PTF(int Print1, const std::string &Print2, const std::string &Print3)	{
+void Logging::PTF(int Print1, const std::string &Print2, const std::string &Print3) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << "\n--------------------------\n" << ""
 										<< Get_Now_Timer() << "--------------------------\n";
@@ -237,7 +237,7 @@ void Logging::PTF(int Print1, const std::string &Print2, const std::string &Prin
 		counter++;
 }
 
-void Logging::PTF(const std::string &Print1, const std::string &Print2, int Print3)	{
+void Logging::PTF(const std::string &Print1, const std::string &Print2, int Print3) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << Print3 << "\n--------------------------\n" << ""
 										<< Get_Now_Timer() << "--------------------------\n";
@@ -246,7 +246,7 @@ void Logging::PTF(const std::string &Print1, const std::string &Print2, int Prin
 }
 
 void
-Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, int Print4, const std::string &Print5)	{
+Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, int Print4, const std::string &Print5) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << " " << Print4 << " " << Print5
 										<< "\n--------------------------\n" << "" << Get_Now_Timer() << "--------------------------\n";
@@ -256,7 +256,7 @@ Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, i
 
 void
 Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, int Print4, const std::string &Print5,
-													int Print6)	{
+													int Print6) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << " " << Print4 << " " << Print5 << " "
 										<< Print6
@@ -267,7 +267,7 @@ Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, i
 
 void
 Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, int Print4, const std::string &Print5,
-													int Print6, const std::string &Print7)	{
+													int Print6, const std::string &Print7) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << " " << Print4 << " " << Print5 << " "
 										<< Print6 << " " << Print7
@@ -277,7 +277,7 @@ Logging::PTF(const std::string &Print1, int Print2, const std::string &Print3, i
 }
 
 void Logging::PTF(const std::string &Print1, int Print2,
-																		const std::string &Print3, const std::string &Print4, const std::string &Print5)	{
+																		const std::string &Print3, const std::string &Print4, const std::string &Print5) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << " " << Print4 << " " << Print5
 										<< "\n--------------------------\n" << "" << Get_Now_Timer() << "--------------------------\n";
@@ -286,7 +286,7 @@ void Logging::PTF(const std::string &Print1, int Print2,
 }
 
 void Logging::PTF(const std::string &Print1, const std::string &Print2,
-																		const std::string &Print3, int Print4, const std::string &Print5)	{
+																		const std::string &Print3, int Print4, const std::string &Print5) {
 		logFile.open(logFileName, std::ios::app);
 		logFile << counter << " * " << Print1 << " " << Print2 << " " << Print3 << " " << Print4 << " " << Print5
 										<< "\n--------------------------\n" << "" << Get_Now_Timer() << "--------------------------\n";
