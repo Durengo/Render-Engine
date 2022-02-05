@@ -4,6 +4,8 @@
 #include "tests/testUnit.h"
 
 #include "wrapper/scriptlinelist.h"
+#include "wrapper/instructionSet.h"
+#include "wrapper/plc.h"
 
 int main() {
 //		DataManager Manager;
@@ -12,12 +14,18 @@ int main() {
 
 
 		DataManager Manager;
-		ladderLogic::IOBuffer* ioBuffer = new ladderLogic::IOBuffer;
+/*		ladderLogic::IOBuffer* ioBuffer = new ladderLogic::IOBuffer;
 		ladderLogic::scriptlinelist line1(Manager, ioBuffer);
 		line1.createLine();
 		line1.head->createGate(ladderLogic::AND, 1, 1);
 		line1.head->deleteByPos(1);
-		line1.head->displayList();
+		line1.head->displayList();*/
+
+		ladderLogic::instructionSet instset(Manager);
+		//instset.createInstructionSet();
+
+		//PLC::plcGenerator plc(Manager, "../source/Application/LadderLogic/res/template.plc");
+		PLC::plc plc(Manager, "../source/Application/LadderLogic/res/template.txt");
 
 //ladderLogic::IOBuffer iobuf;
 //
