@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.21)
 set(CMAKE_CXX_STANDARD 23)
 project(OpenGL)
+
+set(CMAKE_TOOLCHAIN_FILE ${projectDir}/vendor/vcpkg/scripts/buildsystems/vcpkg.cmake
+CACHE STRING "Vcpkg toolchain file")
+
 find_package(OpenGL REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(glm CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 find_package(imguizmo CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
@@ -20,11 +25,18 @@ file(GLOB_RECURSE tests
         "${PROJECT_SOURCE_DIR}/source/tests/*.cpp"
         )
 
+file(GLOB_RECURSE app
+        "${PROJECT_SOURCE_DIR}/source/Application/*.h"
+        "${PROJECT_SOURCE_DIR}/source/Application/*.cpp"
+        )
+
 add_executable(${PROJECT_NAME}
         ${engine}
         ${tests}
-        #${imgui}
-        #${stb}
+        )
+        
+        add_executable(App
+        ${app}
         )
 
 target_include_directories(OpenGL PRIVATE ${STB_INCLUDE_DIRS} ${SCOTTT_DEBUGBREAK_INCLUDE_DIRS})
