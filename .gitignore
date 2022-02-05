@@ -1,3 +1,5 @@
 /vendor/
 /cmake-build-debug/
 /out/
+/.idea/
+/.vs/
