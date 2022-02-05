@@ -2,3 +2,6 @@
 /cmake-build-debug/
 /utility/windows/
 /deprecated/
+/.idea/
+/.vs/
+/out/
