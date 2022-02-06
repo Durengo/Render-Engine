@@ -20,50 +20,57 @@ namespace PLC {
 
 				class plc {
 				public:
-								plc(DataManager &managerInstance, const std::string& Filepath);
+								plc(DataManager &managerInstance, const std::string &Filepath);
 
 								~plc();
 
-								void passInfo();
+								void printAllInfo();
 
-								int getTotalLadders() const;
+								void settotalladders(PLCSOURCE &plcsource);
 
-								void setTotalLadders(int totalLadders);
+								void settotalgates(PLCSOURCE &plcsource);
 
-								const std::vector<int> &getTotalGates() const;
+								void setgatesequence(PLCSOURCE &plcsource);
 
-								void setTotalGates(const std::vector<int> &totalGates);
+								void setgateiostructure(PLCSOURCE &plcsource);
 
-								const std::pair<int, std::string> &getGateSequence() const;
+								void setgatestructure(PLCSOURCE &plcsource);
 
-								void setGateSequence(const std::pair<int, std::string> &gateSequence);
+								void setibuffers(PLCSOURCE &plcsource);
 
-								const std::pair<int, std::string> &getGateIoStructure() const;
-
-								void setGateIoStructure(const std::pair<int, std::string> &gateIoStructure);
-
-								const std::pair<int, int> &getGateStructure() const;
-
-								void setGateStructure(const std::pair<int, int> &gateStructure);
-
-								const std::pair<int, std::string> &getIbuffers() const;
-
-								void setIbuffers(const std::pair<int, std::string> &ibuffers);
-
-								const std::pair<int, std::string> &getObuffers() const;
-
-								void setObuffers(const std::pair<int, std::string> &obuffers);
+								void setobuffers(PLCSOURCE &plcsource);
 
 				private:
 								DataManager *Manager;
+
 								std::string filepath;
-								PLCSOURCE parsePLC(const std::string& Filepath);
+
+								PLCSOURCE parsePLC(const std::string &Filepath);
+
+								void setPLC(PLCSOURCE &plcsource);
+
 								int totalLadders;
-								std::vector<int> totalGates;
-								std::pair<int, std::string> gateSequence;
-								std::pair<int, std::string> gateIOStructure;
-								std::pair<int, int> gateStructure;
-								std::pair<int, std::string> IBUFFERS;
-								std::pair<int, std::string> OBUFFERS;
+
+								int totalGates;
+
+								std::vector<int> totalGatesPerLadder;
+
+								std::pair<std::vector<int>, std::vector<std::string>> gateSequence;
+
+								int gateSequenceBranching;
+
+								//Pair: first position gate number; second position pair: (1) input, (2) output
+								std::pair<std::vector<int>, std::pair<std::vector<std::string>, std::vector<std::string>>> gateIOStructure;
+
+								//X>0 indicates that this gates goes into the outputbuffer
+								std::pair<std::vector<int>, std::vector<int>> gateStructure;
+
+								std::pair<std::vector<int>, std::vector<std::string>> IBUFFERS;
+
+								int IBUFFERAMOUNT;
+
+								std::pair<std::vector<int>, std::vector<std::string>> OBUFFERS;
+
+								int OBUFFERAMOUNT;
 				};
 }

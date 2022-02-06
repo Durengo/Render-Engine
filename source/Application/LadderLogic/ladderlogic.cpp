@@ -22,10 +22,13 @@ int main() {
 		line1.head->displayList();*/
 
 		ladderLogic::instructionSet instset(Manager);
-		//instset.createInstructionSet();
+//instset.createInstructionSet();
 
-		//PLC::plcGenerator plc(Manager, "../source/Application/LadderLogic/res/template.plc");
-		PLC::plc plc(Manager, "../source/Application/LadderLogic/res/template.txt");
+//PLC::plc plc(Manager, "res/oneladder.plc");
+		//PLC::plc plc(Manager, "../source/Application/LadderLogic/res/template.plc");
+		PLC::plc plc(Manager, "../source/Application/LadderLogic/res/oneladder.plc");
+		plc.printAllInfo();
+		std::cin.get();
 
 //ladderLogic::IOBuffer iobuf;
 //
