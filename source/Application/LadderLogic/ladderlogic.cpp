@@ -27,6 +27,7 @@ int main() {
 		//PLC::plcGenerator plc(Manager, "../source/Application/LadderLogic/res/template.plc");
 		PLC::plc* plc = new PLC::plc(Manager, "res/template.txt");
 		//PLC::plc plc(Manager, "res/template.plc");
+		std::cin.get();
 
 //ladderLogic::IOBuffer iobuf;
 //
