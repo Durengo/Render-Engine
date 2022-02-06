@@ -4,7 +4,7 @@
 
 namespace ladderLogic {
 
-				scriptlinelist::scriptlinelist(DataManager &managerInstance, ladderLogic::IOBuffer *buffer)
+				scriptlinelist::scriptlinelist(DataManager &managerInstance, PLC::IOBuffer *buffer)
 								: //scriptline(managerInstance, buffer),
 								head(nullptr), tail(nullptr), Manager(&managerInstance), m_IOBuffer(*buffer), m_ScriptLinesInList(0) {
 						setm_ScriptLineListSpecificID();

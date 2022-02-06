@@ -20,7 +20,7 @@ namespace PLC {
 
 				class plc {
 				public:
-								plc(DataManager &managerInstance, const std::string &Filepath);
+								plc(DataManager *managerInstance, const std::string &Filepath);
 
 								~plc();
 
@@ -40,7 +40,7 @@ namespace PLC {
 
 								void setobuffers(PLCSOURCE &plcsource);
 
-				private:
+				protected:
 								DataManager *Manager;
 
 								std::string filepath;

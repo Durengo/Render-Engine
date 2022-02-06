@@ -2,64 +2,63 @@
 
 #include <string>
 #include <vector>
-#include <memory>
 
-namespace ladderLogic {
+#include "../utils/DataManager.h"
 
-				struct inputPair {
-								std::pair<std::string, bool> boundInputBuffer[10];
-				};
-
-				struct outputPair {
-								std::pair<std::string, bool> boundOutputBuffer[10];
+namespace PLC {
+				struct BUFFERSOURCE {
+								std::string INPUTBUFFER;
+								std::string OUTPUTBUFFER;
 				};
 
 				class IOBuffer {
 				public:
-								IOBuffer();
+								IOBuffer(DataManager *managerInstance, const std::string &Filepath);
 
-								void newIOBuffer();
+								~IOBuffer();
 
-								void initInputBuffer();
+								void printAllInfo();
 
-								void initOutputBuffer();
+								void setinputbuffers(BUFFERSOURCE &IBOSource);
 
-								void initInputBools();
+								void setoutputbuffers(BUFFERSOURCE &IBOSource);
 
-								void initOutputBools();
+				protected:
+								DataManager *Manager;
 
-								void bindBuffers();
+								std::string filepath;
 
-								void changeSingleBufferElement(int position, bool buffertype, std::string newbuffername, bool newbufferstate);
+								BUFFERSOURCE parseIOBUFFERS(const std::string &Filepath);
 
-								void changeInput(int position);
+				public:
+								const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &getIbuffer() const;
 
-								void changeOutput(int position);
+								void
+								setIbuffer(const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &ibuffer);
 
-								void displayBuffers();
+								int getTotalinputlabels() const;
 
-								void displayInputBuffers();
+								void setTotalinputlabels(int totalinputlabels);
 
-								void displayOutputBuffers();
+								const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &getObuffer() const;
 
-								std::pair<std::string, bool> *getInputBufferPointer();
+								void
+								setObuffer(const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &obuffer);
 
-								std::pair<std::string, bool> *getOutputBufferPointer();
+								int getTotaloutputlabels() const;
 
-				private:
+								void setTotaloutputlabels(int totaloutputlabels);
 
-								inputPair boundInputPair;
+				protected:
+								void setIOBUFFERS(BUFFERSOURCE &IBOSource);
 
-								outputPair boundOutputPair;
+								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> IBUFFER;
 
-								bool inputBools[10];
+								int totalinputlabels;
 
-								bool outputBools[10];
+								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> OBUFFER;
 
-								std::string inputLabel[10];
-
-								std::string outputLabel[10];
-
+								int totaloutputlabels;
 				};
 
 }

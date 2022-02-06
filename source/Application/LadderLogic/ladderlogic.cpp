@@ -1,11 +1,13 @@
 //#include "gates/ladderLogicHeader.h"
 //#include "utils/LocalHeaderPreLoader.h"
 
-#include "tests/testUnit.h"
+//#include "tests/testUnit.h"
 
-#include "wrapper/scriptlinelist.h"
-#include "wrapper/instructionSet.h"
-#include "wrapper/plc.h"
+//#include "wrapper/scriptlinelist.h"
+//#include "wrapper/instructionSet.h"
+//#include "wrapper/plc.h"
+//#include "wrapper/IOBuffer.h"
+#include "wrapper/plcgen.h"
 
 int main() {
 //		DataManager Manager;
@@ -21,13 +23,19 @@ int main() {
 		line1.head->deleteByPos(1);
 		line1.head->displayList();*/
 
-		ladderLogic::instructionSet instset(Manager);
+		//ladderLogic::instructionSet instset(Manager);
 //instset.createInstructionSet();
 
 //PLC::plc plc(Manager, "res/oneladder.plc");
-		//PLC::plc plc(Manager, "../source/Application/LadderLogic/res/template.plc");
-		PLC::plc plc(Manager, "../source/Application/LadderLogic/res/oneladder.plc");
+		PLC::plc plc(&Manager, "../source/Application/LadderLogic/res/template.plc");
+		//PLC::plc plc(Manager, "../source/Application/LadderLogic/res/oneladder.plc");
 		plc.printAllInfo();
+
+		PLC::IOBuffer iob(&Manager, "../source/Application/LadderLogic/res/template.iob");
+		iob.printAllInfo();
+
+		PLC::plcgen gen1(&Manager, &plc, &iob);
+
 		std::cin.get();
 
 //ladderLogic::IOBuffer iobuf;

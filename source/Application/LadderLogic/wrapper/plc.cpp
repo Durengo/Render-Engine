@@ -7,8 +7,8 @@
 
 namespace PLC {
 
-				plc::plc(DataManager &managerInstance, const std::string &Filepath)
-								: Manager(&managerInstance), filepath(Filepath), totalLadders(0), totalGates(0), gateSequenceBranching(0),
+				plc::plc(DataManager *managerInstance, const std::string &Filepath)
+								: Manager(managerInstance), filepath(Filepath), totalLadders(0), totalGates(0), gateSequenceBranching(0),
 										IBUFFERAMOUNT(0), OBUFFERAMOUNT(0) {
 						{
 								std::fstream quickCHK(Filepath);
@@ -29,18 +29,26 @@ namespace PLC {
 						std::ifstream stream(Filepath);
 
 						enum class PLCType {
-										NONE = 0,
+/*										NONE = 0,
 										TOTALLADDERS = 0,
 										TOTALGATES = 1,
 										GATESEQUENCE = 2,
 										GATEIOSTRUCTURE = 3,
 										GATESTRUCTURE = 6,
 										IBUFFERS = 7,
-										OBUFFERS = 8
+										OBUFFERS = 8*/
+										NONE = 0,
+										TOTALLADDERS = 1,
+										TOTALGATES = 2,
+										GATESEQUENCE = 3,
+										GATEIOSTRUCTURE = 4,
+										GATESTRUCTURE = 5,
+										IBUFFERS = 6,
+										OBUFFERS = 7
 						};
 
 						std::string line;
-						std::stringstream ss[9];
+						std::stringstream ss[8];
 						PLCType type = PLCType::NONE;
 
 						while (getline(stream, line)) {
@@ -65,7 +73,8 @@ namespace PLC {
 								}
 						}
 						//std::cout << ss[4].str();
-						return {ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str(), ss[6].str(), ss[7].str(), ss[8].str()};
+						//return {ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str(), ss[6].str(), ss[7].str(), ss[8].str()};
+						return {ss[1].str(), ss[2].str(), ss[3].str(), ss[4].str(), ss[5].str(), ss[6].str(), ss[7].str()};
 				}
 
 				void plc::setPLC(PLCSOURCE &plcsource) {

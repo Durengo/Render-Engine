@@ -14,31 +14,18 @@ namespace ladderLogic {
 								node *head = nullptr; //Initialize head pointer to nullptr
 								node *tail = nullptr; //Initialize tail pointer to nullptr
 
-								DataManager *Manager;
+								gateList();
 
-								IOBuffer *ioBuffer;
+								explicit gateList(DataManager *ManagerInstance, PLC::IOBuffer *buffer);
 
-								bool m_InitialInput, m_InitialOutput;
+								~gateList();
+
 
 								void switchm_InitialInput();
 
 								void switchm_InitialOutput();
 
-								int m_UniqueGateListID;
 
-								gateList();
-
-								explicit gateList(DataManager *ManagerInstance, ladderLogic::IOBuffer *buffer);
-
-								~gateList();
-
-								bool isModified;
-
-								std::pair<std::string, bool> *inputBufferPTR;
-
-								std::pair<std::string, bool> *outputBufferPTR;
-
-								std::vector<int> instructionSet;
 
 								void constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]);
 
@@ -48,9 +35,7 @@ namespace ladderLogic {
 
 								int checkGateType(node *current);
 
-								int m_GatesInList;
 
-								int m_GateListSpecificID;
 
 								int getm_GateListSpecificID() const;
 
@@ -80,6 +65,27 @@ namespace ladderLogic {
 
 								void deletePos(
 												int position); //Function to delete any element from a linked list, but not the initial or terminal element.
+
+				private:
+								DataManager *Manager;
+
+								PLC::IOBuffer *ioBuffer;
+
+								bool m_InitialInput, m_InitialOutput;
+
+								int m_GatesInList;
+
+								int m_GateListSpecificID;
+
+								int m_UniqueGateListID;
+
+								bool isModified;
+
+								std::pair<std::string, bool> *inputBufferPTR;
+
+								std::pair<std::string, bool> *outputBufferPTR;
+
+								std::vector<int> instructionSet;
 				};
 
 }

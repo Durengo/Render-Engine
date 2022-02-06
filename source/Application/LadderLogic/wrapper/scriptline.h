@@ -7,7 +7,7 @@ namespace ladderLogic {
 
 				class scriptline : public ladderLogic::gateList {
 				public:
-								scriptline(DataManager &managerInstance, ladderLogic::IOBuffer *buffer);
+								scriptline(DataManager &managerInstance, PLC::IOBuffer *buffer);
 
 								~scriptline();
 
@@ -15,7 +15,7 @@ namespace ladderLogic {
 
 								void toggleisComplete();
 
-								void onRender(ladderLogic::IOBuffer &buffer);
+								void onRender(PLC::IOBuffer &buffer);
 
 								void onImGuiRender();
 
@@ -36,11 +36,7 @@ namespace ladderLogic {
 								//ladderLogic::gateList glist;
 								DataManager *managerInstance;
 
-								IOBuffer *ioBuffer;
-
-								std::string inputLabel, outputLabel;
-
-								bool input, output;
+								PLC::IOBuffer *ioBuffer;
 
 								//bool isActive, isComplete;
 								bool isComplete;

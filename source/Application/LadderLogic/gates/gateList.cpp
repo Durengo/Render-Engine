@@ -6,12 +6,12 @@ namespace ladderLogic {
 
 				gateList::gateList() {}
 
-				gateList::gateList(DataManager *ManagerInstance, ladderLogic::IOBuffer *buffer)
+				gateList::gateList(DataManager *ManagerInstance, PLC::IOBuffer *buffer)
 								: head(nullptr), tail(nullptr), Manager(ManagerInstance), ioBuffer(buffer), m_UniqueGateListID(0),
 										m_GatesInList(0), m_InitialInput(false), m_InitialOutput(false), isModified(true) {
 						setm_GateListSpecificID();
-						inputBufferPTR = buffer->getInputBufferPointer();
-						outputBufferPTR = buffer->getOutputBufferPointer();
+						//inputBufferPTR = buffer->getInputBufferPointer();
+						//outputBufferPTR = buffer->getOutputBufferPointer();
 						C->PTC("\nData manger hooked!");
 						C->PTC("\nGate List constructed!");
 						LOG->PTF("\nGATE LIST ID: ", m_GateListSpecificID, "\n");

@@ -7,7 +7,7 @@ namespace ladderLogic {
 								//: public ladderLogic::scriptline
 				{
 				public:
-								scriptlinelist(DataManager &managerInstance, ladderLogic::IOBuffer *buffer);
+								scriptlinelist(DataManager &managerInstance, PLC::IOBuffer *buffer);
 
 								~scriptlinelist();
 
@@ -37,7 +37,7 @@ namespace ladderLogic {
 				private:
 								DataManager *Manager;
 
-								IOBuffer m_IOBuffer;
+								PLC::IOBuffer m_IOBuffer;
 
 								int m_ScriptLinesInList;
 

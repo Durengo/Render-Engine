@@ -2,9 +2,9 @@
 
 namespace ladderLogic {
 
-				scriptline::scriptline(DataManager &managerInstance, ladderLogic::IOBuffer *buffer)
+				scriptline::scriptline(DataManager &managerInstance, PLC::IOBuffer *buffer)
 								: gateList(&managerInstance, buffer), managerInstance(&managerInstance), ioBuffer(buffer),
-										isComplete(false), inputLabel("X0"), outputLabel("Q0"), input(false), output(false)
+										isComplete(false)
 				//										isActive(true),
 				{
 				}
@@ -38,7 +38,7 @@ namespace ladderLogic {
 						return uniqueID;
 				}
 
-				void scriptline::onRender(IOBuffer &buffer) {
+				void scriptline::onRender(PLC::IOBuffer &buffer) {
 
 				}
 
