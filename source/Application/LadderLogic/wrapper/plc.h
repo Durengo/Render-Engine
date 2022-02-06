@@ -24,7 +24,7 @@ namespace PLC {
 
 		~plc();
 
-		void passInfo();
+		void printAllInfo();
 
 		int getTotalLadders() const;
 

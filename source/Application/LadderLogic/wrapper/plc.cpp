@@ -18,8 +18,39 @@ namespace PLC {
 				}
 			}
 
-			parsePLC(Filepath);
-			//std::cout << totalLadders;
+			PLCSOURCE plcSource = parsePLC(Filepath);
+
+			std::cout << plcSource.TOTALGATES;
+
+			std::istringstream stoiIN(plcSource.TOTALLADDERS);
+			int stoiOUT = 0;
+			stoiIN >> stoiOUT;
+			totalLadders = stoiOUT;
+			stoiIN.clear();
+			stoiIN.str(plcSource.TOTALGATES);
+			stoiIN >> stoiOUT;
+			//bool firstonly = false;
+			for (int i = 0; i < totalLadders; i++) {
+				//if (!firstonly) {
+				//	totalGates[0] = stoiOUT;
+				//	firstonly = true;
+				//}
+				totalGates.push_back(stoiOUT);
+			}
+
+			//std::pair<int, std::string> gateSequence;
+			//std::pair<int, std::string> gateIOStructure;
+			//std::pair<int, int> gateStructure;
+			//std::pair<int, std::string> IBUFFERS;
+			//std::pair<int, std::string> OBUFFERS;
+
+			//std::cout << plcSource.TOTALLADDERS << std::endl;
+			//std::cout << plcSource.TOTALGATES << std::endl;
+			//std::cout << plcSource.GATESEQUENCE << std::endl;
+			//std::cout << plcSource.GATEIOSTRUCTURE << std::endl;
+			//std::cout << plcSource.GATESTRUCTURE << std::endl;
+			//std::cout << plcSource.IBUFFERS << std::endl;
+			//std::cout << plcSource.OBUFFERS << std::endl;
 
 	}
 
@@ -40,7 +71,7 @@ namespace PLC {
 		};
 
 		std::string line;
-		std::stringstream ss[7];
+		std::stringstream ss[9];
 		PLCType type = PLCType::NONE;
 
 		while (getline(stream, line)) {
@@ -71,60 +102,18 @@ namespace PLC {
 				ss[(int)type] << line << '\n';
 			}
 		}
-		std::cout << ss[2].str();
-		return { ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str(), ss[4].str(), ss[5].str(), ss[6].str() };
+			//std::cout << ss[4].str();
+		return { ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str(), ss[6].str(), ss[7].str(), ss[8].str() };
 	}
 
-	void plc::passInfo() {
-		std::ifstream stream(filepath);
-
-		enum class PLCType {
-			//NONE = 0,
-			TOTALLADDERS = 0,
-			TOTALGATES = 1,
-			GATESEQUENCE = 2,
-			GATEIOSTRUCTURE = 3,
-			GATESTRUCTURE = 6,
-			IBUFFERS = 7,
-			OBUFFERS = 8
-		};
-
-		std::string line;
-		std::stringstream ss[7];
-		PLCType type;// = PLCType::NONE;
-
-		while (getline(stream, line)) {
-			if (line.find('#') != std::string::npos) {
-				if (line.find("TOTALLADDERS") != std::string::npos) {
-					type = PLCType::TOTALLADDERS;
-				}
-				else if (line.find("TOTALGATES") != std::string::npos) {
-					type = PLCType::TOTALGATES;
-				}
-				else if (line.find("GATESEQUENCE") != std::string::npos) {
-					type = PLCType::GATESEQUENCE;
-				}
-				else if (line.find("GATEIOSTRUCTURE") != std::string::npos) {
-					type = PLCType::GATEIOSTRUCTURE;
-				}
-				else if (line.find("GATESTRUCTURE") != std::string::npos) {
-					type = PLCType::GATESTRUCTURE;
-				}
-				else if (line.find("IBUFFERS") != std::string::npos) {
-					type = PLCType::IBUFFERS;
-				}
-				else if (line.find("OBUFFERS") != std::string::npos) {
-					type = PLCType::OBUFFERS;
-				}
-			}
-			else {
-				ss[(int)type] << line << '\n';
-			}
+	void plc::printAllInfo()
+	{
+		std::cout << "Total ladders: " << totalLadders << std::endl;
+		std::cout << "Total gates: \n";
+		for (int i = 0; i < totalLadders; i++) {
+			std::cout << i + 1 << ". " << totalGates[i] << std::endl;
 		}
-		//return {ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str(), ss[4].str(), ss[5].str(), ss[6].str()};
 	}
-
-
 
 	int plc::getTotalLadders() const {
 		return totalLadders;

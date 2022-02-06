@@ -25,8 +25,10 @@ int main() {
 	//instset.createInstructionSet();
 
 	//PLC::plcGenerator plc(Manager, "../source/Application/LadderLogic/res/template.plc");
-	PLC::plc* plc = new PLC::plc(Manager, "res/template.txt");
-	//PLC::plc plc(Manager, "res/template.plc");
+	//PLC::plc* plc = new PLC::plc(Manager, "res/oneladder.plc");
+	//PLC::plc plc(Manager, "res/oneladder.plc");
+	PLC::plc plc(Manager, "res/template.plc");
+	plc.printAllInfo();
 	std::cin.get();
 
 	//ladderLogic::IOBuffer iobuf;
