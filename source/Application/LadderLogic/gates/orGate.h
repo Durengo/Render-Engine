@@ -3,29 +3,29 @@
 #include "logicGate.h"
 
 namespace ladderLogic {
-				class orGate : virtual public logicGate {
-				public:
-								orGate();
+	class orGate : virtual public logicGate {
+	public:
+		orGate();
 
-								orGate(bool firstPin, bool secondPin);
+		orGate(bool firstPin, bool secondPin);
 
-								bool getpin();
+		bool getpin();
 
-								bool getfirstPin();
+		bool getfirstPin();
 
-								bool getsecondPin();
+		bool getsecondPin();
 
-								bool executeGateLogic();
+		bool executeGateLogic();
 
-								bool executeOrGateLogic();
+		bool executeOrGateLogic();
 
-				protected:
-								gateType type;
+	protected:
+		gateType type;
 
-								bool output;
+		bool output;
 
-								bool firstPin, firstPinTaken;
+		bool firstPin, firstPinTaken;
 
-								bool secondPin, secondPinTaken;
-				};
+		bool secondPin, secondPinTaken;
+	};
 }

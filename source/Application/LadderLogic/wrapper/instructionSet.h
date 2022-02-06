@@ -15,35 +15,35 @@ GENERAL SCRIPTLINE LAYOUT - MANY INPUTS (FROM INPUT BUFFER OR INNER GATES) - ONL
 */
 
 namespace ladderLogic {
-				class instructionSet {
-				public:
-								instructionSet(DataManager &managerInstance);
+	class instructionSet {
+	public:
+		instructionSet(DataManager& managerInstance);
 
-								bool inputvalidation(int gate);
+		bool inputvalidation(int gate);
 
-								void createInstructionSet();
+		void createInstructionSet();
 
-				private:
-								DataManager* Manager;
-								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>> INSTRUCTIONSET;
-								int noGates;
-								int ncGates;
-								int andGates;
-								int orGates;
-								int totalGates;
-								std::vector<int> noGateLocations;
-								std::vector<int> ncGateLocations;
-								std::vector<int> andGateLocations;
-								std::vector<int> orGateLocations;
-								bool isempty;
-								int layout;
-								bool firstuserinput;
-								int gatesnotset;
-								bool onecyclecompleted;
-								int filternoGates;
-								int filterncGates;
-								int filterandGates;
-								int filterorGates;
-								std::vector<int> userinput;
-				};
+	private:
+		DataManager* Manager;
+		std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>> INSTRUCTIONSET;
+		int noGates;
+		int ncGates;
+		int andGates;
+		int orGates;
+		int totalGates;
+		std::vector<int> noGateLocations;
+		std::vector<int> ncGateLocations;
+		std::vector<int> andGateLocations;
+		std::vector<int> orGateLocations;
+		bool isempty;
+		int layout;
+		bool firstuserinput;
+		int gatesnotset;
+		bool onecyclecompleted;
+		int filternoGates;
+		int filterncGates;
+		int filterandGates;
+		int filterorGates;
+		std::vector<int> userinput;
+	};
 }

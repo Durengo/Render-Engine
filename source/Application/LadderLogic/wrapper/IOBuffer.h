@@ -6,60 +6,60 @@
 
 namespace ladderLogic {
 
-				struct inputPair {
-								std::pair<std::string, bool> boundInputBuffer[10];
-				};
+	struct inputPair {
+		std::pair<std::string, bool> boundInputBuffer[10];
+	};
 
-				struct outputPair {
-								std::pair<std::string, bool> boundOutputBuffer[10];
-				};
+	struct outputPair {
+		std::pair<std::string, bool> boundOutputBuffer[10];
+	};
 
-				class IOBuffer {
-				public:
-								IOBuffer();
+	class IOBuffer {
+	public:
+		IOBuffer();
 
-								void newIOBuffer();
+		void newIOBuffer();
 
-								void initInputBuffer();
+		void initInputBuffer();
 
-								void initOutputBuffer();
+		void initOutputBuffer();
 
-								void initInputBools();
+		void initInputBools();
 
-								void initOutputBools();
+		void initOutputBools();
 
-								void bindBuffers();
+		void bindBuffers();
 
-								void changeSingleBufferElement(int position, bool buffertype, std::string newbuffername, bool newbufferstate);
+		void changeSingleBufferElement(int position, bool buffertype, std::string newbuffername, bool newbufferstate);
 
-								void changeInput(int position);
+		void changeInput(int position);
 
-								void changeOutput(int position);
+		void changeOutput(int position);
 
-								void displayBuffers();
+		void displayBuffers();
 
-								void displayInputBuffers();
+		void displayInputBuffers();
 
-								void displayOutputBuffers();
+		void displayOutputBuffers();
 
-								std::pair<std::string, bool> *getInputBufferPointer();
+		std::pair<std::string, bool>* getInputBufferPointer();
 
-								std::pair<std::string, bool> *getOutputBufferPointer();
+		std::pair<std::string, bool>* getOutputBufferPointer();
 
-				private:
+	private:
 
-								inputPair boundInputPair;
+		inputPair boundInputPair;
 
-								outputPair boundOutputPair;
+		outputPair boundOutputPair;
 
-								bool inputBools[10];
+		bool inputBools[10];
 
-								bool outputBools[10];
+		bool outputBools[10];
 
-								std::string inputLabel[10];
+		std::string inputLabel[10];
 
-								std::string outputLabel[10];
+		std::string outputLabel[10];
 
-				};
+	};
 
 }

@@ -4,31 +4,31 @@
 
 namespace test {
 
-				class testTextureNoAbstraction : public test {
-				public:
-								testTextureNoAbstraction(int width, int height);
+	class testTextureNoAbstraction : public test {
+	public:
+		testTextureNoAbstraction(int width, int height);
 
-								testTextureNoAbstraction();
+		testTextureNoAbstraction();
 
-								~testTextureNoAbstraction();
+		~testTextureNoAbstraction();
 
-								void onUpdate(timestep deltaTime) override;
+		void onUpdate(timestep deltaTime) override;
 
-								void onRender() override;
+		void onRender() override;
 
-								void onImGuiRender() override;
+		void onImGuiRender() override;
 
-				private:
-								int width, height;
+	private:
+		int width, height;
 
-								unsigned int m_ShaderProgram;
+		unsigned int m_ShaderProgram;
 
-								unsigned int m_VAO;
+		unsigned int m_VAO;
 
-								unsigned int m_EBO;
+		unsigned int m_EBO;
 
-								unsigned int m_VBO;
+		unsigned int m_VBO;
 
-				};
+	};
 
 }

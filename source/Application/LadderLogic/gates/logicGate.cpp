@@ -2,12 +2,12 @@
 
 namespace ladderLogic {
 
-				logicGate::logicGate(gateType type)
-								: type(type) {
-						type = type;
-				}
+	logicGate::logicGate(gateType type)
+		: type(type) {
+		type = type;
+	}
 
-				gateType logicGate::getgateType() const {
-						return type;
-				}
+	gateType logicGate::getgateType() const {
+		return type;
+	}
 }

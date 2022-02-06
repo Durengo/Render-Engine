@@ -5,16 +5,16 @@
 namespace test {
 
 
-				testMenu::testMenu(test *&currentTestPointer)
-								: m_CurrentTest(currentTestPointer) {
+	testMenu::testMenu(test*& currentTestPointer)
+		: m_CurrentTest(currentTestPointer) {
 
-				}
+	}
 
-				void testMenu::onImGuiRender() {
-						for (auto &test: m_Test) {
-								if (ImGui::Button(test.first.c_str())) {
-										m_CurrentTest = test.second();
-								}
-						}
-				}
+	void testMenu::onImGuiRender() {
+		for (auto& test : m_Test) {
+			if (ImGui::Button(test.first.c_str())) {
+				m_CurrentTest = test.second();
+			}
+		}
+	}
 }

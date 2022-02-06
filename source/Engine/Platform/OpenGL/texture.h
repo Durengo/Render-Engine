@@ -4,25 +4,25 @@
 
 class texture {
 private:
-				unsigned int m_RendererID;
+	unsigned int m_RendererID;
 
-				std::string m_filepath;
+	std::string m_filepath;
 
-				unsigned char *m_LocalBuffer;
+	unsigned char* m_LocalBuffer;
 
-				int m_Width, m_Height, m_BPP;
+	int m_Width, m_Height, m_BPP;
 
 public:
-				texture(const std::string &path);
+	texture(const std::string& path);
 
-				~texture();
+	~texture();
 
-				void Bind(unsigned int slot = 0) const;
+	void Bind(unsigned int slot = 0) const;
 
-				void Unbind() const;
+	void Unbind() const;
 
-				inline int getWidth() const { return m_Width; }
+	inline int getWidth() const { return m_Width; }
 
-				inline int getHeight() const { return m_Height; }
+	inline int getHeight() const { return m_Height; }
 
 };

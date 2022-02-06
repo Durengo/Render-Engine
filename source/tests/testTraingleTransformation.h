@@ -11,53 +11,53 @@
 
 namespace test {
 
-				class testTriangleTransformation : public test {
-				public:
-								testTriangleTransformation();
+	class testTriangleTransformation : public test {
+	public:
+		testTriangleTransformation();
 
-								~testTriangleTransformation();
+		~testTriangleTransformation();
 
-								void onUpdate(timestep deltaTime) override;
+		void onUpdate(timestep deltaTime) override;
 
-								void onRender() override;
+		void onRender() override;
 
-								void onImGuiRender() override;
+		void onImGuiRender() override;
 
-				private:
+	private:
 
-								std::unique_ptr<renderer> m_Renderer;
+		std::unique_ptr<renderer> m_Renderer;
 
-								int width, height;
+		int width, height;
 
-								std::unique_ptr<vertexArray> m_VAO;
+		std::unique_ptr<vertexArray> m_VAO;
 
-								std::unique_ptr<vertexBuffer> m_VBO;
+		std::unique_ptr<vertexBuffer> m_VBO;
 
-								std::unique_ptr<indexBuffer> m_IBO;
+		std::unique_ptr<indexBuffer> m_IBO;
 
-								std::unique_ptr<shader> m_Shader;
+		std::unique_ptr<shader> m_Shader;
 
-								glm::mat4 m_Proj, m_View;
+		glm::mat4 m_Proj, m_View;
 
-								glm::mat4 model;
+		glm::mat4 model;
 
-								glm::vec3 m_TranslationA;
+		glm::vec3 m_TranslationA;
 
-								float rgba[4];
+		float rgba[4];
 
-								float cam[3];
+		float cam[3];
 
-								bool autorotate;
+		bool autorotate;
 
-								int rotatespeed;
+		int rotatespeed;
 
-								float rpm;
+		float rpm;
 
-								float radians;
+		float radians;
 
-								float scale[3];
+		float scale[3];
 
-								float scale2;
-				};
+		float scale2;
+	};
 
 }

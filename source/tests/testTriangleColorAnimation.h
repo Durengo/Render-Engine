@@ -11,39 +11,39 @@
 
 namespace test {
 
-				class testTriangleColorAnimation : public test {
-				public:
-								testTriangleColorAnimation();
+	class testTriangleColorAnimation : public test {
+	public:
+		testTriangleColorAnimation();
 
-								~testTriangleColorAnimation();
+		~testTriangleColorAnimation();
 
-								void onUpdate(timestep deltaTime) override;
+		void onUpdate(timestep deltaTime) override;
 
-								void onRender() override;
+		void onRender() override;
 
-								void onImGuiRender() override;
+		void onImGuiRender() override;
 
-				private:
+	private:
 
-								std::unique_ptr<renderer> m_Renderer;
+		std::unique_ptr<renderer> m_Renderer;
 
-								std::unique_ptr<vertexArray> m_VAO;
+		std::unique_ptr<vertexArray> m_VAO;
 
-								std::unique_ptr<vertexBuffer> m_VBO;
+		std::unique_ptr<vertexBuffer> m_VBO;
 
-								std::unique_ptr<indexBuffer> m_IBO;
+		std::unique_ptr<indexBuffer> m_IBO;
 
-								std::unique_ptr<shader> m_Shader;
+		std::unique_ptr<shader> m_Shader;
 
-								float r, g, b;
+		float r, g, b;
 
-								bool br, bg, bb;
+		bool br, bg, bb;
 
-								float incrR, incrG, incrB;
+		float incrR, incrG, incrB;
 
-								float settime = 0.0f;
-								bool istimeset = false;
+		float settime = 0.0f;
+		bool istimeset = false;
 
-				};
+	};
 
 }

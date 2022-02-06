@@ -4,20 +4,20 @@
 
 namespace test {
 
-				class testClearColor : public test {
-				public:
-								testClearColor();
+	class testClearColor : public test {
+	public:
+		testClearColor();
 
-								~testClearColor();
+		~testClearColor();
 
-								void onUpdate(timestep deltaTime) override;
+		void onUpdate(timestep deltaTime) override;
 
-								void onRender() override;
+		void onRender() override;
 
-								void onImGuiRender() override;
+		void onImGuiRender() override;
 
-				private:
-								float m_ClearColor[4];
-				};
+	private:
+		float m_ClearColor[4];
+	};
 
 }

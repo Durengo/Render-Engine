@@ -5,47 +5,47 @@
 
 namespace ladderLogic {
 
-				class scriptline : public ladderLogic::gateList {
-				public:
-								scriptline(DataManager &managerInstance, ladderLogic::IOBuffer *buffer);
+	class scriptline : public ladderLogic::gateList {
+	public:
+		scriptline(DataManager& managerInstance, ladderLogic::IOBuffer* buffer);
 
-								~scriptline();
+		~scriptline();
 
-								void execute();
+		void execute();
 
-								void toggleisComplete();
+		void toggleisComplete();
 
-								void onRender(ladderLogic::IOBuffer &buffer);
+		void onRender(ladderLogic::IOBuffer& buffer);
 
-								void onImGuiRender();
+		void onImGuiRender();
 
-								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>>
-								createInstructionSet();
+		std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<std::string>>
+			createInstructionSet();
 
-//								const std::unique_ptr<ladderLogic::gateList> &getLineInstance() const;
-//
-//								void setLineInstance(const std::unique_ptr<ladderLogic::gateList> &lineInstance);
+		//								const std::unique_ptr<ladderLogic::gateList> &getLineInstance() const;
+		//
+		//								void setLineInstance(const std::unique_ptr<ladderLogic::gateList> &lineInstance);
 
-								scriptline *next = nullptr;
+		scriptline* next = nullptr;
 
-								void setUniqueID(int uniqueid);
+		void setUniqueID(int uniqueid);
 
-								int getUniqueID() const;
+		int getUniqueID() const;
 
-				protected:
-								//ladderLogic::gateList glist;
-								DataManager *managerInstance;
+	protected:
+		//ladderLogic::gateList glist;
+		DataManager* managerInstance;
 
-								IOBuffer *ioBuffer;
+		IOBuffer* ioBuffer;
 
-								std::string inputLabel, outputLabel;
+		std::string inputLabel, outputLabel;
 
-								bool input, output;
+		bool input, output;
 
-								//bool isActive, isComplete;
-								bool isComplete;
+		//bool isActive, isComplete;
+		bool isComplete;
 
-								int uniqueID;
-				};
+		int uniqueID;
+	};
 
 }

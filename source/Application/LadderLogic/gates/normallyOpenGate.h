@@ -3,26 +3,26 @@
 #include "logicGate.h"
 
 namespace ladderLogic {
-				class normallyOpenGate : virtual public logicGate {
-				public:
-								normallyOpenGate();
+	class normallyOpenGate : virtual public logicGate {
+	public:
+		normallyOpenGate();
 
-								normallyOpenGate(int firstpin);
+		normallyOpenGate(int firstpin);
 
-								bool getfirstPin();
+		bool getfirstPin();
 
-								bool executeGateLogic();
+		bool executeGateLogic();
 
-								bool executeNormallyOpenGateLogic();
+		bool executeNormallyOpenGateLogic();
 
-				protected:
+	protected:
 
-								gateType type;
+		gateType type;
 
-								bool output;
+		bool output;
 
-								bool firstPin, firstPinTaken;
+		bool firstPin, firstPinTaken;
 
-								bool secondPin, secondPinTaken;
-				};
+		bool secondPin, secondPinTaken;
+	};
 }

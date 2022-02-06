@@ -11,32 +11,32 @@
 
 namespace test {
 
-				class testTriangleColor : public test {
-				public:
-								testTriangleColor();
+	class testTriangleColor : public test {
+	public:
+		testTriangleColor();
 
-								~testTriangleColor();
+		~testTriangleColor();
 
-								void onUpdate(timestep deltaTime) override;
+		void onUpdate(timestep deltaTime) override;
 
-								void onRender() override;
+		void onRender() override;
 
-								void onImGuiRender() override;
+		void onImGuiRender() override;
 
-				private:
+	private:
 
-								std::unique_ptr<renderer> m_Renderer;
+		std::unique_ptr<renderer> m_Renderer;
 
-								std::unique_ptr<vertexArray> m_VAO;
+		std::unique_ptr<vertexArray> m_VAO;
 
-								std::unique_ptr<vertexBuffer> m_VBO;
+		std::unique_ptr<vertexBuffer> m_VBO;
 
-								std::unique_ptr<indexBuffer> m_IBO;
+		std::unique_ptr<indexBuffer> m_IBO;
 
-								std::unique_ptr<shader> m_Shader;
+		std::unique_ptr<shader> m_Shader;
 
-								float rgba[4];
+		float rgba[4];
 
-				};
+	};
 
 }
