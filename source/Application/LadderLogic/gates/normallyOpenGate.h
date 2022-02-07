@@ -7,22 +7,32 @@ namespace ladderLogic {
 				public:
 								normallyOpenGate();
 
-								normallyOpenGate(int firstpin);
+								normallyOpenGate(int *firstpin, int *output);
+
+								void executeGateLogic();
+
+								int* getfirstpin();
+
+								int* getoutput();
+
+								void setfirstPin(int* input1);
+								/*
 
 								bool getfirstPin();
 
-								bool executeGateLogic();
-
-								bool executeNormallyOpenGateLogic();
+								bool executeNormallyOpenGateLogic();*/
 
 				protected:
 
 								gateType type;
 
-								bool output;
+								int* firstPin;
+								int* output;
 
-								bool firstPin, firstPinTaken;
+/*								bool output;
 
-								bool secondPin, secondPinTaken;
+								int firstPin, firstPinTaken;
+
+								int secondPin, secondPinTaken;*/
 				};
 }

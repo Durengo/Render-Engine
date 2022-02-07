@@ -19,9 +19,29 @@ namespace PLC {
 
 								void printAllInfo();
 
-								void setinputbuffers(BUFFERSOURCE &IBOSource);
+								void switchIBUFFERELEMENT(const std::string& ilabel);
 
-								void setoutputbuffers(BUFFERSOURCE &IBOSource);
+								void switchOBUFFERELEMENT(const std::string& olabel);
+
+/*								std::string *getIbufferLabel(int which);
+
+								int *getIbufferState(int which);
+
+								std::string *getObufferLabel(int which);
+
+								int *getObufferState(int which);*/
+
+								int getTotalinputlabels() const;
+
+								int getTotaloutputlabels() const;
+
+								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<int>> IBUFFER;
+
+								int totalinputlabels;
+
+								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<int>> OBUFFER;
+
+								int totaloutputlabels;
 
 				protected:
 								DataManager *Manager;
@@ -30,35 +50,11 @@ namespace PLC {
 
 								BUFFERSOURCE parseIOBUFFERS(const std::string &Filepath);
 
-				public:
-								const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &getIbuffer() const;
-
-								void
-								setIbuffer(const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &ibuffer);
-
-								int getTotalinputlabels() const;
-
-								void setTotalinputlabels(int totalinputlabels);
-
-								const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &getObuffer() const;
-
-								void
-								setObuffer(const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &obuffer);
-
-								int getTotaloutputlabels() const;
-
-								void setTotaloutputlabels(int totaloutputlabels);
-
-				protected:
 								void setIOBUFFERS(BUFFERSOURCE &IBOSource);
 
-								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> IBUFFER;
+								void setinputbuffers(BUFFERSOURCE &IBOSource);
 
-								int totalinputlabels;
-
-								std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> OBUFFER;
-
-								int totaloutputlabels;
+								void setoutputbuffers(BUFFERSOURCE &IBOSource);
 				};
 
 }

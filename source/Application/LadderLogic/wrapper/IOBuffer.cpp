@@ -138,6 +138,36 @@ namespace PLC{
 										}
 								}
 
+				void IOBuffer::switchIBUFFERELEMENT(const std::string &ilabel) {
+						for(int i = 0; i < totalinputlabels; i++){
+								if(IBUFFER.first.second[i] == ilabel){
+										if(IBUFFER.second[i]){
+												IBUFFER.second[i] = false;
+												return;
+										}
+										else if(!IBUFFER.second[i]){
+												IBUFFER.second[i] = true;
+												return;
+										}
+								}
+						}
+				}
+
+				void IOBuffer::switchOBUFFERELEMENT(const std::string &olabel) {
+						for(int i = 0; i < totaloutputlabels; i++){
+								if(OBUFFER.first.second[i] == olabel){
+										if(OBUFFER.second[i]){
+												OBUFFER.second[i] = false;
+												return;
+										}
+										else if(!OBUFFER.second[i]){
+												OBUFFER.second[i] = true;
+												return;
+										}
+								}
+						}
+				}
+
 				int IOBuffer::getTotalinputlabels() const {
 						return totalinputlabels;
 				}
@@ -146,14 +176,19 @@ namespace PLC{
 						return totaloutputlabels;
 				}
 
-				const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &
-				IOBuffer::getIbuffer() const {
-						return IBUFFER;
+/*				std::string *IOBuffer::getIbufferLabel(int which)  {
+						return &IBUFFER.first.second[which];
 				}
 
-				const std::pair<std::pair<std::vector<int>, std::vector<std::string>>, std::vector<bool>> &
-				IOBuffer::getObuffer() const {
-						return OBUFFER;
+				int *IOBuffer::getIbufferState(int which) {
+						return &IBUFFER.second[which];
 				}
 
+				std::string *IOBuffer::getObufferLabel(int which) {
+						return &OBUFFER.first.second[which];
+				}
+
+				int *IOBuffer::getObufferState(int which) {
+						return &OBUFFER.second[which];
+				}*/
 }

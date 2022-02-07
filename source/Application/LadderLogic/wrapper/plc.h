@@ -26,29 +26,6 @@ namespace PLC {
 
 								void printAllInfo();
 
-								void settotalladders(PLCSOURCE &plcsource);
-
-								void settotalgates(PLCSOURCE &plcsource);
-
-								void setgatesequence(PLCSOURCE &plcsource);
-
-								void setgateiostructure(PLCSOURCE &plcsource);
-
-								void setgatestructure(PLCSOURCE &plcsource);
-
-								void setibuffers(PLCSOURCE &plcsource);
-
-								void setobuffers(PLCSOURCE &plcsource);
-
-				protected:
-								DataManager *Manager;
-
-								std::string filepath;
-
-								PLCSOURCE parsePLC(const std::string &Filepath);
-
-								void setPLC(PLCSOURCE &plcsource);
-
 								int totalLadders;
 
 								int totalGates;
@@ -72,5 +49,28 @@ namespace PLC {
 								std::pair<std::vector<int>, std::vector<std::string>> OBUFFERS;
 
 								int OBUFFERAMOUNT;
+
+				protected:
+								DataManager *Manager;
+
+								std::string filepath;
+
+								PLCSOURCE parsePLC(const std::string &Filepath);
+
+								void setPLC(PLCSOURCE &plcsource);
+
+								void settotalladders(PLCSOURCE &plcsource);
+
+								void settotalgates(PLCSOURCE &plcsource);
+
+								void setgatesequence(PLCSOURCE &plcsource);
+
+								void setgateiostructure(PLCSOURCE &plcsource);
+
+								void setgatestructure(PLCSOURCE &plcsource);
+
+								void setibuffers(PLCSOURCE &plcsource);
+
+								void setobuffers(PLCSOURCE &plcsource);
 				};
 }

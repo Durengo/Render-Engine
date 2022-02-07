@@ -8,6 +8,7 @@
 //#include "wrapper/plc.h"
 //#include "wrapper/IOBuffer.h"
 #include "wrapper/plcgen.h"
+#include "gates/gateList.h"
 
 int main() {
 //		DataManager Manager;
@@ -27,7 +28,7 @@ int main() {
 //instset.createInstructionSet();
 
 //PLC::plc plc(Manager, "res/oneladder.plc");
-		PLC::plc plc(&Manager, "../source/Application/LadderLogic/res/template.plc");
+		PLC::plc plc(&Manager, "../source/Application/LadderLogic/res/oneladder.plc");
 		//PLC::plc plc(Manager, "../source/Application/LadderLogic/res/oneladder.plc");
 		plc.printAllInfo();
 
@@ -35,6 +36,11 @@ int main() {
 		iob.printAllInfo();
 
 		PLC::plcgen gen1(&Manager, &plc, &iob);
+
+		ladderLogic::gateList buga(&Manager, &plc, &iob);
+		//buga.linkPLCandBuffers();
+
+		//std::cout << "\n" << 5 / 2 << std::endl;
 
 		std::cin.get();
 

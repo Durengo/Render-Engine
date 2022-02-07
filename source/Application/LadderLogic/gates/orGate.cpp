@@ -2,25 +2,61 @@
 
 namespace ladderLogic {
 
-				orGate::orGate()
+/*				orGate::orGate()
 								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(false), firstPinTaken(false),
 										secondPin(false), secondPinTaken(false) {}
 
-				orGate::orGate(bool firstPin, bool secondPin)
+				orGate::orGate(int *firstPin, int *secondPin)
 								: type(ladderLogic::gateType::OR), logicGate(type), output(false), firstPin(firstPin), firstPinTaken(false),
 										secondPin(secondPin), secondPinTaken(false) {
 
+				}*/
+
+				orGate::orGate(int *firstPin, int *secondPin, int *output)
+								: type(ladderLogic::gateType::OR), logicGate(type), firstPin(firstPin), secondPin(secondPin), output(output){
+/*						if(firstPin == nullptr){
+								firstPin = new int;
+						}
+						if(secondPin == nullptr){
+								secondPin = new int;
+						}
+						if(output == nullptr){
+								output = new int;
+						}*/
+						//*output = 0;
 				}
 
-				bool orGate::executeGateLogic() {
-						if (firstPin == 1 || secondPin == 1) {
-								return true;
+				void orGate::executeGateLogic() {
+						if (*firstPin == 1 || *secondPin == 1) {
+								*output = 1;
+								return;
 						} else {
-								return false;
+								*output = 0;
+								return;
 						}
 				}
 
-				bool orGate::getfirstPin() {
+				int *orGate::getfirstpin() {
+						return firstPin;
+				}
+
+				int *orGate::getsecondpin() {
+						return secondPin;
+				}
+
+				int *orGate::getoutput() {
+						return output;
+				}
+
+				void orGate::setfirstPin(int *input1) {
+						*firstPin = *input1;
+				}
+
+				void orGate::setsecondPin(int *input2) {
+						*secondPin = *input2;
+				}
+
+/*				bool orGate::getfirstPin() {
 						if (!firstPinTaken) {
 								std::cout << "Enter first input pin for " << getgateType() << " : ";
 								std::cin >> firstPin;
@@ -48,6 +84,6 @@ namespace ladderLogic {
 								output = false;
 								return output;
 						}
-				}
+				}*/
 
 }

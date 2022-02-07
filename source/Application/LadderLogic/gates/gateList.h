@@ -6,6 +6,7 @@
 #include "logicGate.h"
 #include "node.h"
 #include "../wrapper/IOBuffer.h"
+#include "../wrapper/plc.h"
 
 namespace ladderLogic {
 
@@ -14,28 +15,61 @@ namespace ladderLogic {
 								node *head = nullptr; //Initialize head pointer to nullptr
 								node *tail = nullptr; //Initialize tail pointer to nullptr
 
+								bool isModified;
+								bool isComplete;
+
 								gateList();
 
-								explicit gateList(DataManager *ManagerInstance, PLC::IOBuffer *buffer);
+								explicit gateList(DataManager *ManagerInstance, PLC::plc *PLCSource, PLC::IOBuffer *IOBuffersource);
 
 								~gateList();
 
+								//void linkPLCandBuffers();
 
-								void switchm_InitialInput();
+								void switchINPUT();
 
-								void switchm_InitialOutput();
+								void switchOUTPUT();
+
+								void construct();
+
+								int* gateOUTtogateIN();
+
+								void execute();
+
+								//void constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]);
+
+								//void executeSpecificGateLogic(int nodeselect);
 
 
 
-								void constructGates(std::vector<int> INSTRUCTIONSET, std::string INPUTBUFFER[], std::string OUTPUTBUFFER[]);
+				private:
+								DataManager *Manager;
 
-								void executeAllGates();
+								PLC::plc *plcsource;
 
-								void executeSpecificGateLogic(int nodeselect);
+								PLC::IOBuffer *iobuffersource;
+
+								std::pair<std::vector<int*>, std::vector<std::string*>> INPUTS;
+								std::pair<std::vector<int*>, std::vector<std::string*>> OUTPUTS;
+
+								std::pair<std::pair<std::vector<int*>, std::vector<int>>, std::vector<std::string>> GTGIB;//Gate-to-gate input buffer
+								std::pair<std::pair<std::vector<int*>, std::vector<int>>, std::vector<std::string>> GTGOB;//Gate-to-gate output buffer
+
+								std::pair<std::vector<int*>, std::vector<std::string>> gatetogateIO;
+
+								void addGTGIB(node* newGate);
+
+								void addGTGOB(node* newGate);
+
+								void linkGTGBuffers(int count);
+
+								int m_GatesInList;
+
+								int m_GateListSpecificID;
+
+								int m_UniqueGateListID;
 
 								int checkGateType(node *current);
-
-
 
 								int getm_GateListSpecificID() const;
 
@@ -47,9 +81,36 @@ namespace ladderLogic {
 
 								void setm_GatesInList(int m_GatesInList);
 
-								void createGate(ladderLogic::gateType, int firstPin); //for one input gates
+								// 1 INPUT ONE OUTPUT
+								//IN: GATE | OUT: OB
+								void createGate_1_0IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, const std::string& outputlabel);
+								void createGate_1_0IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, int *outputlabel);
 
-								void createGate(ladderLogic::gateType, int firstPin, int secondPin); //for two input gates
+								//IN: GATE | OUT: GATE
+								void createGate_1_0IBIN_OUT_GATE(ladderLogic::gateType type, int *firstPin, const std::string& inputlabel, const std::string& outputlabel);
+								//IN: IB | OUT: OB
+								void createGate_1_1IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, const std::string& inputlabel, const std::string& outputlabel);
+								//IN: IB | OUT: GATE
+								void createGate_1_1IBIN_OUT_GATE(ladderLogic::gateType type, int *firstPin, int* outputlabel);
+								//IN: GATE | OUT: GATE
+								void createGate_1_GATEIN_GATEOUT(ladderLogic::gateType type, int *firstPin);
+
+								// 2 INPUTS ONE OUTPUT
+								//INTO GATE:
+								//IN: GATE;GATE | OUT: GATE
+								void createGate_2_0IBIN_OUT_GATE(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& inputlabel);
+								//IN: GATE;IB; IB;GATE; | OUT: GATE
+								void createGate_2_1IBIN_OUT_GATE(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& inputlabel);
+								//IN: IB;IB | OUT: GATE
+								void createGate_2_2IBIN_OUT_GATE(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& inputlabel, const std::string& inputlabel2);
+								//INTO OB:
+								//IN: GATE;GATE | OUT: OB
+								void createGate_2_0IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& outputlabel);
+								//IN: GATE;IB; IB;GATE; | OUT: OB
+								void createGate_2_1IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& inputlabel, const std::string& outputlabel);
+								//IN: IB;IB | OUT: OB
+								void createGate_2_2IBIN_OUT_OB(ladderLogic::gateType type, int *firstPin, int* secondPin, const std::string& inputlabel, const std::string& inputlabel2, const std::string& outputlabel);
+
 
 								void displayList() const; //Function for displaying all elements in a linked list.
 								int length() const; //Function to count the length of the linked list.
@@ -66,26 +127,6 @@ namespace ladderLogic {
 								void deletePos(
 												int position); //Function to delete any element from a linked list, but not the initial or terminal element.
 
-				private:
-								DataManager *Manager;
-
-								PLC::IOBuffer *ioBuffer;
-
-								bool m_InitialInput, m_InitialOutput;
-
-								int m_GatesInList;
-
-								int m_GateListSpecificID;
-
-								int m_UniqueGateListID;
-
-								bool isModified;
-
-								std::pair<std::string, bool> *inputBufferPTR;
-
-								std::pair<std::string, bool> *outputBufferPTR;
-
-								std::vector<int> instructionSet;
 				};
 
 }

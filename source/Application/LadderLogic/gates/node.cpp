@@ -8,7 +8,10 @@ namespace ladderLogic {
 //
 //				}
 
-				node::node(ladderLogic::gateType type, int &firstpin, int &secondpin) {
+				node::node(ladderLogic::gateType type, int *firstpin, int *secondpin, int *output) {
+/*						if (output == nullptr) {
+								output = new int;
+						}*/
 						switch (type) {
 								case ladderLogic::gateType::NO:
 										std::cout << "\nEXCEPTION: CANNOT ASSIGN TWO INPUTS TO NORMALLY OPEN GATE\n";
@@ -18,11 +21,13 @@ namespace ladderLogic {
 										return;
 								case ladderLogic::gateType::AND:
 										//std::make_unique<andGate>(firstpin, secondpin);
-										ANDgate = new andGate(firstpin, secondpin);
+										ANDgate = new andGate(firstpin, secondpin, output);
+										m_GateType = gateType::AND;
 										return;
 								case ladderLogic::gateType::OR:
 										//std::make_unique<orGate>(firstpin, secondpin);
-										ORgate = new orGate(firstpin, secondpin);
+										ORgate = new orGate(firstpin, secondpin, output);
+										m_GateType = gateType::OR;
 										return;
 								default:
 										std::cout << "\nEXCEPTION IN NODE CONSTRUCTOR!\n";
@@ -30,13 +35,18 @@ namespace ladderLogic {
 						}
 				}
 
-				node::node(ladderLogic::gateType type, int &firstpin) {
+				node::node(ladderLogic::gateType type, int *firstpin, int *output) {
+/*						if (output == nullptr) {
+								output = new int;
+						}*/
 						switch (type) {
 								case ladderLogic::gateType::NO:
-										NOgate = new normallyOpenGate(firstpin);
+										NOgate = new normallyOpenGate(firstpin, output);
+										m_GateType = gateType::NO;
 										return;
 								case ladderLogic::gateType::NC:
-										NCgate = new normallyClosedGate(firstpin);
+										NCgate = new normallyClosedGate(firstpin, output);
+										m_GateType = gateType::NC;
 										return;
 								case ladderLogic::gateType::AND:
 										std::cout << "\nEXCEPTION: CANNOT ASSIGN ONE INPUT TO AND GATE\n";
@@ -71,25 +81,166 @@ namespace ladderLogic {
 						}
 				}
 
-				bool node::executeANDlogic() const {
-						return ANDgate->executeGateLogic();
+
+				void node::executeANDlogic() {
+						ANDgate->executeGateLogic();
 				}
 
-				bool node::executeORlogic() const {
-						return ORgate->executeGateLogic();
+				void node::executeORlogic() {
+						ORgate->executeGateLogic();
 				}
 
-				bool node::executeNOlogic() const {
-						return NOgate->executeGateLogic();
+				void node::executeNOlogic() {
+						NOgate->executeGateLogic();
 				}
 
-				bool node::executeNClogic() const {
-						return NCgate->executeGateLogic();
+				void node::executeNClogic() {
+						NCgate->executeGateLogic();
+				}
+
+
+				int *node::NOgetfirstpin() {
+						return NOgate->getfirstpin();
+				}
+
+				int *node::NCgetfirstpin() {
+						return NCgate->getfirstpin();
+				}
+
+				int *node::ANDgetfirstpin() {
+						return ANDgate->getfirstpin();
+				}
+
+				int *node::ANDgetsecondpin() {
+						return ANDgate->getsecondpin();
+				}
+
+				int *node::ORgetfirstpin() {
+						return ORgate->getfirstpin();
+				}
+
+				int *node::ORgetsecondpin() {
+						return ORgate->getsecondpin();
 				}
 
 				int node::getUniqueId() const {
 						return Unique_ID;
 				}
+
+
+				void node::NOsetfirstpin(int *input1) {
+						NOgate->setfirstPin(input1);
+				}
+
+				void node::NCsetfirstpin(int *input1) {
+						NCgate->setfirstPin(input1);
+				}
+
+				void node::ANDsetfirstpin(int *input1) {
+						ANDgate->setfirstPin(input1);
+				}
+
+				void node::ANDsetsecondpin(int *input2) {
+						ANDgate->setfirstPin(input2);
+				}
+
+				void node::ORsetfirstpin(int *input1) {
+						ORgate->setfirstPin(input1);
+				}
+
+				void node::ORsetsecondpin(int *input2) {
+						ORgate->setfirstPin(input2);
+				}
+
+
+				void node::NOnewheapoutput() {
+/*							int* current =;
+							current = new int;
+							*current = 0;*/
+				}
+
+				void node::NOnewheapfirstpin() {
+						int *current = NOgetfirstpin();
+						current = new int;
+						NOsetfirstpin(current);
+				}
+
+				void node::NCnewheapoutput() {
+
+				}
+
+				void node::NCnewheapfirstpin() {
+
+				}
+
+				void node::ANDnewheapoutput() {
+
+				}
+
+				void node::ANDnewfirstpin() {
+
+				}
+
+				void node::ANDnewsecondpin() {
+
+				}
+
+				void node::ORnewheapoutput() {
+
+				}
+
+				void node::ORnewheapfirstpin() {
+
+				}
+
+				void node::ORnewheapsecondpin() {
+
+				}
+
+
+
+
+				int* node::NOgetoutput() {
+						return NOgate->getoutput();
+				}
+
+				int* node::NCgetoutput() {
+						return NCgate->getoutput();
+				}
+
+				int* node::ANDgetoutput() {
+						return ANDgate->getoutput();
+				}
+
+				int* node::ORgetoutput() {
+						return ORgate->getoutput();
+				}
+
+
+				int *node::NOsetoutput(int* gateinput) {
+						int* current = NOgate->getoutput();
+						current = gateinput;
+				}
+
+				int *node::NCsetoutput(int* gateinput) {
+						int* current = NCgate->getoutput();
+						current = gateinput;
+				}
+
+				int *node::ANDsettoutput(int* gateinput) {
+						return nullptr;
+				}
+
+				int *node::ORgsetoutput(int* gateinput) {
+						return nullptr;
+				}
+
+
+
+
+
+
+
 
 				void node::setUniqueId(int uniqueId) {
 						Unique_ID = uniqueId;

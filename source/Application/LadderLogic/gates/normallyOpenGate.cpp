@@ -2,23 +2,44 @@
 
 namespace ladderLogic {
 
-				normallyOpenGate::normallyOpenGate()
+/*				normallyOpenGate::normallyOpenGate()
 								: type(ladderLogic::gateType::NO), logicGate(type), output(true), firstPin(false), firstPinTaken(false),
 										secondPin(false), secondPinTaken(false) {}
 
-				normallyOpenGate::normallyOpenGate(int firstpin)
-								: type(ladderLogic::gateType::NO), logicGate(type), output(true), firstPin(firstpin), firstPinTaken(false),
-										secondPin(false), secondPinTaken(false) {}
+				normallyOpenGate::normallyOpenGate(int *firstpin)
+								: type(ladderLogic::gateType::NO), logicGate(type), output(true), firstPin(*firstpin), firstPinTaken(false),
+										secondPin(false), secondPinTaken(false) {
 
-				bool normallyOpenGate::executeGateLogic() {
-						if (firstPin == 0) {
-								return true;
-						} else if (firstPin == 1) {
-								return false;
+				}*/
+
+				normallyOpenGate::normallyOpenGate(int *firstpin, int *output)
+								: type(ladderLogic::gateType::NO), logicGate(type), firstPin(firstpin), output(output)  {
+						//*output = 1;
+				}
+
+				void normallyOpenGate::executeGateLogic() {
+						if (*firstPin == 0) {
+								*output = 1;
+								return;
+						} else if (*firstPin == 1) {
+								*output = 0;
+								return;
 						}
 				}
 
-				bool normallyOpenGate::getfirstPin() {
+				int *normallyOpenGate::getfirstpin() {
+						return firstPin;
+				}
+
+				int *normallyOpenGate::getoutput() {
+						return output;
+				}
+
+				void normallyOpenGate::setfirstPin(int *input1) {
+						*firstPin = *input1;
+				}
+
+/*				bool normallyOpenGate::getfirstPin() {
 						if (!firstPinTaken) {
 								std::cout << "Enter first input pin for " << getgateType() << " : ";
 								std::cin >> firstPin;
@@ -36,5 +57,5 @@ namespace ladderLogic {
 								output = false;
 								return output;
 						}
-				}
+				}*/
 }

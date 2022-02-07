@@ -22,20 +22,20 @@ namespace ladderLogic {
 //								[[maybe_unused]] std::unique_ptr<normallyOpenGate> NOgate;
 //								[[maybe_unused]] std::unique_ptr<normallyClosedGate> NCgate;
 
-								[[maybe_unused]] andGate *ANDgate;
+								andGate *ANDgate;
 
-								[[maybe_unused]] orGate *ORgate;
+								orGate *ORgate;
 
-								[[maybe_unused]] normallyOpenGate *NOgate;
+								normallyOpenGate *NOgate;
 
-								[[maybe_unused]] normallyClosedGate *NCgate;
+								normallyClosedGate *NCgate;
 
 								std::string UserFlag;
 
 								//node(ladderLogic::gateType type);
-								node(ladderLogic::gateType type, int &firstpin, int &secondpin);
+								node(ladderLogic::gateType type, int *firstpin, int *secondpin, int *output);
 
-								node(ladderLogic::gateType type, int &firstpin);
+								node(ladderLogic::gateType type, int *firstpin, int *output);
 								//node(ladderLogic::gateType type);
 								//node(ladderLogic::gateType type);
 								//node(ladderLogic::gateType type);
@@ -46,13 +46,73 @@ namespace ladderLogic {
 
 								void setUniqueId(int uniqueId);
 
-								bool executeANDlogic() const;
+								void executeANDlogic();
 
-								bool executeORlogic() const;
+								void executeORlogic();
 
-								bool executeNOlogic() const;
+								void executeNOlogic();
 
-								bool executeNClogic() const;
+								void executeNClogic();
+
+								int* NOgetfirstpin();
+
+								int* NCgetfirstpin();
+
+								int* ANDgetfirstpin();
+
+								int* ANDgetsecondpin();
+
+								int* ORgetfirstpin();
+
+								int* ORgetsecondpin();
+
+								void NOsetfirstpin(int *input1);
+
+								void NCsetfirstpin(int *input1);
+
+								void ANDsetfirstpin(int *input1);
+
+								void ANDsetsecondpin(int *input2);
+
+								void ORsetfirstpin(int *input1);
+
+								void ORsetsecondpin(int *input2);
+
+								void NOnewheapoutput();
+
+								void NOnewheapfirstpin();
+
+								void NCnewheapoutput();
+
+								void NCnewheapfirstpin();
+
+								void ANDnewheapoutput();
+
+								void ANDnewfirstpin();
+
+								void ANDnewsecondpin();
+
+								void ORnewheapoutput();
+
+								void ORnewheapfirstpin();
+
+								void ORnewheapsecondpin();
+
+								int* NOgetoutput();
+
+								int* NCgetoutput();
+
+								int* ANDgetoutput();
+
+								int* ORgetoutput();
+
+								int* NOsetoutput(int* gateinput);
+
+								int* NCsetoutput(int* gateinput);
+
+								int* ANDsettoutput(int* gateinput);
+
+								int* ORgsetoutput(int* gateinput);
 
 								ladderLogic::gateType getm_GateType() const;
 

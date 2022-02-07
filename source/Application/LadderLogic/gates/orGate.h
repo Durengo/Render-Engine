@@ -7,25 +7,39 @@ namespace ladderLogic {
 				public:
 								orGate();
 
-								orGate(bool firstPin, bool secondPin);
+								orGate(int *firstPin, int *secondPin, int *output);
 
-								bool getpin();
+								void executeGateLogic();
+
+								int* getfirstpin();
+
+								int* getsecondpin();
+
+								int* getoutput();
+
+								void setfirstPin(int* input1);
+
+								void setsecondPin(int* input2);
+
+/*								bool getpin();
 
 								bool getfirstPin();
 
 								bool getsecondPin();
 
-								bool executeGateLogic();
-
-								bool executeOrGateLogic();
+								bool executeOrGateLogic();*/
 
 				protected:
 								gateType type;
 
+								int* firstPin;
+								int* secondPin;
+								int* output;
+/*
 								bool output;
 
 								bool firstPin, firstPinTaken;
 
-								bool secondPin, secondPinTaken;
+								bool secondPin, secondPinTaken;*/
 				};
 }
