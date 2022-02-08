@@ -66,6 +66,11 @@
           "name": "yaml-cpp_DIR",
           "value": "${projectDir}/vendor/vcpkg/packages/yaml-cpp_x64-windows",
           "type": "PATH"
+        },
+        {
+          "name": "glm_DIR",
+          "value": "${projectDir}/vendor/vcpkg/packages/glm_x64-windows",
+          "type": "PATH"
         }
       ]
     }

@@ -25,9 +25,12 @@ file(GLOB_RECURSE tests
         "${PROJECT_SOURCE_DIR}/source/tests/*.cpp"
         )
 
-file(GLOB_RECURSE app
-        "${PROJECT_SOURCE_DIR}/source/Application/*.h"
-        "${PROJECT_SOURCE_DIR}/source/Application/*.cpp"
+file(GLOB_RECURSE ladderlogic
+        #executable
+        "${PROJECT_SOURCE_DIR}/source/apps/main.cpp"
+        #ladderlogic source
+        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.h"
+        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.cpp"
         )
 
 add_executable(${PROJECT_NAME}
@@ -35,9 +38,9 @@ add_executable(${PROJECT_NAME}
         ${tests}
         )
         
-        add_executable(App
-        ${app}
+        add_executable(LadderLogic
+        ${ladderlogic}
         )
 
 target_include_directories(OpenGL PRIVATE ${STB_INCLUDE_DIRS} ${SCOTTT_DEBUGBREAK_INCLUDE_DIRS})
-target_link_libraries(OpenGL PRIVATE OpenGL::GL glfw GLEW::GLEW imgui::imgui imguizmo::imguizmo spdlog::spdlog spdlog::spdlog_header_only yaml-cpp)
+target_link_libraries(OpenGL PRIVATE OpenGL::GL glfw GLEW::GLEW glm::glm imgui::imgui imguizmo::imguizmo spdlog::spdlog spdlog::spdlog_header_only yaml-cpp)
