@@ -17,16 +17,13 @@ include_directories(${PROJECT_SOURCE_DIR}/vendor/spdlog/include)
 add_subdirectory(${PROJECT_SOURCE_DIR}/vendor/yaml-cpp)
 include_directories(${PROJECT_SOURCE_DIR}/vendor/yaml-cpp/include)
 
-file(GLOB_RECURSE main
-        "${PROJECT_SOURCE_DIR}/source/Engine/main.cpp"
-        )
-
 file(GLOB_RECURSE engine
+        #executable
+        "${PROJECT_SOURCE_DIR}/source/Engine/main.cpp"
+        #engine source
         "${PROJECT_SOURCE_DIR}/source/Engine/*.h"
         "${PROJECT_SOURCE_DIR}/source/Engine/*.cpp"
-        )
-
-file(GLOB_RECURSE tests
+        #engine tests
         "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.h"
         "${PROJECT_SOURCE_DIR}/source/Engine/tests/*.cpp"
         )
@@ -40,24 +37,20 @@ file(GLOB_RECURSE stb
         "${PROJECT_SOURCE_DIR}/vendor/std_image/*.h"
         )
 
-file(GLOB_RECURSE app
-        "${PROJECT_SOURCE_DIR}/source/Application/LadderLogic/*.h"
-        "${PROJECT_SOURCE_DIR}/source/Application/LadderLogic/*.cpp"
+file(GLOB_RECURSE ladderlogic
+        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.h"
+        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.cpp"
         )
 
-add_executable(App
-        ${app}
-        ${imgui}
-        ${stb}
+add_executable(LadderLogic
+        ${ladderlogic}
         )
 
 add_executable(OpenGL
-        ${main}
         ${engine}
         ${imgui}
-        ${tests}
         ${stb}
         )
 
 target_link_libraries(OpenGL PRIVATE OpenGL::GL glfw GLEW::GLEW)
-target_link_libraries(App PRIVATE OpenGL::GL glfw GLEW::GLEW)
+target_link_libraries(LadderLogic PRIVATE OpenGL::GL glfw GLEW::GLEW)
