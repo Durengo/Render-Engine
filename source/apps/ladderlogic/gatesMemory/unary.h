@@ -29,6 +29,10 @@ namespace lgates {
 										}
 								}
 
+								virtual int* returnpin1(){
+										return pin;
+								}
+
 				private:
 								int* pin, *pinTaken;
 				};

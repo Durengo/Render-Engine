@@ -38,6 +38,9 @@ file(GLOB_RECURSE stb
         )
 
 file(GLOB_RECURSE ladderlogic
+        #executable
+        "${PROJECT_SOURCE_DIR}/source/apps/main.cpp"
+        #ladderlogic source
         "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.h"
         "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.cpp"
         )

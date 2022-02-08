@@ -35,6 +35,16 @@ namespace lgates {
 										std::cout << "ERROR! setNextPin BASE" << std::endl;
 								}
 
+								virtual int* returnpin1(){
+										std::cout << "ERROR! returnpin1 BASE. RETURNING NULLPTR" << std::endl;
+										return nullptr;
+								}
+
+								virtual int* returnpin2(){
+										std::cout << "ERROR! returnpin1 BASE. RETURNING NULLPTR" << std::endl;
+										return nullptr;
+								}
+
 				private:
 								std::string label;
 

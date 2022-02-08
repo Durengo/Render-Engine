@@ -145,11 +145,11 @@ namespace PLC{
 				void IOBuffer::switchIBUFFERELEMENT(const std::string &ilabel) {
 						for(int i = 0; i < totalinputlabels; i++){
 								if(IBUFFER.first.second[i] == ilabel){
-										if(IBUFFER.second[i]){
+										if(*IBUFFER.second[i] == 1){
 												*IBUFFER.second[i] = 0;
 												return;
 										}
-										else if(!IBUFFER.second[i]){
+										else if(*IBUFFER.second[i] == 0){
 												*IBUFFER.second[i] = 1;
 												return;
 										}
@@ -160,11 +160,11 @@ namespace PLC{
 				void IOBuffer::switchOBUFFERELEMENT(const std::string &olabel) {
 						for(int i = 0; i < totaloutputlabels; i++){
 								if(OBUFFER.first.second[i] == olabel){
-										if(OBUFFER.second[i]){
+										if(*OBUFFER.second[i] == 1){
 												*OBUFFER.second[i] = 0;
 												return;
 										}
-										else if(!OBUFFER.second[i]){
+										else if(*OBUFFER.second[i] == 0){
 												*OBUFFER.second[i] = 1;
 												return;
 										}

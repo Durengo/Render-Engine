@@ -42,6 +42,14 @@ namespace lgates {
 										}
 								}
 
+								virtual int* returnpin1(){
+										return pinA;
+								}
+
+								virtual int* returnpin2(){
+										return pinB;
+								}
+
 				private:
 								int* pinA, *pinATaken, *pinB, *pinBTaken;
 				};

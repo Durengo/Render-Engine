@@ -20,7 +20,15 @@ namespace PLC {
 
 								void construct();
 
+								void constructconnectors();
+
 								void execute();
+
+								void updateoutput();
+
+								bool isModified;
+
+								void switchinput();
 
 				private:
 								PLC::plc *plcsource;
@@ -33,6 +41,8 @@ namespace PLC {
 
 								int* output;
 
+								std::vector<int*> inputs;
+
 								//std::vector<int*> IBptrs;
 
 								int IBptrs;
@@ -43,7 +53,9 @@ namespace PLC {
 
 								void setoutputlables();
 
-								void bindSourceBuffersWithOutput();
+								void bindSourceBuffersWithExecution();
+
+								void checkIB();
 
 				};
 }

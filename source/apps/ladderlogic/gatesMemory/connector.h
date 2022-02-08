@@ -20,7 +20,7 @@ namespace lgates {
 										return togate;
 								}
 
-				private:
 								logicgate *fromgate, *togate;
+				private:
 				};
 }
