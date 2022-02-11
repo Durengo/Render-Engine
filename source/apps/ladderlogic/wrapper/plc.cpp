@@ -98,7 +98,7 @@ namespace PLC {
 						std::cout << "Gate Structure: \n";
 						for (int i = 0; i < totalGates - 1; i++) {
 								std::cout << i + 1 << ". " << gateStructure.first.first[i] << "/" << gateStructure.first.second[i] << ">" <<
-								gateStructure.second.first[i] << "/" << gateStructure.second.second[i] << std::endl;
+																		gateStructure.second.first[i] << "/" << gateStructure.second.second[i] << std::endl;
 						}
 						std::cout << "GATE INPUT BUFFERS: \n";
 						for (int i = 0; i < IBUFFERAMOUNT; i++) {
@@ -120,6 +120,7 @@ namespace PLC {
 
 				void plc::settotalgates(PLCSOURCE &plcsource) {
 						bool firstpass = false;
+						int count = 1;
 						for (int i = 0; i < totalLadders; i++) {
 								int stoiOUT = 0;
 								if (!firstpass) {
@@ -131,11 +132,12 @@ namespace PLC {
 										firstpass = true;
 								} else {
 										std::string str = plcsource.TOTALGATES;
-										str = str.at(i + 1);
+										str = str.at(i + count);
 										std::stringstream stoiIN(str);
 										stoiIN >> stoiOUT;
 										totalGates = totalGates + stoiOUT;
 										firstpass = true;
+										count = count + 1;
 								}
 								totalGatesPerLadder.push_back(stoiOUT);
 						}
@@ -155,7 +157,7 @@ namespace PLC {
 												gateSequence.first.push_back(count);
 												gateSequence.second.emplace_back("NC");
 										}
-										if (line.find("AND") != std::string::npos) {
+										if (line.find("AN") != std::string::npos) {
 												gateSequence.first.push_back(count);
 												gateSequence.second.emplace_back("AND");
 										}
@@ -164,10 +166,10 @@ namespace PLC {
 												gateSequence.second.emplace_back("OR");
 										}
 										if (line.find(':') != std::string::npos) {
-												gateSequence.first.push_back(0);
+/*												gateSequence.first.push_back(0);
 												gateSequenceBranching = gateSequenceBranching + 1;
 												gateSequence.second.emplace_back("BRANCH#" + std::to_string(gateSequenceBranching));
-												count--;
+												*/count--;
 										}
 								}
 								count++;
@@ -280,6 +282,7 @@ namespace PLC {
 						std::stringstream stream(plcsource.IBUFFERS);
 						std::string line;
 						int count = 1;
+						int gateiostructurecount = 0;
 						while (getline(stream, line)) {
 								if (line.find(count)) {
 										std::string toint = line;
@@ -300,7 +303,7 @@ namespace PLC {
 														IBUFFERS.first.push_back(count);
 														IBUFFERS.second.emplace_back(str);
 														IBUFFERAMOUNT = IBUFFERAMOUNT + 1;
-														count++;
+														//count++;
 												}
 										}
 								}
@@ -331,7 +334,7 @@ namespace PLC {
 														OBUFFERS.first.push_back(count);
 														OBUFFERS.second.emplace_back(str);
 														OBUFFERAMOUNT = OBUFFERAMOUNT + 1;
-														count++;
+														//count++;
 												}
 										}
 								}

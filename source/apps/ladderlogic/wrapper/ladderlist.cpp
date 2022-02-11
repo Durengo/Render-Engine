@@ -24,7 +24,7 @@ namespace ladderLogic {
 				ladderlist::ladderlist(DataManager *ManagerInstance)
 								: head(nullptr), tail(nullptr), Manager(ManagerInstance),
 										m_UniqueGateListID(0),
-										m_GatesInList(0), isModified(true), isComplete(false) {
+										m_GatesInList(0), isModified(true), isComplete(false), NOgates(0), NCgates(0), ANDgates(0), ORgates(0) {
 						setm_GateListSpecificID();
 
 						//create node
@@ -72,6 +72,17 @@ namespace ladderLogic {
 								*firstPin = 3;
 						}*/
 						m_GatesInList = m_GatesInList + 1;
+						if(type == ladderLogic::gateType::NO){
+								NOgates = NOgates + 1;
+						}else if(type == ladderLogic::gateType::NC){
+								NCgates = NCgates + 1;
+						}else if(type == ladderLogic::gateType::AND){
+								ANDgates = ANDgates + 1;
+						}else if(type == ladderLogic::gateType::OR){
+								ORgates = ORgates + 1;
+						}else if(type == ladderLogic::gateType::NONE){
+								std::cout << "\nEXCEPTION IN GATE CREATOR!\n";
+						}
 						auto *newGate = new node(type); // Create a new user object and allocate it to heap.
 						newGate->setUniqueId(getm_GatesInList());
 						int i = 1;
@@ -247,6 +258,7 @@ namespace ladderLogic {
 										}
 								}
 								for (int i = 0; i < pos; i++) {
+										current = current->next;
 										if (current->getm_GateType() == 3) {
 												switch (current->getm_GateType()) {
 														case gateType::NONE:
@@ -269,7 +281,6 @@ namespace ladderLogic {
 																return nullptr;
 												}
 										}
-										current = current->next;
 								}
 						}
 						lgates::OR *ladderlist::getORgatebypos(int pos) {
@@ -302,6 +313,7 @@ namespace ladderLogic {
 										}
 								}
 								for (int i = 0; i < pos; i++) {
+										current = current->next;
 										if (current->getm_GateType() == 4) {
 												switch (current->getm_GateType()) {
 														case gateType::NONE:
@@ -324,7 +336,6 @@ namespace ladderLogic {
 																return current->ORgate;
 												}
 										}
-										current = current->next;
 								}
 						}
 /*						switch (current->getm_GateType()) {

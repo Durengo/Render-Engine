@@ -43,17 +43,33 @@ namespace ladderLogic {
 
 								void setm_GateType(ladderLogic::gateType type);
 
+								//NO
 								void NOsetnextpin(int* pin);
 
 								void NOsetoutput(int* OB);
 
 								int* NOgetoutput();
 
+								//NC
 								void NCsetnextpin(int* pin);
 
 								void NCsetoutput(int* OB);
 
 								int* NCgetoutput();
+
+								//AND
+								void ANDsetnextpin(int* pin);
+
+								void ANDsetoutput(int* OB);
+
+								int* ANDgetoutput();
+
+								//OR
+								void ORsetnextpin(int* pin);
+
+								void ORsetoutput(int* OB);
+
+								int* ORgetoutput();
 
 				private:
 								int Unique_ID;

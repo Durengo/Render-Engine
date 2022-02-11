@@ -15,20 +15,20 @@ namespace lgates {
 								}
 
 								int* getPinA() {
-										if (*pinATaken == 0) {
+										/*if (*pinATaken == 0) {
 												std::cout << "Enter Pin A input for gate " << getLabel() << ": ";
 												std::cin >> *pinA;
 												*pinATaken = 1;
-										}
+										}*/
 										return pinA;
 								}
 
 								int* getPinB() {
-										if (*pinBTaken == 0) {
+										/*if (*pinBTaken == 0) {
 												std::cout << "Enter Pin B input for gate " << getLabel() << ": ";
 												std::cin >> *pinB;
 												*pinBTaken = 1;
-										}
+										}*/
 										return pinB;
 								}
 

@@ -51,6 +51,14 @@ namespace ladderLogic {
 
 								gateType convertstringtogatetype(const std::string& gatetype);
 
+								int NOgates;
+
+								int NCgates;
+
+								int ANDgates;
+
+								int ORgates;
+
 				private:
 								DataManager *Manager;
 

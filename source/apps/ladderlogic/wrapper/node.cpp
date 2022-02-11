@@ -152,4 +152,54 @@ namespace ladderLogic {
 						}
 						return NCgate->getOutput();
 				}
+
+				//AND GATE
+				void node::ANDsetnextpin(int *pin) {
+						if(pin == nullptr){
+								std::cout << "AND NEXT PIN IS NULLPTR. ABORTING\n";
+								return;
+						}
+						ANDgate->setNextPin(pin);
+				}
+
+				void node::ANDsetoutput(int *OB) {
+						if(OB == nullptr){
+								std::cout << "CANNOT SET OUTPUT BUFFER FOR AND GATE. OB IS NULLPTR. ABORTING\n";
+								return;
+						}
+						ANDgate->setOutput(OB);
+				}
+
+				int *node::ANDgetoutput() {
+						if(NOgate->getOutput() == nullptr){
+								std::cout << "AND OUTPUT IS NULLPTR. ABORTING\n";
+								return nullptr;
+						}
+						return ANDgate->getOutput();
+				}
+
+				//OR GATE
+				void node::ORsetnextpin(int *pin) {
+						if(pin == nullptr){
+								std::cout << "OR NEXT PIN IS NULLPTR. ABORTING\n";
+								return;
+						}
+						ORgate->setNextPin(pin);
+				}
+
+				void node::ORsetoutput(int *OB) {
+						if(OB == nullptr){
+								std::cout << "CANNOT SET OUTPUT BUFFER FOR OR GATE. OB IS NULLPTR. ABORTING\n";
+								return;
+						}
+						ORgate->setOutput(OB);
+				}
+
+				int *node::ORgetoutput() {
+						if(NOgate->getOutput() == nullptr){
+								std::cout << "OR OUTPUT IS NULLPTR. ABORTING\n";
+								return nullptr;
+						}
+						return ORgate->getOutput();
+				}
 }

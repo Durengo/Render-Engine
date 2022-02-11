@@ -2,5 +2,5 @@
 
 class basictest{
 public:
-				void runtest();
+				void runtest(int test);
 };

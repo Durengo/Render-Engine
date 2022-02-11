@@ -28,7 +28,9 @@ namespace PLC {
 
 								bool isModified;
 
-								void switchinput();
+								void switchinput(int pos);
+
+								void switchinput(int pos, int pos2);
 
 				private:
 								PLC::plc *plcsource;
