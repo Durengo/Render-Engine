@@ -1,0 +1,10 @@
+install
+scottt-debugbreak
+glfw3
+glew
+glm
+stb
+imgui[glfw-binding,opengl3-binding]
+imguizmo
+spdlog
+yaml-cpp
