@@ -11,11 +11,11 @@
 
 namespace test {
 
-	class testTriangleTransformation : public test {
+	class testAdvancedCameraManipulation : public test {
 	public:
-		testTriangleTransformation();
+		testAdvancedCameraManipulation();
 
-		~testTriangleTransformation();
+		~testAdvancedCameraManipulation();
 
 		void onUpdate(timestep deltaTime) override;
 
@@ -43,21 +43,39 @@ namespace test {
 
 		glm::vec3 m_TranslationA;
 
+		glm::vec3 cameraPos;  
+
+		glm::vec3 cameraTarget;
+
+		glm::vec3 cameraDirection;
+
+		glm::vec3 up;
+
+		glm::vec3 cameraRight;
+
+		glm::vec3 cameraUp;
+
+		float m_ClearColor[4];
+
 		float rgba[4];
 
 		float cam[3];
 
-		bool autorotate;
+		bool autorotate[3];
 
-		int rotatespeed;
+		float rotatespeed[3];
 
-		float rpm;
+		float rpm[3];
 
-		float radians;
+		float radians[3];
+
+		float prevrads[3];
 
 		float scale[3];
 
 		float scale2;
+
+		//bool mvpstate;
 	};
 
 }

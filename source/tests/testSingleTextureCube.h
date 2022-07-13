@@ -8,17 +8,15 @@
 #include "../Engine/Platform/OpenGL/shader.h"
 #include "../Engine/Platform/OpenGL/texture.h"
 
-#include <glm/glm.hpp>
-
 #include <memory>
 
 namespace test {
 
-	class testCameraManipulation : public test {
+	class testSingleTextureCube : public test {
 	public:
-		testCameraManipulation();
+		testSingleTextureCube();
 
-		~testCameraManipulation();
+		~testSingleTextureCube();
 
 		void onUpdate(timestep deltaTime) override;
 
@@ -27,6 +25,7 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
+
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -43,11 +42,29 @@ namespace test {
 
 		glm::mat4 m_Proj, m_View;
 
+		glm::mat4 model;
+
 		glm::vec3 m_TranslationA;
 
-		glm::vec3 m_TranslationB;
+		float m_ClearColor[4];
 
-		float cam[3] = {0};
+		float rgba[4];
 
+		float cam[3];
+
+		bool autorotate[3];
+
+		float rotatespeed[3];
+
+		float rpm[3];
+
+		float radians[3];
+
+		float prevrads[3];
+
+		float scale[3];
+
+		float scale2;
 	};
+
 }

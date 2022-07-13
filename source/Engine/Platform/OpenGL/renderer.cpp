@@ -3,12 +3,12 @@
 #include <iostream>
 
 renderer::renderer()
-	: windowID(nullptr), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0) {
+	: windowID(nullptr), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f) {
 	//initDeltaTime();
 }
 
 renderer::renderer(GLFWwindow* windowID)
-	: windowID(windowID), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0) {
+	: windowID(windowID), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f) {
 
 }
 
@@ -25,7 +25,7 @@ void renderer::clear() const {
 }
 
 void renderer::windowFPSMS(GLFWwindow* windowID) {
-	timeSinceStart = (int)glfwGetTime();
+	timeSinceStart = (float)glfwGetTime();
 	deltaTime = timeSinceStart - oldTimeSinceStart;
 	counter++;
 	if (deltaTime >= 1.0 / 30.0) {
@@ -45,7 +45,7 @@ void renderer::initDeltaTime() {
 //		deltaTime = timeSinceStart - oldTimeSinceStart;
 }
 
-void renderer::updateDeltaTime(float lastframetime) {
+void renderer::updateDeltaTime() {
 	float time = (float)glfwGetTime();
 	deltatime = time - lastframetime;
 	lastframetime = time;
@@ -71,13 +71,13 @@ timestep renderer::getDeltaTime() const {
 	return deltatime;
 }
 
-float* renderer::getLastframetime() const {
+float renderer::getLastframetime() const {
 	return lastframetime;
 }
 
-void renderer::setLastframetime(float* lastframetime) {
-	renderer::lastframetime = lastframetime;
-}
+// void renderer::setLastframetime() {
+// 	renderer::lastframetime = lastframetime;
+// }
 
 void renderer::keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	//std::cout << "Something pressed?\n";

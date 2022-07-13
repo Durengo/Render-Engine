@@ -6,8 +6,8 @@
 test::testCameraManipulation::testCameraManipulation()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
 	m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f)),
-	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(0, 0, 0),
-	m_TranslationB(100, 200, 0) {
+	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(360, 540, 0),
+	m_TranslationB(1440, 540, 0) {
 	float positions[] = {
 					-50.0f, -50.0f, 0.0f, 1.0f, 1.0f, 0.0f,//0
 					-50.0f, 50.0f, 0.0f, 1.0f, 1.0f, 1.0f,//1
@@ -45,7 +45,7 @@ void test::testCameraManipulation::onUpdate(timestep deltaTime) {
 
 void test::testCameraManipulation::onRender() {
 
-	m_View = glm::translate(glm::mat4(1.0f), glm::vec3(camx, camy, camz));
+	m_View = glm::translate(glm::mat4(1.0f), glm::vec3(cam[0], cam[1], cam[2]));
 
 	m_Texture->Bind();
 	{
@@ -72,10 +72,18 @@ void test::testCameraManipulation::onImGuiRender() {
 	if (ImGui::Button("Disable")) {
 		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
-	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, width);
-	ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, width);
-	ImGui::Text("Application avarage %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
-		ImGui::GetIO().Framerate);
-	ImGui::SliderFloat3("Camera", &camx, 0.0f, width);
-
+	ImGui::SliderFloat3("Camera", &cam[0], 0-width, width);
+	if(ImGui::Button("Reset Camera")){
+		cam[0] = 0;
+		cam[1] = 0;
+		cam[3] = 0;
+	}
+	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0-width, width);
+	ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0-width, width);
+	if(ImGui::Button("Reset Translations")){
+		m_TranslationA[0] = 360;
+		m_TranslationA[1] = 540;
+		m_TranslationB[0] = 1440;
+		m_TranslationB[1] = 540;
+	}
 }

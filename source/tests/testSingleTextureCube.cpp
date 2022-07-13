@@ -1,28 +1,31 @@
-#include "testCube.h"
+#include "testSingleTextureCube.h"
 
 #include <imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-test::testCube::testCube()
+test::testSingleTextureCube::testSingleTextureCube()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
-	//m_Proj(glm::ortho(0.0f, (float) width, 0.0f, (float) height, -10000.0f, 10000.0f)),
-	m_Proj(glm::perspective(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f)),
-	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0), m_ClearColor{ 0.0f, 0.0f, 0.0f, 0.0f },
-	rgba{ 1.0f, 1.0f, 1.0f, 1.0f }, cam{ -960.0f, -540.0f, -1000.0f }, autorotate{ false, false, false }, rotatespeed{ 10.0f, 10.0f, 10.0f },
-	rpm{ 0.0f, 0.0f, 0.0f }, radians{ 0.0f, 0.0f, 0.0f }, prevrads{0.0f, 0.0f, 0.0f}, scale{ 1.0f, 1.0f, 1.0f }, scale2(1.0f) {
+	//m_Proj(glm::ortho(0.0f, (float) width, 0.0f, (float) height, -1920.0f, 1920.0f)),
+	m_Proj(glm::perspective(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 10000.0f)),
+	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0),
+	m_ClearColor{ 0.0f, 0.0f, 0.0f, 0.0f }, rgba{ 1.0f, 1.0f, 1.0f, 1.0f }, cam{ -960.0f, -540.0f, -1000.0f },
+	autorotate{ false, false, false }, rotatespeed{ 10.0f, 10.0f, 10.0f }, rpm{ 0.0f, 0.0f, 0.0f },
+	radians{ 0.0f, 0.0f, 0.0f }, prevrads{0.0f, 0.0f, 0.0f}, scale{ 1.0f, 1.0f, 1.0f }, scale2(1.0f) {
 
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
+	GLCall(glEnable(GL_DEPTH_TEST));
+
 	float positions[] = {
-					-50.0f, 50.0f, 0.0f, 1.0f,
-					-50.0f, -50.0f, 0.0f, 1.0f,
-					50.0f, 50.0f, 0.0f, 1.0f,
-					50.0f, -50.0f, 0.0f, 1.0f,
-					-50.0f, 50.0f, -100.0f, 1.0f,
-					-50.0f, -50.0f, -100.0f, 1.0f,
-					50.0f, 50.0f, -100.0f, 1.0f,
-					50.0f, -50.0f, -100.0f, 1.0f
+					-50.0f, 50.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+					-50.0f, -50.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+					50.0f, 50.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+					50.0f, -50.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+					-50.0f, 50.0f, -100.0f, 1.0f, 1.0f, 0.0f,
+					-50.0f, -50.0f, -100.0f, 1.0f, 1.0f, 1.0f,
+					50.0f, 50.0f, -100.0f, 1.0f, 0.0f, 1.0f,
+					50.0f, -50.0f, -100.0f, 1.0f, 0.0f, 0.0f
 	};
 	unsigned int indices[] = {
 					0, 2, 3, 0, 3, 1,
@@ -35,25 +38,29 @@ test::testCube::testCube()
 
 	m_VAO = std::make_unique<vertexArray>();
 
-	m_VBO = std::make_unique<vertexBuffer>(positions, 8 * 4 * sizeof(float));
+	m_VBO = std::make_unique<vertexBuffer>(positions, 8 * 6 * sizeof(float));
 
 	vertexBufferLayout layout;
 	layout.PushFloat(4);
+	layout.PushFloat(2);
 
 	m_VAO->addBuffer(*m_VBO, layout);
 
 	m_IBO = std::make_unique<indexBuffer>(indices, 36);
 
-	m_Shader = std::make_unique<shader>("res/shaders/cube.shader");
+	m_Shader = std::make_unique<shader>("res/shaders/cubeTexture.shader");
 	m_Shader->Bind();
-	m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+	//m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+	m_Texture = std::make_unique<texture>("res/textures/jim.jpg");
+	m_Texture->Bind(0);
+	m_Shader->setUniform1i("u_Texture", 0);
 }
 
-test::testCube::~testCube() {
+test::testSingleTextureCube::~testSingleTextureCube() {
 	GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 }
 
-void test::testCube::onUpdate(timestep deltaTime) {
+void test::testSingleTextureCube::onUpdate(timestep deltaTime) {
 	if (autorotate[0]){
 		prevrads[0] = deltaTime.getSeconds() * ((rpm[0])*(2*glm::pi<float>()));
 		radians[0] += prevrads[0];
@@ -66,34 +73,17 @@ void test::testCube::onUpdate(timestep deltaTime) {
 		prevrads[2] = deltaTime.getSeconds() * ((rpm[2])*(2*glm::pi<float>()));
 		radians[2] += prevrads[2];
 	}
-	// if (autorotate[0]) {
-	// 	radians[0] = deltaTime.getMilliseconds() * 10 / rotatespeed[0];
-	// 	rpm[0] = radians[0] / deltaTime.getSeconds();
-	// 	if (rpm[0] < 0) {
-	// 		rpm[0] = rpm[0] / -1;
-	// 	}
-	// }
-	// if (autorotate[1]) {
-	// 	radians[1] = deltaTime.getMilliseconds() * 10 / rotatespeed[1];
-	// 	rpm[1] = radians[1] / deltaTime.getSeconds();
-	// 	if (rpm[1] < 0) {
-	// 		rpm[1] = rpm[1] / -1;
-	// 	}
-	// }
-	// if (autorotate[2]) {
-	// 	radians[2] = deltaTime.getMilliseconds() * 10 / rotatespeed[2];
-	// 	rpm[2] = radians[0] / deltaTime.getSeconds();
-	// 	if (rpm[2] < 0) {
-	// 		rpm[2] = rpm[2] / -1;
-	// 	}
-	// }
 }
 
-void test::testCube::onRender() {
+void test::testSingleTextureCube::onRender() {
 	GLCall(glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]));
 	GLCall(glClear(GL_COLOR_BUFFER_BIT));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+	m_View = glm::translate(glm::mat4(1.0f), glm::vec3(cam[0], cam[1], cam[2]));
+
+	m_Texture->Bind();
 	{
-		m_View = glm::translate(glm::mat4(1.0f), glm::vec3(cam[0], cam[1], cam[2]));
 		model = glm::translate(glm::mat4(1.0f), m_TranslationA);
 		model = glm::rotate(model, glm::radians(radians[0]), glm::vec3(0.0, 0.0, 1.0));
 		model = glm::rotate(model, glm::radians(radians[1]), glm::vec3(1.0, 0.0, 0.0));
@@ -103,12 +93,13 @@ void test::testCube::onRender() {
 		glm::mat4 mvp = m_Proj * m_View * model;
 		m_Shader->Bind();
 		m_Shader->setUniformMat4f("u_MVP", mvp);
-		m_Shader->setUniform4f("u_Color", rgba[0], rgba[1], rgba[2], rgba[3]);
+		//m_Shader->setUniform4f("u_Color", rgba[0], rgba[1], rgba[2], rgba[3]);
 		m_Renderer->draw(*m_VAO, *m_IBO, *m_Shader);
 	}
+
 }
 
-void test::testCube::onImGuiRender() {
+void test::testSingleTextureCube::onImGuiRender() {
 	ImGui::ColorEdit4("Clear Color", m_ClearColor);
 	//Color
 	ImGui::ColorEdit4("Cube Color", rgba);
@@ -129,17 +120,6 @@ void test::testCube::onImGuiRender() {
 		m_TranslationA[2] = 0;
 	}
 	//Camera
-	// if(ImGui::Button("Switch MVP View")){
-	// 	if(!mvpstate){
-	// 		ImGui::Text("Current MVP View: ORTHOGRAPHIC");
-	// 		//m_Proj = (glm::ortho(0.0f, (float) width, 0.0f, (float) height, -10000.0f, 10000.0f));
-	// 		m_Proj = (glm::ortho(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f));
-	// 	}
-	// 	else if(mvpstate){
-	// 		m_Proj = (glm::perspective(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f));
-	// 		ImGui::Text("Current MVP View: PERSPECTIVE");
-	// 	}
-	// }
 	ImGui::SliderFloat3("Camera", cam, -width, width);
 	if (ImGui::Button("Reset Camera")) {
 		cam[0] = -960.0f;

@@ -1,9 +1,9 @@
-#include "testCube.h"
+#include "testAdvancedCameraManipulation.h"
 
 #include <imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-test::testCube::testCube()
+test::testAdvancedCameraManipulation::testAdvancedCameraManipulation()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
 	//m_Proj(glm::ortho(0.0f, (float) width, 0.0f, (float) height, -10000.0f, 10000.0f)),
 	m_Proj(glm::perspective(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f)),
@@ -47,13 +47,22 @@ test::testCube::testCube()
 	m_Shader = std::make_unique<shader>("res/shaders/cube.shader");
 	m_Shader->Bind();
 	m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+
+
+
+	cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+	cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+	cameraDirection = glm::normalize(cameraPos - cameraTarget);
+	up = glm::vec3(0.0f, 1.0f, 0.0f); 
+	cameraRight = glm::normalize(glm::cross(up, cameraDirection));
+	cameraUp = glm::cross(cameraDirection, cameraRight);
 }
 
-test::testCube::~testCube() {
+test::testAdvancedCameraManipulation::~testAdvancedCameraManipulation() {
 	GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 }
 
-void test::testCube::onUpdate(timestep deltaTime) {
+void test::testAdvancedCameraManipulation::onUpdate(timestep deltaTime) {
 	if (autorotate[0]){
 		prevrads[0] = deltaTime.getSeconds() * ((rpm[0])*(2*glm::pi<float>()));
 		radians[0] += prevrads[0];
@@ -66,30 +75,9 @@ void test::testCube::onUpdate(timestep deltaTime) {
 		prevrads[2] = deltaTime.getSeconds() * ((rpm[2])*(2*glm::pi<float>()));
 		radians[2] += prevrads[2];
 	}
-	// if (autorotate[0]) {
-	// 	radians[0] = deltaTime.getMilliseconds() * 10 / rotatespeed[0];
-	// 	rpm[0] = radians[0] / deltaTime.getSeconds();
-	// 	if (rpm[0] < 0) {
-	// 		rpm[0] = rpm[0] / -1;
-	// 	}
-	// }
-	// if (autorotate[1]) {
-	// 	radians[1] = deltaTime.getMilliseconds() * 10 / rotatespeed[1];
-	// 	rpm[1] = radians[1] / deltaTime.getSeconds();
-	// 	if (rpm[1] < 0) {
-	// 		rpm[1] = rpm[1] / -1;
-	// 	}
-	// }
-	// if (autorotate[2]) {
-	// 	radians[2] = deltaTime.getMilliseconds() * 10 / rotatespeed[2];
-	// 	rpm[2] = radians[0] / deltaTime.getSeconds();
-	// 	if (rpm[2] < 0) {
-	// 		rpm[2] = rpm[2] / -1;
-	// 	}
-	// }
 }
 
-void test::testCube::onRender() {
+void test::testAdvancedCameraManipulation::onRender() {
 	GLCall(glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]));
 	GLCall(glClear(GL_COLOR_BUFFER_BIT));
 	{
@@ -108,7 +96,7 @@ void test::testCube::onRender() {
 	}
 }
 
-void test::testCube::onImGuiRender() {
+void test::testAdvancedCameraManipulation::onImGuiRender() {
 	ImGui::ColorEdit4("Clear Color", m_ClearColor);
 	//Color
 	ImGui::ColorEdit4("Cube Color", rgba);
@@ -129,17 +117,6 @@ void test::testCube::onImGuiRender() {
 		m_TranslationA[2] = 0;
 	}
 	//Camera
-	// if(ImGui::Button("Switch MVP View")){
-	// 	if(!mvpstate){
-	// 		ImGui::Text("Current MVP View: ORTHOGRAPHIC");
-	// 		//m_Proj = (glm::ortho(0.0f, (float) width, 0.0f, (float) height, -10000.0f, 10000.0f));
-	// 		m_Proj = (glm::ortho(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f));
-	// 	}
-	// 	else if(mvpstate){
-	// 		m_Proj = (glm::perspective(glm::radians(90.0f), 800.0f / 600.0f, 0.1f, 1920.0f));
-	// 		ImGui::Text("Current MVP View: PERSPECTIVE");
-	// 	}
-	// }
 	ImGui::SliderFloat3("Camera", cam, -width, width);
 	if (ImGui::Button("Reset Camera")) {
 		cam[0] = -960.0f;

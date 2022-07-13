@@ -28,22 +28,22 @@ file(GLOB_RECURSE tests
         "${PROJECT_SOURCE_DIR}/source/tests/*.cpp"
         )
 
-file(GLOB_RECURSE ladderlogic
-        #executable
-        "${PROJECT_SOURCE_DIR}/source/apps/main.cpp"
-        #ladderlogic source
-        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.h"
-        "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.cpp"
-        )
+# file(GLOB_RECURSE ladderlogic
+#         #executable
+#         "${PROJECT_SOURCE_DIR}/source/apps/main.cpp"
+#         #ladderlogic source
+#         "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.h"
+#         "${PROJECT_SOURCE_DIR}/source/apps/ladderlogic/*.cpp"
+#         )
 
 add_executable(${PROJECT_NAME}
         ${engine}
         ${tests}
         )
         
-        add_executable(LadderLogic
-        ${ladderlogic}
-        )
+        # add_executable(LadderLogic
+        # ${ladderlogic}
+        # )
 
 find_path(STB_INCLUDE_DIRS "stb_c_lexer.h")
 find_path(SCOTTT_DEBUGBREAK_INCLUDE_DIRS "debugbreak.h")

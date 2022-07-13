@@ -24,15 +24,16 @@ public:
 
 	void initDeltaTime();
 
-	void updateDeltaTime(float lastframetime);
+	//void updateDeltaTime(float lastframetime);
+	void updateDeltaTime();
 
 	void waitDeltaTime(int x);
 
 	void restartDeltaTime();
 
-	float* getLastframetime() const;
+	float getLastframetime() const;
 
-	void setLastframetime(float* lastframetime);
+	//void setLastframetime(float* lastframetime);
 
 	//int getDeltaTime() const;
 	timestep getDeltaTime() const;
@@ -61,6 +62,6 @@ private:
 
 	timestep deltatime;
 
-	float* lastframetime;
+	float lastframetime;
 
 };

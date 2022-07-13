@@ -57,9 +57,13 @@ namespace test {
 
 		float radians[3];
 
+		float prevrads[3];
+
 		float scale[3];
 
 		float scale2;
+
+		//bool mvpstate;
 	};
 
 }

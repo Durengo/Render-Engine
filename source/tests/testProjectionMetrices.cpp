@@ -6,7 +6,7 @@
 test::testProjectionMetrices::testProjectionMetrices()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
 	m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f)),
-	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(0, 0, 0) {
+	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0) {
 	float positions[] = {
 					-50.0f, -50.0f, 0.0f, 1.0f,
 					0.0f, 50.0f, 0.0f, 1.0f,
@@ -61,4 +61,8 @@ void test::testProjectionMetrices::onImGuiRender() {
 		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, width);
+	if(ImGui::Button("Center Translation")){
+		m_TranslationA[0] = 960;
+		m_TranslationA[1] = 540;
+	}
 }

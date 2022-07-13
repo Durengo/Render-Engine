@@ -16,6 +16,4 @@ For windows builds there is a batch file in /utility/windows/get_libraries_windo
 libraries (currently it appears to be working poorly so just open a command prompt at utility/windows and run each
 command from the batch file). Copy CMakeLists.txt and CMakeSettings.json to the root of the project.
 
-Project: Ladder Logic Simulation
-
-Currently, all the files related to this project are located at /Application.
+Real benchmark/proof of concept for this custom engine will be the recreation of games in their most primitive form: 1. PONG, 2. SNAKE, 3. TETRIS, 4. SPACE INVADERS, 5. PACMAN, 6. DONKEY KONG

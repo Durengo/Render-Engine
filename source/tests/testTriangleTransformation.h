@@ -6,19 +6,16 @@
 #include "../Engine/Platform/OpenGL/vertexBuffer.h"
 #include "../Engine/Platform/OpenGL/indexBuffer.h"
 #include "../Engine/Platform/OpenGL/shader.h"
-#include "../Engine/Platform/OpenGL/texture.h"
-
-#include <glm/glm.hpp>
 
 #include <memory>
 
 namespace test {
 
-	class testCameraManipulation : public test {
+	class testTriangleTransformation : public test {
 	public:
-		testCameraManipulation();
+		testTriangleTransformation();
 
-		~testCameraManipulation();
+		~testTriangleTransformation();
 
 		void onUpdate(timestep deltaTime) override;
 
@@ -27,6 +24,7 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
+
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -39,15 +37,29 @@ namespace test {
 
 		std::unique_ptr<shader> m_Shader;
 
-		std::unique_ptr<texture> m_Texture;
-
 		glm::mat4 m_Proj, m_View;
+
+		glm::mat4 model;
 
 		glm::vec3 m_TranslationA;
 
-		glm::vec3 m_TranslationB;
+		float rgba[4];
 
-		float cam[3] = {0};
+		float cam[3];
 
+		bool autorotate;
+
+		//int rotatespeed;
+
+		float rpm;
+
+		float radians;
+
+		float prevrads;
+
+		float scale[3];
+
+		float scale2;
 	};
+
 }
