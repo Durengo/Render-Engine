@@ -10,9 +10,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testCubeTexture : public test {
+	class testCubeTexture : public test
+	{
 	public:
 		testCubeTexture();
 
@@ -25,7 +27,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;

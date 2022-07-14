@@ -7,61 +7,75 @@
 
 #include "../Engine/Core/timestep.h"
 #include "../Engine/Platform/OpenGL/renderer.h"
+#include "../Engine/Renderer/Camera.h"
 
-namespace test {
+namespace test
+{
 
-	class test {
+	class test
+	{
 	public:
 		test() {}
 
 		virtual ~test() {}
 
+		// virtual void variables(Camera &maincam) {}
+
 		virtual void onUpdate(timestep deltaTime) {}
 
-		//virtual void onUpdate(timestep deltaTime, GLFWwindow &window) {}
+		// virtual void onUpdate(timestep deltaTime, GLFWwindow &window) {}
 
 		virtual void onRender() {}
 
-		//virtual void onRender(GLFWwindow &window) {}
+		// virtual void onRender(GLFWwindow &window) {}
 
 		virtual void onImGuiRender() {}
 
-	private:
+		virtual void onEvent(GLFWwindow *window, timestep deltaTime) {}
 
+		// virtual void onEvent() {}
+
+	private:
 	};
 
-	class testMenu : public test {
+	class testMenu : public test
+	{
 	public:
-		testMenu(test*& currentTestPointer);
+		testMenu(test *&currentTestPointer);
 
 		void onImGuiRender() override;
 
-		template<typename T>
-		void registerTest(const std::string& name) {
+		template <typename T>
+		void registerTest(const std::string &name)
+		{
 			std::cout << "Registering test: " << name << std::endl;
 
-			m_Test.push_back(std::make_pair(name, []() { return new T(); }));
+			m_Test.push_back(std::make_pair(name, []()
+											{ return new T(); }));
 		}
 
-		template<typename T>
-		void registerTestWithWidthAndHeight(const std::string& name, int width, int height) {
+		template <typename T>
+		void registerTestWithWidthAndHeight(const std::string &name, int width, int height)
+		{
 			std::cout << "Registering test: " << name << std::endl;
 
-			m_Test.push_back(std::make_pair(name, [width, height]() { return new T(); }));
+			m_Test.push_back(std::make_pair(name, [width, height]()
+											{ return new T(); }));
 		}
 
-		template<typename T>
-		void registerTestWithWindow(const std::string& name, GLFWwindow* window) {
+		template <typename T>
+		void registerTestWithWindow(const std::string &name, GLFWwindow *window)
+		{
 			std::cout << "Registering test: " << name << std::endl;
 
-			m_Test.push_back(std::make_pair(name, [window]() { return new T(window); }));
+			m_Test.push_back(std::make_pair(name, [window]()
+											{ return new T(window); }));
 		}
-
 
 	private:
-		test*& m_CurrentTest;
+		test *&m_CurrentTest;
 
-		std::vector<std::pair<std::string, std::function<test* ()>>> m_Test;
+		std::vector<std::pair<std::string, std::function<test *()>>> m_Test;
 	};
 
 };

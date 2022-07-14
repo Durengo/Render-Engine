@@ -5,7 +5,8 @@
 
 #include "renderer.h"
 
-struct vertexBufferElement {
+struct vertexBufferElement
+{
 	unsigned int type;
 
 	unsigned int count;
@@ -15,14 +16,15 @@ struct vertexBufferElement {
 	static unsigned int getSizeOfType(unsigned int type);
 };
 
-class vertexBufferLayout {
+class vertexBufferLayout
+{
 private:
 	std::vector<vertexBufferElement> m_Elements;
 
 	unsigned int m_Stride;
 
 public:
-	vertexBufferLayout() : m_Stride(0) {};
+	vertexBufferLayout() : m_Stride(0){};
 
 	void PushFloat(unsigned int count);
 

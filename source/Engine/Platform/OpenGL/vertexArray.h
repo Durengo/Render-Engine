@@ -4,7 +4,8 @@
 
 class vertexBufferLayout;
 
-class vertexArray {
+class vertexArray
+{
 private:
 	unsigned int m_RendererID;
 
@@ -13,10 +14,9 @@ public:
 
 	~vertexArray();
 
-	void addBuffer(const vertexBuffer& vb, const vertexBufferLayout& layout);
+	void addBuffer(const vertexBuffer &vb, const vertexBufferLayout &layout);
 
 	void Bind() const;
 
 	void Unbind() const;
-
 };

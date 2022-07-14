@@ -12,9 +12,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testInclusiveBasics : public test {
+	class testInclusiveBasics : public test
+	{
 	public:
 		testInclusiveBasics();
 
@@ -62,6 +64,5 @@ namespace test {
 		glm::vec3 m_TranslationB;
 
 		glm::vec3 m_TranslationC;
-
 	};
 }

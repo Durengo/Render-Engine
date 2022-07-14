@@ -11,9 +11,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testProjectionMetrices : public test {
+	class testProjectionMetrices : public test
+	{
 	public:
 		testProjectionMetrices();
 
@@ -41,7 +43,6 @@ namespace test {
 		glm::mat4 m_Proj, m_View;
 
 		glm::vec3 m_TranslationA;
-
 	};
 
 }

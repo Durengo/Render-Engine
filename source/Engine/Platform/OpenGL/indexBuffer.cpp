@@ -2,8 +2,9 @@
 
 #include "renderer.h"
 
-indexBuffer::indexBuffer(const unsigned int* data, unsigned int count)
-	: m_count(count) {
+indexBuffer::indexBuffer(const unsigned int *data, unsigned int count)
+	: m_count(count)
+{
 	ASSERT(sizeof(unsigned int) == sizeof(GLuint));
 
 	GLCall(glGenBuffers(1, &m_RendererID));
@@ -11,14 +12,17 @@ indexBuffer::indexBuffer(const unsigned int* data, unsigned int count)
 	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_STATIC_DRAW));
 }
 
-indexBuffer::~indexBuffer() {
+indexBuffer::~indexBuffer()
+{
 	GLCall(glDeleteBuffers(1, &m_RendererID));
 }
 
-void indexBuffer::Bind() const {
+void indexBuffer::Bind() const
+{
 	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID));
 }
 
-void indexBuffer::Unbind() const {
+void indexBuffer::Unbind() const
+{
 	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 }

@@ -12,9 +12,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testCameraManipulation : public test {
+	class testCameraManipulation : public test
+	{
 	public:
 		testCameraManipulation();
 
@@ -48,6 +50,5 @@ namespace test {
 		glm::vec3 m_TranslationB;
 
 		float cam[3] = {0};
-
 	};
 }

@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testTriangleTransformation : public test {
+	class testTriangleTransformation : public test
+	{
 	public:
 		testTriangleTransformation();
 
@@ -24,7 +26,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -49,7 +50,7 @@ namespace test {
 
 		bool autorotate;
 
-		//int rotatespeed;
+		// int rotatespeed;
 
 		float rpm;
 

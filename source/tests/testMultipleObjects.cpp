@@ -5,17 +5,16 @@
 
 test::testMultipleObjects::testMultipleObjects()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
-	m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f)),
-	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(360, 540, 0),
-	m_TranslationB(1440, 540, 0) {
+	  m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f)),
+	  m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(360, 540, 0),
+	  m_TranslationB(1440, 540, 0)
+{
 	float positions[] = {
-					-50.0f, -50.0f, 0.0f, 1.0f,
-					0.0f, 50.0f, 0.0f, 1.0f,
-					50.0f, -50.0f, 0.0f, 1.0f
-	};
+		-50.0f, -50.0f, 0.0f, 1.0f,
+		0.0f, 50.0f, 0.0f, 1.0f,
+		50.0f, -50.0f, 0.0f, 1.0f};
 	unsigned int indices[] = {
-					0, 1, 2
-	};
+		0, 1, 2};
 
 	m_VAO = std::make_unique<vertexArray>();
 	m_VBO = std::make_unique<vertexBuffer>(positions, 3 * 4 * sizeof(float));
@@ -26,18 +25,20 @@ test::testMultipleObjects::testMultipleObjects()
 	m_Shader = std::make_unique<shader>("res/shaders/projectionMetrices.shader");
 	m_Shader->Bind();
 	m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
-
 }
 
-test::testMultipleObjects::~testMultipleObjects() {
+test::testMultipleObjects::~testMultipleObjects()
+{
 	GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 }
 
-void test::testMultipleObjects::onUpdate(timestep deltaTime) {
+void test::testMultipleObjects::onUpdate(timestep deltaTime)
+{
 	test::onUpdate(deltaTime);
 }
 
-void test::testMultipleObjects::onRender() {
+void test::testMultipleObjects::onRender()
+{
 
 	{
 		glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
@@ -55,21 +56,24 @@ void test::testMultipleObjects::onRender() {
 	}
 }
 
-void test::testMultipleObjects::onImGuiRender() {
+void test::testMultipleObjects::onImGuiRender()
+{
 	ImGui::Text("Polygon mode:");
-	if (ImGui::Button("Enable")) {
+	if (ImGui::Button("Enable"))
+	{
 		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
 	}
-	if (ImGui::Button("Disable")) {
+	if (ImGui::Button("Disable"))
+	{
 		GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 	}
 	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, width);
 	ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, width);
-	if(ImGui::Button("Reset Translations")){
+	if (ImGui::Button("Reset Translations"))
+	{
 		m_TranslationA[0] = 360;
 		m_TranslationA[1] = 540;
 		m_TranslationB[0] = 1440;
 		m_TranslationB[1] = 540;
 	}
-
 }

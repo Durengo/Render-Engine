@@ -10,9 +10,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testTexture : public test {
+	class testTexture : public test
+	{
 	public:
 		testTexture();
 
@@ -36,6 +38,5 @@ namespace test {
 		std::unique_ptr<shader> m_Shader;
 
 		std::unique_ptr<texture> m_Texture;
-
 	};
 }

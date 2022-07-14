@@ -10,13 +10,15 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testSingleTextureCube : public test {
+	class testTextureCord : public test
+	{
 	public:
-		testSingleTextureCube();
+		testTextureCord();
 
-		~testSingleTextureCube();
+		~testTextureCord();
 
 		void onUpdate(timestep deltaTime) override;
 
@@ -25,7 +27,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -48,13 +49,13 @@ namespace test {
 
 		float m_ClearColor[4];
 
-		float rgba[4];
+		// float rgba[4];
 
 		float cam[3];
 
 		bool autorotate[3];
 
-		float rotatespeed[3];
+		// float rotatespeed[3];
 
 		float rpm[3];
 

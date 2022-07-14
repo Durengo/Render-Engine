@@ -6,21 +6,16 @@
 #include "../Engine/Platform/OpenGL/vertexBuffer.h"
 #include "../Engine/Platform/OpenGL/indexBuffer.h"
 #include "../Engine/Platform/OpenGL/shader.h"
-#include "../Engine/Renderer/Camera.h"
 
 #include <memory>
 
-namespace test
-{
+namespace test {
 
-	class testAdvancedCameraManipulation : public test
-	{
+	class testCameraRotation : public test {
 	public:
-		testAdvancedCameraManipulation();
+		testCameraRotation();
 
-		~testAdvancedCameraManipulation();
-
-		// virtual void variables(Camera &maincam) override;
+		~testCameraRotation();
 
 		void onUpdate(timestep deltaTime) override;
 
@@ -28,15 +23,8 @@ namespace test
 
 		void onImGuiRender() override;
 
-		void onEvent(GLFWwindow *window, timestep deltaTime) override;
-
-		// void onEvent() override;
-
-		// void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-
-		// void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
 	private:
+
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -55,29 +43,7 @@ namespace test
 
 		glm::vec3 m_TranslationA;
 
-		Camera maincam;
-
-		bool cursor;
-
-		bool firstMouse;
-
-		float yaw;
-
-		float pitch;
-
-		float lastX;
-
-		float lastY;
-
-		float fov;
-
-		glm::vec3 cameraPos;
-
-		glm::vec3 cameraFront;
-
-		glm::vec3 cameraUp;
-
-		glm::vec3 direction;
+		glm::vec3 cameraPos;  
 
 		glm::vec3 cameraTarget;
 
@@ -86,6 +52,8 @@ namespace test
 		glm::vec3 up;
 
 		glm::vec3 cameraRight;
+
+		glm::vec3 cameraUp;
 
 		float m_ClearColor[4];
 
@@ -109,7 +77,7 @@ namespace test
 
 		float scale2;
 
-		// bool mvpstate;
+		//bool mvpstate;
 	};
 
 }

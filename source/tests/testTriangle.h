@@ -2,9 +2,11 @@
 
 #include "test.h"
 
-namespace test {
+namespace test
+{
 
-	class testTriangle : public test {
+	class testTriangle : public test
+	{
 	public:
 		testTriangle(int width, int height);
 
@@ -26,7 +28,6 @@ namespace test {
 		unsigned int m_VAO;
 
 		unsigned int m_VBO;
-
 	};
 
 }

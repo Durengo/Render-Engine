@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testRectangleAbstraction : public test {
+	class testRectangleAbstraction : public test
+	{
 	public:
 		testRectangleAbstraction();
 
@@ -33,7 +35,6 @@ namespace test {
 		std::unique_ptr<indexBuffer> m_IBO;
 
 		std::unique_ptr<shader> m_Shader;
-
 	};
 
 }

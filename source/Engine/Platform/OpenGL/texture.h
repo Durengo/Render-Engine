@@ -2,18 +2,19 @@
 
 #include "renderer.h"
 
-class texture {
+class texture
+{
 private:
 	unsigned int m_RendererID;
 
 	std::string m_filepath;
 
-	unsigned char* m_LocalBuffer;
+	unsigned char *m_LocalBuffer;
 
 	int m_Width, m_Height, m_BPP;
 
 public:
-	texture(const std::string& path);
+	texture(const std::string &path);
 
 	~texture();
 
@@ -24,5 +25,4 @@ public:
 	inline int getWidth() const { return m_Width; }
 
 	inline int getHeight() const { return m_Height; }
-
 };

@@ -11,28 +11,29 @@
 #include <memory>
 #include <GLFW/glfw3.h>
 
-namespace test {
+namespace test
+{
 
-	class testCamera : public test {
+	class testCamera : public test
+	{
 	public:
 		testCamera();
 
-		testCamera(GLFWwindow& window);
+		testCamera(GLFWwindow &window);
 
 		~testCamera();
 
 		void onUpdate(timestep deltaTime) override;
 
-		//void onUpdate(timestep deltaTime, GLFWwindow &window) override;
+		// void onUpdate(timestep deltaTime, GLFWwindow &window) override;
 
-		//void onRender(GLFWwindow &window) override;
+		// void onRender(GLFWwindow &window) override;
 
 		void onRender() override;
 
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;

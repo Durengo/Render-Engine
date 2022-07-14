@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testCube : public test {
+	class testCube : public test
+	{
 	public:
 		testCube();
 
@@ -24,7 +26,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -63,7 +64,7 @@ namespace test {
 
 		float scale2;
 
-		//bool mvpstate;
+		// bool mvpstate;
 	};
 
 }

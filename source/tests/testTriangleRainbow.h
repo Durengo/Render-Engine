@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testTriangleRainbow : public test {
+	class testTriangleRainbow : public test
+	{
 	public:
 		testTriangleRainbow();
 
@@ -24,7 +26,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		int width, height;
@@ -52,6 +53,8 @@ namespace test {
 		float rpm;
 
 		float radians;
+
+		float prevrads;
 
 		float scale[3];
 

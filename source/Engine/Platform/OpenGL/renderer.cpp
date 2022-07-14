@@ -3,32 +3,37 @@
 #include <iostream>
 
 renderer::renderer()
-	: windowID(nullptr), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f) {
-	//initDeltaTime();
+	: windowID(nullptr), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f)
+{
+	// initDeltaTime();
 }
 
-renderer::renderer(GLFWwindow* windowID)
-	: windowID(windowID), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f) {
-
+renderer::renderer(GLFWwindow *windowID)
+	: windowID(windowID), oldTimeSinceStart(0), timeSinceStart(0), deltaTime(0), counter(0), lastframetime(0.0f)
+{
 }
 
-void renderer::draw(const vertexArray& va, const indexBuffer& ib, const shader& shader) const {
+void renderer::draw(const vertexArray &va, const indexBuffer &ib, const shader &shader) const
+{
 	shader.Bind();
 	va.Bind();
 	ib.Bind();
 	GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
-	//unbinding here would reduce performance but is useful for debugging
+	// unbinding here would reduce performance but is useful for debugging
 }
 
-void renderer::clear() const {
+void renderer::clear() const
+{
 	GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
 
-void renderer::windowFPSMS(GLFWwindow* windowID) {
+void renderer::windowFPSMS(GLFWwindow *windowID)
+{
 	timeSinceStart = (float)glfwGetTime();
 	deltaTime = timeSinceStart - oldTimeSinceStart;
 	counter++;
-	if (deltaTime >= 1.0 / 30.0) {
+	if (deltaTime >= 1.0 / 30.0)
+	{
 		std::string FPS = std::to_string((1.0 / deltaTime) * counter);
 		std::string ms = std::to_string((deltaTime / counter) * 1000);
 		std::string newTitle = FPS + " FPS / " + ms + "ms";
@@ -38,40 +43,44 @@ void renderer::windowFPSMS(GLFWwindow* windowID) {
 	}
 }
 
-void renderer::initDeltaTime() {
-
+void renderer::initDeltaTime()
+{
 
 	//		timeSinceStart = (int) glfwGetTime();
-//		deltaTime = timeSinceStart - oldTimeSinceStart;
+	//		deltaTime = timeSinceStart - oldTimeSinceStart;
 }
 
-void renderer::updateDeltaTime() {
+void renderer::updateDeltaTime()
+{
 	float time = (float)glfwGetTime();
 	deltatime = time - lastframetime;
 	lastframetime = time;
 
-	//timestep timestep = time - lastframetime;
-//		timeSinceStart = (int) glfwGetTime();
-//		deltaTime = timeSinceStart - oldTimeSinceStart;
+	// timestep timestep = time - lastframetime;
+	//		timeSinceStart = (int) glfwGetTime();
+	//		deltaTime = timeSinceStart - oldTimeSinceStart;
 }
 
-void renderer::waitDeltaTime(int x) {
-
+void renderer::waitDeltaTime(int x)
+{
 }
 
-void renderer::restartDeltaTime() {
+void renderer::restartDeltaTime()
+{
 	lastframetime = 0;
 }
 
-//int renderer::getDeltaTime() const {
+// int renderer::getDeltaTime() const {
 //		return deltaTime;
-//}
+// }
 
-timestep renderer::getDeltaTime() const {
+timestep renderer::getDeltaTime() const
+{
 	return deltatime;
 }
 
-float renderer::getLastframetime() const {
+float renderer::getLastframetime() const
+{
 	return lastframetime;
 }
 
@@ -79,10 +88,13 @@ float renderer::getLastframetime() const {
 // 	renderer::lastframetime = lastframetime;
 // }
 
-void renderer::keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	//std::cout << "Something pressed?\n";
-	if (key == GLFW_KEY_UP) {
-		switch (action) {
+void renderer::keyCallBack(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+	// std::cout << "Something pressed?\n";
+	if (key == GLFW_KEY_UP)
+	{
+		switch (action)
+		{
 		case GLFW_PRESS:
 			std::cout << "Pressed Up!\n";
 		case GLFW_RELEASE:
@@ -96,63 +108,79 @@ void renderer::keyCallBack(GLFWwindow* window, int key, int scancode, int action
 	}
 }
 
-void renderer::character_callback(GLFWwindow* window, unsigned int codepoint) {
-	const char* key_name = glfwGetKeyName(GLFW_KEY_W, 0);
+void renderer::character_callback(GLFWwindow *window, unsigned int codepoint)
+{
+	const char *key_name = glfwGetKeyName(GLFW_KEY_W, 0);
 	std::cout << "W PRESSSSSS\n";
 }
 
-void renderer::cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
+void renderer::cursor_position_callback(GLFWwindow *window, double xpos, double ypos)
+{
 	std::cout << "x: " << xpos << " y: " << ypos << std::endl;
 }
 
-void renderer::mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-	if (button == GLFW_MOUSE_BUTTON_LEFT) {
+void renderer::mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT)
+	{
 		bool pressonce = false;
 		bool releaseonce = false;
-		if (pressonce || releaseonce) {
+		if (pressonce || releaseonce)
+		{
 			return;
 		}
-		if (action == GLFW_PRESS && !pressonce) {
+		if (action == GLFW_PRESS && !pressonce)
+		{
 			std::cout << "Left mouse button pressed!\n";
 			pressonce = true;
 		}
-		if (action == GLFW_RELEASE && !releaseonce) {
+		if (action == GLFW_RELEASE && !releaseonce)
+		{
 			std::cout << "Left mouse button released!\n";
 			releaseonce = true;
 		}
 	}
-	if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+	if (button == GLFW_MOUSE_BUTTON_RIGHT)
+	{
 		bool pressonce = false;
 		bool releaseonce = false;
-		if (pressonce || releaseonce) {
+		if (pressonce || releaseonce)
+		{
 			return;
 		}
-		if (action == GLFW_PRESS && !pressonce) {
+		if (action == GLFW_PRESS && !pressonce)
+		{
 			std::cout << "Right mouse button pressed!\n";
 			pressonce = true;
 		}
-		if (action == GLFW_RELEASE && !releaseonce) {
+		if (action == GLFW_RELEASE && !releaseonce)
+		{
 			std::cout << "Right mouse button released!\n";
 			releaseonce = true;
 		}
 	}
-	if (button == GLFW_MOUSE_BUTTON_MIDDLE) {
+	if (button == GLFW_MOUSE_BUTTON_MIDDLE)
+	{
 		bool pressonce = false;
 		bool releaseonce = false;
-		if (pressonce || releaseonce) {
+		if (pressonce || releaseonce)
+		{
 			return;
 		}
-		if (action == GLFW_PRESS && !pressonce) {
+		if (action == GLFW_PRESS && !pressonce)
+		{
 			std::cout << "Middle mouse button pressed!\n";
 			pressonce = true;
 		}
-		if (action == GLFW_RELEASE && !releaseonce) {
+		if (action == GLFW_RELEASE && !releaseonce)
+		{
 			std::cout << "Middle mouse button released!\n";
 			releaseonce = true;
 		}
 	}
 }
 
-void renderer::scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+void renderer::scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
+{
 	std::cout << "Scroll wheel: " << yoffset << std::endl;
 }

@@ -15,9 +15,9 @@
 #include "testTriangleRainbow.h"
 #include "testTriangleTransformation.h"
 #include "testCube.h"
-#include "testSingleTextureCube.h"
+#include "testTextureCord.h"
+#include "testCameraRotation.h"
 #include "testAdvancedCameraManipulation.h"
-
 
 #include "testCubeTexture.h"
 #include "testCamera.h"

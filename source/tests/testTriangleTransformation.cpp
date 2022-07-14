@@ -5,23 +5,22 @@
 
 test::testTriangleTransformation::testTriangleTransformation()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
-	m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -10.0f, 10.0f)),
-	//m_Proj(glm::perspective(glm::radians(15.0f), 800.0f / 600.0f, 0.1f, 100.0f)),
-	m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0),
-	rgba{ 1.0f, 1.0f, 1.0f, 1.0f }, cam{ 0.0f, 0.0f, 0.0f }, autorotate(false), rpm(0.0f), prevrads(0.0f),
-	radians(0.0f), scale{ 1.0f, 1.0f, 1.0f }, scale2(1.0f) {
+	  m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -10.0f, 10.0f)),
+	  // m_Proj(glm::perspective(glm::radians(15.0f), 800.0f / 600.0f, 0.1f, 100.0f)),
+	  m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0),
+	  rgba{1.0f, 1.0f, 1.0f, 1.0f}, cam{0.0f, 0.0f, 0.0f}, autorotate(false), rpm(0.0f), prevrads(0.0f),
+	  radians(0.0f), scale{1.0f, 1.0f, 1.0f}, scale2(1.0f)
+{
 
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
 	float positions[] = {
-					-50.0f, -50.0f, 0.0f, 1.0f,
-					0.0f, 50.0f, 0.0f, 1.0f,
-					50.0f, -50.0f, 0.0f, 1.0f
-	};
+		-50.0f, -50.0f, 0.0f, 1.0f,
+		0.0f, 50.0f, 0.0f, 1.0f,
+		50.0f, -50.0f, 0.0f, 1.0f};
 	unsigned int indices[] = {
-					0, 1, 2
-	};
+		0, 1, 2};
 
 	m_VAO = std::make_unique<vertexArray>();
 
@@ -39,27 +38,31 @@ test::testTriangleTransformation::testTriangleTransformation()
 	m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-test::testTriangleTransformation::~testTriangleTransformation() {
+test::testTriangleTransformation::~testTriangleTransformation()
+{
 	GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 }
 
-void test::testTriangleTransformation::onUpdate(timestep deltaTime) {
-	if (autorotate) {
-		//prevrads = deltaTime.getSeconds() * ((rpm/60)*(2*glm::pi<float>()));
-		prevrads = deltaTime.getSeconds() * ((rpm)*(2*glm::pi<float>()));
+void test::testTriangleTransformation::onUpdate(timestep deltaTime)
+{
+	if (autorotate)
+	{
+		// prevrads = deltaTime.getSeconds() * ((rpm/60)*(2*glm::pi<float>()));
+		prevrads = deltaTime.getSeconds() * ((rpm) * (2 * glm::pi<float>()));
 		radians += prevrads;
-		//std::cout << radians << "R \n";
-		//std::cout << deltaTime.getSeconds() << "s, ";
-		// radians = deltaTime.getMilliseconds() * 10 / rotatespeed;
-		// rpm = radians / deltaTime.getSeconds();
-		// if (rpm < 0)
-		// {
-		// 	rpm = rpm / -1;
-		// }
+		// std::cout << radians << "R \n";
+		// std::cout << deltaTime.getSeconds() << "s, ";
+		//  radians = deltaTime.getMilliseconds() * 10 / rotatespeed;
+		//  rpm = radians / deltaTime.getSeconds();
+		//  if (rpm < 0)
+		//  {
+		//  	rpm = rpm / -1;
+		//  }
 	}
 }
 
-void test::testTriangleTransformation::onRender() {
+void test::testTriangleTransformation::onRender()
+{
 	{
 		m_View = glm::translate(glm::mat4(1.0f), glm::vec3(cam[0], cam[1], cam[2]));
 		model = glm::translate(glm::mat4(1.0f), m_TranslationA);
@@ -73,47 +76,56 @@ void test::testTriangleTransformation::onRender() {
 	}
 }
 
-void test::testTriangleTransformation::onImGuiRender() {
+void test::testTriangleTransformation::onImGuiRender()
+{
 	ImGui::ColorEdit4("Triangle Color", rgba);
 	{
 		ImGui::Text("Polygon mode:");
-		if (ImGui::Button("Enable")) {
+		if (ImGui::Button("Enable"))
+		{
 			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
 		}
-		if (ImGui::Button("Disable")) {
+		if (ImGui::Button("Disable"))
+		{
 			GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 		}
 	}
-	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0-width, width);
-	if(ImGui::Button("Reset Translations")){
+	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0 - width, width);
+	if (ImGui::Button("Reset Translations"))
+	{
 		m_TranslationA[0] = 960;
 		m_TranslationA[1] = 540;
 	}
-	ImGui::SliderFloat3("Camera", cam, 0-width, width);
-	if (ImGui::Button("Reset Camera")) {
+	ImGui::SliderFloat3("Camera", cam, 0 - width, width);
+	if (ImGui::Button("Reset Camera"))
+	{
 		cam[0] = 0.0f;
 		cam[1] = 0.0f;
 		cam[2] = 0.0f;
 	}
 	ImGui::Checkbox("Toggle Automatic Triangle Rotation", &autorotate);
-	//ImGui::SliderInt("Rotation Speed", &rotatespeed, -500, 10000);
+	// ImGui::SliderInt("Rotation Speed", &rotatespeed, -500, 10000);
 	ImGui::SliderFloat("RPM", &rpm, 0.0f, 100.0f);
 	ImGui::SliderFloat("Triangle Rotation", &radians, -360.0f, 360.0f);
 	ImGui::Text("%f RPM", rpm);
-	if (ImGui::Button("Reset RPM Value")) {
+	if (ImGui::Button("Reset RPM Value"))
+	{
 		rpm = 0.0f;
 	}
-	if (ImGui::Button("Reset Triangle Rotation")) {
+	if (ImGui::Button("Reset Triangle Rotation"))
+	{
 		radians = 0.0f;
 	}
 	ImGui::SliderFloat3("Triangle Vector Scale", scale, 0.0f, 50.0f);
 	ImGui::SliderFloat("Trinagle Ratio Scale", &scale2, -0.0f, 10.0f);
-	if (ImGui::Button("Reset Vector Scaling")) {
+	if (ImGui::Button("Reset Vector Scaling"))
+	{
 		scale[0] = 1.0f;
 		scale[1] = 1.0f;
 		scale[2] = 1.0f;
 	}
-	if (ImGui::Button("Reset Ratio Scaling")) {
+	if (ImGui::Button("Reset Ratio Scaling"))
+	{
 		scale2 = 1.0f;
 	}
 }

@@ -12,9 +12,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testMultipleRectangleTextures : public test {
+	class testMultipleRectangleTextures : public test
+	{
 	public:
 		testMultipleRectangleTextures();
 
@@ -46,7 +48,6 @@ namespace test {
 		glm::vec3 m_TranslationA;
 
 		glm::vec3 m_TranslationB;
-
 	};
 
 }

@@ -14,10 +14,13 @@
 //#include "tests/testInclusiveBasics.h"
 //#include "tests/testTriangle3D.h"
 
+// void ImGuiDemo(bool &show_demo_window, bool &show_another_window, ImVec4 &clear_color);
 
-//void ImGuiDemo(bool &show_demo_window, bool &show_another_window, ImVec4 &clear_color);
+// TODO: IMPLEMENT UV MAP FOR INDICES (TEXTURES)
+// TODO: 1. PONG CLONE, 2. SNAKE CLONE, 3. TETRIS CLONE, 4. SPACE INVADERS CLONE, 5. PACMAN CLONE, 6. DONKEY KONG CLONE
 
-//TODO: 1. PONG CLONE, 2. SNAKE CLONE, 3. TETRIS CLONE, 4. SPACE INVADERS CLONE, 5. PACMAN CLONE, 6. DONKEY KONG CLONE
+// void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+// void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 int main()
 {
@@ -87,23 +90,31 @@ int main()
 		testMenu->registerTest<test::testTriangleRainbow>("Rainbow Triangle Test");
 		testMenu->registerTest<test::testTriangleTransformation>("Triangle Transformation Test");
 		testMenu->registerTest<test::testCube>("Cube Test");
-		testMenu->registerTest<test::testSingleTextureCube>("Single Texture Cube Test");
-
+		testMenu->registerTest<test::testTextureCord>("Textured Cube Test");
+		testMenu->registerTest<test::testCameraRotation>("Camera Rotation Test");
 		testMenu->registerTest<test::testAdvancedCameraManipulation>("Advanced Camera Manipulation Test");
 
 		// TEMPORARILY DISABLED:
-		//testMenu->registerTest<test::testCubeTexture>("Textured Multiple Cubes Test");
-		//testMenu->registerTest<test::testCamera>("Camera Test");
+		// testMenu->registerTest<test::testCubeTexture>("Textured Multiple Cubes Test");
+		// testMenu->registerTest<test::testCamera>("Camera Test");
 
 		// NOT MADE:
 		// testMenu->registerTestWithWindow<test::testCamera>("Camera Test", window);
 		// testMenu->registerTest<test::testInclusiveBasics>("Basic OpenGL Inclusive Test");
 		// testMenu->registerTest<test::testTriangle3D>("Triangle 3D");
 
-		//float lastframetime = 0.0f;
-		//renderer.setLastframetime(&lastframetime);
+		// float lastframetime = 0.0f;
+		// renderer.setLastframetime(&lastframetime);
 
-		//renderer.updateDeltaTime(lastframetime);
+		// renderer.updateDeltaTime(lastframetime);
+
+		// EVENTS
+		// glfwSetCursorPosCallback(window, mouse_callback);
+		// glfwSetScrollCallback(window, scroll_callback);
+
+		// CAMERAS
+
+		// Camera maincam(window);
 
 		while (!glfwWindowShouldClose(window))
 		{
@@ -111,6 +122,7 @@ int main()
 			renderer.clear();
 			renderer.windowFPSMS(window);
 			renderer.updateDeltaTime();
+			// glfwSetCursorPosCallback(window, cursor_position_callback);
 
 			//						//keyboard input handle
 			//						glfwSetKeyCallback(window, renderer::keyCallBack);
@@ -130,9 +142,10 @@ int main()
 
 			if (currentTest)
 			{
-				//currentTest->onUpdate(renderer.getDeltaTime());
+				// currentTest->onUpdate(renderer.getDeltaTime());
 				currentTest->onUpdate(renderer.getDeltaTime());
 				currentTest->onRender();
+				currentTest->onEvent(window, renderer.getDeltaTime());
 				ImGui::Begin("Tests:");
 				if (currentTest != testMenu && ImGui::Button("<-"))
 				{

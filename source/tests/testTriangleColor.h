@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testTriangleColor : public test {
+	class testTriangleColor : public test
+	{
 	public:
 		testTriangleColor();
 
@@ -24,7 +26,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		std::unique_ptr<vertexArray> m_VAO;
@@ -36,7 +37,6 @@ namespace test {
 		std::unique_ptr<shader> m_Shader;
 
 		float rgba[4];
-
 	};
 
 }

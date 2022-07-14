@@ -11,9 +11,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testMultipleObjects : public test {
+	class testMultipleObjects : public test
+	{
 	public:
 		testMultipleObjects();
 
@@ -43,7 +45,6 @@ namespace test {
 		glm::vec3 m_TranslationA;
 
 		glm::vec3 m_TranslationB;
-
 	};
 
 }

@@ -9,9 +9,11 @@
 
 #include <memory>
 
-namespace test {
+namespace test
+{
 
-	class testTriangleColorAnimation : public test {
+	class testTriangleColorAnimation : public test
+	{
 	public:
 		testTriangleColorAnimation();
 
@@ -24,7 +26,6 @@ namespace test {
 		void onImGuiRender() override;
 
 	private:
-
 		std::unique_ptr<renderer> m_Renderer;
 
 		std::unique_ptr<vertexArray> m_VAO;
@@ -43,7 +44,6 @@ namespace test {
 
 		float settime = 0.0f;
 		bool istimeset = false;
-
 	};
 
 }

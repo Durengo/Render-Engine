@@ -2,9 +2,11 @@
 
 #include "test.h"
 
-namespace test {
+namespace test
+{
 
-	class testClearColor : public test {
+	class testClearColor : public test
+	{
 	public:
 		testClearColor();
 

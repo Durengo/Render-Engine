@@ -2,9 +2,11 @@
 
 #include "test.h"
 
-namespace test {
+namespace test
+{
 
-	class testTextureNoAbstraction : public test {
+	class testTextureNoAbstraction : public test
+	{
 	public:
 		testTextureNoAbstraction(int width, int height);
 
@@ -28,7 +30,6 @@ namespace test {
 		unsigned int m_EBO;
 
 		unsigned int m_VBO;
-
 	};
 
 }
