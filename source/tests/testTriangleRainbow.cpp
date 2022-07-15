@@ -73,6 +73,7 @@ void test::testTriangleRainbow::onImGuiRender()
 	{
 		m_TranslationA[0] = 960;
 		m_TranslationA[1] = 540;
+		m_TranslationA[2] = 0;
 	}
 	ImGui::SliderFloat3("Camera", cam, 0 - width, width);
 	if (ImGui::Button("Reset Camera"))

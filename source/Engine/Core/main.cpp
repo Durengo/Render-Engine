@@ -1,3 +1,10 @@
+// TODO: IMPLEMENT UV MAP FOR INDICES (TEXTURES)
+// TODO: 1. PONG CLONE, 2. SNAKE CLONE, 3. TETRIS CLONE, 4. SPACE INVADERS CLONE, 5. PACMAN CLONE, 6. DONKEY KONG CLONE
+// TODO: FIX CAMERA YAW LIMITATION
+// TODO: CREATE AN EVENT SYSTEM
+// TODO: CREATE AN ENTRY POINT
+// TODO: MINIMIZE COMPILE TIME
+
 #include <iostream>
 
 #include <GL/glew.h>
@@ -13,14 +20,6 @@
 // LEAVE FOR LATER:
 //#include "tests/testInclusiveBasics.h"
 //#include "tests/testTriangle3D.h"
-
-// void ImGuiDemo(bool &show_demo_window, bool &show_another_window, ImVec4 &clear_color);
-
-// TODO: IMPLEMENT UV MAP FOR INDICES (TEXTURES)
-// TODO: 1. PONG CLONE, 2. SNAKE CLONE, 3. TETRIS CLONE, 4. SPACE INVADERS CLONE, 5. PACMAN CLONE, 6. DONKEY KONG CLONE
-
-// void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-// void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 int main()
 {
@@ -83,7 +82,7 @@ int main()
 		testMenu->registerTest<test::testTriangleColor>("Triangle Color Test");
 		testMenu->registerTest<test::testTriangleColorAnimation>("Triangle Color Animation Test");
 		testMenu->registerTest<test::testTexture>("Rectangle Texture Test");
-		testMenu->registerTest<test::testProjectionMetrices>("Projection Matrix Test");
+		testMenu->registerTest<test::testProjectionMatrices>("Projection Matrix Test");
 		testMenu->registerTest<test::testMultipleObjects>("Multiple Object Test");
 		testMenu->registerTest<test::testMultipleRectangleTextures>("Multiple Rectangles With Textures Test");
 		testMenu->registerTest<test::testCameraManipulation>("Camera Manipulation");
@@ -103,38 +102,12 @@ int main()
 		// testMenu->registerTest<test::testInclusiveBasics>("Basic OpenGL Inclusive Test");
 		// testMenu->registerTest<test::testTriangle3D>("Triangle 3D");
 
-		// float lastframetime = 0.0f;
-		// renderer.setLastframetime(&lastframetime);
-
-		// renderer.updateDeltaTime(lastframetime);
-
-		// EVENTS
-		// glfwSetCursorPosCallback(window, mouse_callback);
-		// glfwSetScrollCallback(window, scroll_callback);
-
-		// CAMERAS
-
-		// Camera maincam(window);
-
 		while (!glfwWindowShouldClose(window))
 		{
 			GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 			renderer.clear();
 			renderer.windowFPSMS(window);
 			renderer.updateDeltaTime();
-			// glfwSetCursorPosCallback(window, cursor_position_callback);
-
-			//						//keyboard input handle
-			//						glfwSetKeyCallback(window, renderer::keyCallBack);
-			//						//set unicode (?)
-			//						//glfwSetCharCallback(window, character_callback);
-			//						//mouse handle
-			//						//position
-			//						glfwSetCursorPosCallback(window, renderer.cursor_position_callback);
-			//						//buttons
-			//						glfwSetMouseButtonCallback(window, renderer::mouse_button_callback);
-			//						//scroll
-			//						glfwSetScrollCallback(window, renderer::scroll_callback);
 
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
@@ -142,7 +115,6 @@ int main()
 
 			if (currentTest)
 			{
-				// currentTest->onUpdate(renderer.getDeltaTime());
 				currentTest->onUpdate(renderer.getDeltaTime());
 				currentTest->onRender();
 				currentTest->onEvent(window, renderer.getDeltaTime());
@@ -181,42 +153,3 @@ int main()
 	glfwTerminate();
 	return 0;
 }
-
-// void ImGuiDemo(bool &show_demo_window, bool &show_another_window, ImVec4 &clear_color)
-// {
-// 	if (show_demo_window)
-// 		ImGui::ShowDemoWindow(&show_demo_window);
-// 	{
-// 		static float f = 0.0f;
-// 		static int counter = 0;
-
-// 		ImGui::Begin(
-// 			"Hello, world!"); // Create a window called "Hello, world!" and append into it.
-
-// 		ImGui::Text("This is some useful text.");		   // Display some text (you can use a format strings too)
-// 		ImGui::Checkbox("Demo Window", &show_demo_window); // Edit bools storing our window open/close state
-// 		ImGui::Checkbox("Another Window", &show_another_window);
-
-// 		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);			 // Edit 1 float using a slider from 0.0f to 1.0f
-// 		ImGui::ColorEdit3("clear color", (float *)&clear_color); // Edit 3 floats representing a color
-
-// 		if (ImGui::Button(
-// 				"Button")) // Buttons return true when clicked (most widgets return true when edited/activated)
-// 			counter++;
-// 		ImGui::SameLine();
-// 		ImGui::Text("counter = %d", counter);
-
-// 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
-// 					ImGui::GetIO().Framerate);
-// 		ImGui::End();
-// 	}
-// 	if (show_another_window)
-// 	{
-// 		ImGui::Begin("Another Window",
-// 					 &show_another_window); // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-// 		ImGui::Text("Hello from another window!");
-// 		if (ImGui::Button("Close Me"))
-// 			show_another_window = false;
-// 		ImGui::End();
-// 	}
-// }

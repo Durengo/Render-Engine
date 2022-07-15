@@ -82,7 +82,7 @@ void test::testCameraManipulation::onImGuiRender()
 	{
 		cam[0] = 0;
 		cam[1] = 0;
-		cam[3] = 0;
+		cam[2] = 0;
 	}
 	ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0 - width, width);
 	ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0 - width, width);
@@ -90,7 +90,9 @@ void test::testCameraManipulation::onImGuiRender()
 	{
 		m_TranslationA[0] = 360;
 		m_TranslationA[1] = 540;
+		m_TranslationA[2] = 0;
 		m_TranslationB[0] = 1440;
 		m_TranslationB[1] = 540;
+		m_TranslationB[2] = 0;
 	}
 }

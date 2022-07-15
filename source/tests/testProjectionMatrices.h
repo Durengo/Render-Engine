@@ -14,12 +14,12 @@
 namespace test
 {
 
-	class testProjectionMetrices : public test
+	class testProjectionMatrices : public test
 	{
 	public:
-		testProjectionMetrices();
+		testProjectionMatrices();
 
-		~testProjectionMetrices();
+		~testProjectionMatrices();
 
 		void onUpdate(timestep deltaTime) override;
 

@@ -73,7 +73,9 @@ void test::testMultipleObjects::onImGuiRender()
 	{
 		m_TranslationA[0] = 360;
 		m_TranslationA[1] = 540;
+		m_TranslationA[2] = 0;
 		m_TranslationB[0] = 1440;
 		m_TranslationB[1] = 540;
+		m_TranslationB[2] = 0;
 	}
 }

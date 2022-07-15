@@ -8,7 +8,7 @@
 #include "testTriangleColor.h"
 #include "testTriangleColorAnimation.h"
 #include "testTexture.h"
-#include "testProjectionMetrices.h"
+#include "testProjectionMatrices.h"
 #include "testMultipleObjects.h"
 #include "testMultipleRectangleTextures.h"
 #include "testCameraManipulation.h"

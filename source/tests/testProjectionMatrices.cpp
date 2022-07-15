@@ -1,9 +1,9 @@
-#include "testProjectionMetrices.h"
+#include "testProjectionMatrices.h"
 
 #include <imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-test::testProjectionMetrices::testProjectionMetrices()
+test::testProjectionMatrices::testProjectionMatrices()
 	: m_Renderer(std::make_unique<renderer>()), width(1920), height(1080),
 	  m_Proj(glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f)),
 	  m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))), m_TranslationA(960, 540, 0)
@@ -32,17 +32,17 @@ test::testProjectionMetrices::testProjectionMetrices()
 	m_Shader->setUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
-test::testProjectionMetrices::~testProjectionMetrices()
+test::testProjectionMatrices::~testProjectionMatrices()
 {
 	GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 }
 
-void test::testProjectionMetrices::onUpdate(timestep deltaTime)
+void test::testProjectionMatrices::onUpdate(timestep deltaTime)
 {
 	test::onUpdate(deltaTime);
 }
 
-void test::testProjectionMetrices::onRender()
+void test::testProjectionMatrices::onRender()
 {
 
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
@@ -52,7 +52,7 @@ void test::testProjectionMetrices::onRender()
 	m_Renderer->draw(*m_VAO, *m_IBO, *m_Shader);
 }
 
-void test::testProjectionMetrices::onImGuiRender()
+void test::testProjectionMatrices::onImGuiRender()
 {
 	ImGui::Text("Using orthographic matrix (Z Axis unavailable)");
 	ImGui::Text("Polygon mode:");
@@ -69,5 +69,6 @@ void test::testProjectionMetrices::onImGuiRender()
 	{
 		m_TranslationA[0] = 960;
 		m_TranslationA[1] = 540;
+		m_TranslationA[2] = 0;
 	}
 }
